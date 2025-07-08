@@ -3,11 +3,11 @@
     <div class="flex justify-between items-center text-black">
       <div class="px-1">
         <%= link_to '/', class:"group" do %>
-          <h1 class="text-3xl font-exo2 group-hover:font-bold">FridgeBell</h1>
+          <h1 class="text-3xl font-exo2 group-hover:font-bold"><%= t('header.app_name') %></h1>
         <% end %>
       </div>
       <div class="flex space-x-4">
-        <%= link_to "ログイン", "#", class:"py-2 px-4 bg-green-500 rounded-md text-white hover:bg-green-700" %>
+        <%= link_to t('header.login'), "#", class:"py-2 px-4 bg-green-500 rounded-md text-white hover:bg-green-700" %>
       </div>
     </div>
   </div>
