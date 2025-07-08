@@ -1,0 +1,17 @@
+ja:
+  header:
+    login: ログイン
+    app_name: FridgeBell
+  footer:
+    terms_of_service: 利用規約
+    privacy_policy: プライバシーポリシー
+    contact_us: お問い合わせ
+    copyright: © %{year} %{app_name}
+  homes:
+    top:
+      title: FridgeBell
+      description: 簡単なアプリ説明
+      how_to_use: 使い方
+      create_user: まずは新規登録
+
+    
