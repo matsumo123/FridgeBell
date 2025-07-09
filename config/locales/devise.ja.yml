@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+  devise:
+    registrations:
+      new:
+        title: アカウント登録
+        password: パスワード
+        password_complexity: (8文字以上、大文字・小文字・数字を含めてください)
+        submit: 登録
+    shared:
+      links:
+        login: ログイン
+        sign_up: アカウント登録
+        forgot_your_password: パスワードを忘れた方はこちら
+  errors:
+    messages:
+      already_confirmed: は既に登録済みです。ログインしてください。
+      not_saved:
+        one: エラーが発生したため %{resource} は保存されませんでした。
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
