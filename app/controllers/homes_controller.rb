@@ -1,4 +1,7 @@
 class HomesController < ApplicationController
-  def top
-  end
+  before_action :authenticate_user!, only: %i[ home ]
+
+  def top; end
+
+  def home; end
 end
