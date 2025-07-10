@@ -21,6 +21,7 @@
 
   <body>
       <%= render 'shared/header' %>
+      <%= render 'shared/flash_message' %>
       <%= yield %>
       <% if user_signed_in? %>
         <%= render 'shared/footer' %>
