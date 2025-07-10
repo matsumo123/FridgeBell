@@ -1,13 +1,15 @@
 <footer class="fixed bottom-0 left-0 w-full bg-amber-100 px-4 py-4">
   <div class="flex">
-    <%= link_to "#", class: "basis-1/4 text-left ps-8 hover:font-medium" do %>
+    <%= link_to home_path, class: "basis-1/4 flex justify-center" do %>
       <i><%= heroicon "home", variant: :outline, options: { class: "w-15 h-15" } %></i>
     <% end %>
-    <%= link_to "冷蔵庫", "#", class: "basis-1/4 text-center hover:font-medium" %>
-    <%= link_to "#", class: "basis-1/4 text-right pe-8 hover:font-medium" do %>
+    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
+      <i class="material-symbols-rounded !text-6xl" style="font-variation-settings: 'wght' 100;">kitchen</i>
+    <% end %>
+    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
       <i><%= heroicon "pencil-square", variant: :outline, options: { class: "w-15 h-15" } %></i>
     <% end %>
-    <%= link_to "#", class: "basis-1/4 text-right pe-8 hover:font-medium" do %>
+    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
       <i><%= heroicon "bell-alert", variant: :outline, options: { class: "w-15 h-15" } %></i>
     <% end %>
   </div>
