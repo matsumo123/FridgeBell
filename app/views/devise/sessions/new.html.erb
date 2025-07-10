@@ -3,11 +3,6 @@
     <div class="text-center pt-5">
       <h2 class="text-3xl text-black-500 font-bold text-center mb-5"><%= t('.sign_in') %></h2>
       <div class="w-3/5 mx-auto">
-        <% if notice %>
-          <p class="notice bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-5"><%= notice %></p>
-        <% elsif alert %>
-          <p class="alert bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"><%= alert %></p>
-        <% end %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="mb-3 mt-4 flex flex-col">
             <%= f.label :email, class: "block text-left mb-1" %>
