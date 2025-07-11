@@ -1,12 +1,12 @@
-<div class="min-h-screen bg-violet-200">
-  <div class="container mx-auto">
+<main className="flex flex-grow flex-col items-center justify-center px-6 py-16 text-center md:py-24">
+  <div class="max-w-4xl space-y-8">
     <div class="text-center pt-5">
-      <h2 class="text-4xl font-exo2 text-black-500 font-bold mb-5"><%= t('.title') %></h2>
-      <p class="my-4"><%= t('.description') %><p>
-      <div class="mt-8 flex flex-col items-center space-y-4">
-        <%= link_to t('.how_to_use'), "#", class: "inline-block py-2 px-4 bg-violet-500 rounded-md text-white hover:bg-violet-700" %>
-        <%= link_to t('.create_user'), new_user_registration_path, class: "inline-block py-2 px-4 bg-white rounded-md hover:font-medium" %>
+      <h2 class="text-4xl font-exo2 text-orange-800 md:text-7xl lg:text-8xl"><%= t('.title') %></h2>
+      <p class="text-lg text-gray-700 md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed"><%= t('.description') %><p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6 pt-8">
+        <%= link_to t('.how_to_use'), "#", class: "bg-green-400 hover:bg-green-500 text-white font-semibold px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-200" %>
+        <%= link_to t('.create_user'), new_user_registration_path, class: "bg-orange-400 hover:bg-orange-500 text-white font-semibold px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-200" %>
       </div>
     </div>
   </div>
-</div>
+</main>
