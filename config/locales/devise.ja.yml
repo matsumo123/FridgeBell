@@ -94,6 +94,7 @@ ja:
         password: パスワード
         password_complexity: (8文字以上、大文字・小文字・数字を含めてください)
         create_user: 登録
+        line_login: LINEでログイン
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
       signed_up_but_locked: アカウントがロックされているためログインできません。
@@ -106,6 +107,7 @@ ja:
       new:
         sign_in: ログイン
         submit: ログイン
+        line_login: LINEでログイン
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     shared:
