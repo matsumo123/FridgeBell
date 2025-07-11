@@ -1,31 +1,33 @@
 <header>
-  <div class="inset-x-0 top-0 bg-violet-200 px-4 py-4">
-    <div class="flex justify-between items-center text-black">
-      <div class="px-1">
-        <%= link_to '/', class:"group" do %>
-          <h1 class="text-3xl font-exo2 group-hover:font-bold"><%= t('header.app_name') %></h1>
-        <% end %>
+  <div class="flex items-center justify-between shadow-sm border-b border-orange-100 px-6 py-4 md:px-8">
+    <div class="flex items-center space-x-2">
+      <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-400 rounded-full flex items-center justify-center">
+        <i class="material-symbols-rounded text-xl text-white">kitchen</i>
       </div>
-      <% if user_signed_in? %>
-        <div data-controller="user-menu" class="relative inline-block text-left">
-          <button data-action="click->user-menu#toggle" class="text-gray-700 hover:font-semibold">
-            <%= current_user.name %>
-          </button>
-          <div data-user-menu-target="menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
-            <div class="py-1">
-              <%= link_to t('header.user_setting'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-              <%= link_to t('header.terms_of_service'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-              <%= link_to t('header.privacy_policy'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-              <%= link_to t('header.contact_us'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-              <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete}, class:"block px-4 py-2 text-sm text-red-700 hover:bg-gray-100" %>
-            </div>
-          </div>
-        </div>
-      <% else %>
-        <div class="flex space-x-4">
-          <%= link_to t('header.login'), new_user_session_path, class:"py-2 px-4 bg-green-500 rounded-md text-white hover:bg-green-700" %>
-        </div>
+      <%= link_to '/' do %>
+        <h1 class="text-4xl font-exo2 font-bold leading-tight overflow-visible bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-3xl"><%= t('header.app_name') %></h1>
       <% end %>
     </div>
+    <% if user_signed_in? %>
+      <div data-controller="user-menu" class="space-x-2 px-4 py-2">
+        <button data-action="click->user-menu#toggle" class="flex mt-2 items-center text-gray-700 hover:font-semibold">
+          <%= heroicon "user", options: { class: "w-4 h-4 text-gray-600" } %>
+          <span class="ml-2 text-sm font-medium text-gray-70"><%= current_user.name %></span>
+        </button>
+        <div data-user-menu-target="menu" class="origin-top-right absolute right-4 mt-2 w-48 rounded-md shadow-lg bg-gradient-to-br from-orange-50 to-green-50  border border-gray-500 hidden">
+          <div class="py-1">
+            <%= link_to t('header.user_setting'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+            <%= link_to t('header.terms_of_service'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+            <%= link_to t('header.privacy_policy'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+            <%= link_to t('header.contact_us'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+            <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete}, class:"block px-4 py-2 text-sm text-red-700 hover:bg-gray-200" %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to t('header.login'), new_user_session_path, class:"border border-orange-200 rounded px-4 py-2 text-orange-500 hover:bg-orange-100 hover:text-orange-600" %>
+      </div>
+    <% end %>
   </div>
 </header>

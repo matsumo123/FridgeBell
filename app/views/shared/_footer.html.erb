@@ -1,16 +1,21 @@
-<footer class="fixed bottom-0 left-0 w-full bg-amber-100 px-4 py-4">
-  <div class="flex">
-    <%= link_to home_path, class: "basis-1/4 flex justify-center" do %>
-      <i><%= heroicon "home", variant: :outline, options: { class: "w-15 h-15" } %></i>
+<footer class="bg-white/80 backdrop-blur-sm border-t border-orange-100">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <nav class="flex justify-around items-center">
+      <%= link_to home_path, class: "flex flex-col items-center space-y-1 p-3 rounded-2xl bg-orange-100 text-orange-600" do %>
+        <i><%= heroicon "home", variant: :outline, options: { class: "w-6 h-6" } %></i>
+        <span class="text-xs font-medium">Home</span>
+      <% end %>
+    <%= link_to "#", class: "flex flex-col items-center space-y-1 p-3 rounded-2xl hover:bg-gray-100 text-gray-600 transition-colors" do %>
+      <i class="material-symbols-rounded" style="font-variation-settings: 'wght' 50;">kitchen</i>
+      <span class="text-xs font-medium">Fridge</span>
     <% end %>
-    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
-      <i class="material-symbols-rounded !text-6xl" style="font-variation-settings: 'wght' 100;">kitchen</i>
+    <%= link_to "#", class: "flex flex-col items-center space-y-1 p-3 rounded-2xl hover:bg-gray-100 text-gray-600 transition-colors" do %>
+      <i><%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6" } %></i>
+      <span class="text-xs font-medium">Add Item</span>
     <% end %>
-    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
-      <i><%= heroicon "pencil-square", variant: :outline, options: { class: "w-15 h-15" } %></i>
-    <% end %>
-    <%= link_to "#", class: "basis-1/4 flex justify-center" do %>
-      <i><%= heroicon "bell-alert", variant: :outline, options: { class: "w-15 h-15" } %></i>
+    <%= link_to "#", class: "flex flex-col items-center space-y-1 p-3 rounded-2xl hover:bg-gray-100 text-gray-600 transition-colors" do %>
+      <i><%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6" } %></i>
+      <span className="text-xs font-medium">Reminders</span>
     <% end %>
   </div>
 </footer>
