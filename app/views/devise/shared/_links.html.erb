@@ -1,5 +1,5 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to t('.sign_in'), new_session_path(resource_name), class:"block hover:font-medium" %>
+  <%= link_to t('.sign_in'), new_session_path(resource_name), class:"text-sm text-orange-600 hover:text-orange-700 hover:underline transition-colors" %>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
