@@ -6,6 +6,11 @@
     <div class="rounded-2xl bg-white/70 backdrop-blur-sm shadow-lg border border-orange-100">
       <div class="p-6 space-y-4">
         <div class="text-center space-y-2">
+          <div class="w-10 h-10 bg-gradient-to-br from-orange-300 to-green-300 rounded-full mx-auto flex items-center justify-center">
+            <span class="text-2xl font-bold text-orange-800">
+              <%= heroicon "user", options: { class: "w-4 h-4 text-white" } %>
+            </span>
+          </div>
           <h2 class="text-xl font-bold text-gray-800"><%= current_user.name %></h2>
           <p class="text-gray-600"><%= current_user.email %></p>
         </div>
@@ -13,17 +18,17 @@
     </div>
 
     <div class="space-y-4">
-      <%= link_to "#", class:"w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
+      <%= link_to edit_user_registration_path, class:"w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
         <%= t('.user_edit') %>
       <% end %>
 
-      <%= link_to "#", class:"w-full bg-lime-400 hover:bg-lime-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
+      <%= link_to edit_account_password_path, class:"w-full bg-lime-400 hover:bg-lime-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
         <%= t('.password_edit') %>
       <% end %>
     </div>
 
     <div class="text-center">
-      <%= link_to "#", class:"inline-block text-gray-600 rounded-xl py-2 px-8 hover:text-red-600 hover:bg-red-100 transition-colors items-center gap-2 mx-auto" do %>
+      <%= link_to destroy_user_session_path, data: { turbo_method: :delete}, class:"inline-block text-gray-600 rounded-xl py-2 px-8 hover:text-red-600 hover:bg-red-100 transition-colors items-center gap-2 mx-auto" do %>
         <%= t('.logout') %>
       <% end %>
     </div>

@@ -1,0 +1,32 @@
+<main class="flex-1 px-6 py-8 md:px-8">
+  <div class="mx-auto max-w-md space-y-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl"><%= t('.password_edit') %></h1>
+    </div>
+
+    <div class="rounded-2xl bg-white/70 backdrop-blur-sm p-8 shadow-lg border border-orange-100">
+      <%= form_with(model: current_user, url: account_password_path, html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: current_user %>
+
+        <div class="flex flex-col space-y-2">
+          <%= f.label :current_password, class: "block text-left text-sm font-medium text-gray-700" %>
+          <%= f.password_field :current_password, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800"%>
+        </div>
+
+        <div class="flex flex-col space-y-2">
+          <%= f.label :password, class: "block text-left text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800" %>
+        </div>
+
+        <div class="flex flex-col space-y-2">
+          <%= f.label :password_confirmation, class: "block text-left text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800" %>
+        </div>
+
+        <%= f.submit t('.update'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+
+        <%= link_to t('.back'), users_profile_path, class: "w-full inline-block text-center mt-4 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+      <% end %>
+    </div>
+  </div>
+</main>

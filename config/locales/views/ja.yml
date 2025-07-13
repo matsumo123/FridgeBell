@@ -24,7 +24,13 @@ ja:
   users:
     show:
       my_page: マイページ
-      user_edit: ユーザー情報を編集
-      password_edit: パスワード編集
+      user_edit: プロフィールを編集
+      password_edit: パスワードを変更
       logout: ログアウト
+  account:
+    passwords:
+      edit:
+        password_edit: パスワード変更
+        update: 更新
+        back: キャンセル
       
