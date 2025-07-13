@@ -2,7 +2,7 @@ ja:
   header:
     login: ログイン
     app_name: FridgeBell
-    user_setting: 設定
+    user_profile: マイページ
     terms_of_service: 利用規約
     privacy_policy: プライバシーポリシー
     contact_us: お問い合わせ
@@ -21,4 +21,10 @@ ja:
     home:
       discard: 捨てる
       consume: 食べる
+  users:
+    show:
+      my_page: マイページ
+      user_edit: ユーザー情報を編集
+      password_edit: パスワード編集
+      logout: ログアウト
       

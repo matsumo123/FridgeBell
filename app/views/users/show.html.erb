@@ -1,7 +1,7 @@
 <main class="flex-1 px-6 py-8 md:px-8">
   <div class="mx-auto max-w-md space-y-6">
     <div class="text-center">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">マイページ</h1>
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl"><%= t('.my_page') %></h1>
     </div>
     <div class="rounded-2xl bg-white/70 backdrop-blur-sm shadow-lg border border-orange-100">
       <div class="p-6 space-y-4">
@@ -14,17 +14,17 @@
 
     <div class="space-y-4">
       <%= link_to "#", class:"w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
-        ユーザー情報を編集
+        <%= t('.user_edit') %>
       <% end %>
 
       <%= link_to "#", class:"w-full bg-lime-400 hover:bg-lime-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
-        パスワードを変更
+        <%= t('.password_edit') %>
       <% end %>
     </div>
 
     <div class="text-center">
       <%= link_to "#", class:"inline-block text-gray-600 rounded-xl py-2 px-8 hover:text-red-600 hover:bg-red-100 transition-colors items-center gap-2 mx-auto" do %>
-        ログアウト
+        <%= t('.logout') %>
       <% end %>
     </div>
   </div>
