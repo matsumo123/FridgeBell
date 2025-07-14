@@ -10,7 +10,7 @@ class HomesController < ApplicationController
 
   def logged_in_user
     if user_signed_in?
-      redirect_to home_path, notice: t('helpers.flash_messages.logged_in_user')
+      redirect_to home_path, notice: t("helpers.flash_messages.logged_in_user")
     end
   end
 end
