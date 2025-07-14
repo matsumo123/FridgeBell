@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_14_100426) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_14_155454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,23 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_100426) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "category_id", null: false
+    t.string "name", null: false
+    t.integer "quantity", null: false
+    t.string "unit", null: false
+    t.integer "default_deadline"
+    t.string "food_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "name"], name: "index_foods_on_category_id_and_name"
+    t.index ["category_id"], name: "index_foods_on_category_id"
+    t.index ["name"], name: "index_foods_on_name", unique: true, where: "(user_id IS NULL)"
+    t.index ["user_id", "name"], name: "index_foods_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,4 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_14_100426) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "foods", "categories"
+  add_foreign_key "foods", "users"
 end
