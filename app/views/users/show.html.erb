@@ -22,7 +22,7 @@
         <%= t('.user_edit') %>
       <% end %>
 
-      <%= link_to edit_account_password_path, class:"w-full bg-lime-400 hover:bg-lime-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
+      <%= link_to edit_account_password_path, class:"w-full bg-lime-400 hover:bg-lime-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2", data: { turbo_frame: 'account_modal' } do %>
         <%= t('.password_edit') %>
       <% end %>
     </div>
