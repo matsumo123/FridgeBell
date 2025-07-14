@@ -3,6 +3,7 @@ ja:
     flash_messages:
       logged_in_user: すでにログインしています
       password_update: パスワードを変更しました
+      user_profile_update: ユーザー情報を更新しました
   header:
     login: ログイン
     app_name: FridgeBell

@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if current_user.update(user_params)
       bypass_sign_in current_user
-      redirect_to users_profile_path, notice: "ユーザー情報を更新しました"
+      redirect_to users_profile_path, notice: t('helpers.flash_messages.user_profile_update')
     else
       render :edit, status: :unprocessable_entity
     end
