@@ -18,7 +18,7 @@
     </div>
 
     <div class="space-y-4">
-      <%= link_to edit_user_registration_path, class:"w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2" do %>
+      <%= link_to edit_user_registration_path, class:"w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2", data: { turbo_frame: 'account_modal' } do %>
         <%= t('.user_edit') %>
       <% end %>
 

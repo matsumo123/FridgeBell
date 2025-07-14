@@ -20,9 +20,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if current_user.update(user_params)
+      bypass_sign_in current_user
+      redirect_to users_profile_path, notice: "ユーザー情報を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -37,6 +42,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email)
+  end
 
   protected
 
