@@ -14,9 +14,9 @@
           <%= heroicon "user", options: { class: "w-4 h-4 text-gray-600" } %>
           <span class="ml-2 text-sm font-medium text-gray-70"><%= current_user.name %></span>
         </button>
-        <div data-user-menu-target="menu" class="origin-top-right absolute right-4 mt-2 w-48 rounded-md shadow-lg bg-gradient-to-br from-orange-50 to-green-50  border border-gray-500 hidden">
+        <div data-user-menu-target="menu" class="origin-top-right absolute right-4 mt-2 w-48 rounded-md shadow-lg z-50 bg-gradient-to-br from-orange-50 to-green-50  border border-gray-500 hidden">
           <div class="py-1">
-            <%= link_to t('header.user_setting'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+            <%= link_to t('header.user_profile'), users_profile_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
             <%= link_to t('header.terms_of_service'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
             <%= link_to t('header.privacy_policy'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
             <%= link_to t('header.contact_us'), "#", class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>

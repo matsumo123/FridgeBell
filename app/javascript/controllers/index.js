@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AccountModalController from "./account_modal_controller"
+application.register("account-modal", AccountModalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

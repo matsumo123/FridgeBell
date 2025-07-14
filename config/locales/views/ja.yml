@@ -1,8 +1,13 @@
 ja:
+  helpers:
+    flash_messages:
+      logged_in_user: すでにログインしています
+      password_update: パスワードを変更しました
+      user_profile_update: ユーザー情報を更新しました
   header:
     login: ログイン
     app_name: FridgeBell
-    user_setting: 設定
+    user_profile: マイページ
     terms_of_service: 利用規約
     privacy_policy: プライバシーポリシー
     contact_us: お問い合わせ
@@ -21,4 +26,16 @@ ja:
     home:
       discard: 捨てる
       consume: 食べる
+  users:
+    show:
+      my_page: マイページ
+      user_edit: プロフィールを編集
+      password_edit: パスワードを変更
+      logout: ログアウト
+  account:
+    passwords:
+      edit:
+        password_edit: パスワード変更
+        update: 更新
+        back: キャンセル
       
