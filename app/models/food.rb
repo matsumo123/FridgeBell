@@ -1,7 +1,6 @@
 class Food < ApplicationRecord
   belongs_to :category
   belongs_to :user, optional: true
-  
   validates :name, presence: true
   validates :quantity, presence: true
   validates :unit, presence: true
@@ -17,15 +16,13 @@ class Food < ApplicationRecord
       errors.add(:name, "すでに登録している名前は使用できません")
     end
   end
-  
   # ユーザーが食材を追加する際に既にデフォルト食材名として使用してた場合は登録不可
   # ユーザーが既に登録した食材名は使用できない
   def check_same_name_food
     if user_id.present? && Food.exists?(name: name, user_id: nil)
       errors.add(:name, "デフォルトで登録されている名前は使用できません")
     end
-      
-    if user_id.present? && Food.where(name: name, user_id: user.id).    where.not(id: self.id).exists? 
+    if user_id.present? && Food.where(name: name, user_id: user.id).    where.not(id: self.id).exists?
       errors.add(:name, "すでに登録している名前は使用できません")
     end
   end

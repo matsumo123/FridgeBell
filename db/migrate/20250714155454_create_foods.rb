@@ -12,8 +12,8 @@ class CreateFoods < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :foods, [:category_id, :name]
-    add_index :foods, [:user_id, :name], unique: true
+    add_index :foods, [ :category_id, :name ]
+    add_index :foods, [ :user_id, :name ], unique: true
     add_index :foods, :name, unique: true, where: "user_id IS NULL"
   end
 end
