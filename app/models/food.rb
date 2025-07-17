@@ -1,6 +1,8 @@
 class Food < ApplicationRecord
+  has_one_attached :food_image
   belongs_to :category
   belongs_to :user, optional: true
+  validates :category_id, presence: true
   validates :name, presence: true
   validates :quantity, presence: true
   validates :unit, presence: true
@@ -16,6 +18,7 @@ class Food < ApplicationRecord
       errors.add(:name, "すでに登録している名前は使用できません")
     end
   end
+
   # ユーザーが食材を追加する際に既にデフォルト食材名として使用してた場合は登録不可
   # ユーザーが既に登録した食材名は使用できない
   def check_same_name_food
