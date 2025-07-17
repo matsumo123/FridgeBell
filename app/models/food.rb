@@ -1,4 +1,5 @@
 class Food < ApplicationRecord
+  has_one_attached :food_image
   belongs_to :category
   belongs_to :user, optional: true
   validates :name, presence: true
