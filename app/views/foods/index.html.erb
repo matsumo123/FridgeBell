@@ -1,0 +1,24 @@
+<main class="flex-1 px-6 py-8 md:px-8">
+  <div class="mx-auto max-w-md space-y-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">食材一覧</h1>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <% @foods.each do |food| %>
+        <div class="flex flex-col items-center space-y-2">
+          <div><%= food.name %></div>
+          <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
+            <% if food.food_image.attached? %>
+              <%= image_tag food.food_image.variant(resize_to_limit: [80, 80]) %>
+            <% else %>
+              <span class="text-xs text-gray-400">画像なし</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to new_food_path, class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-8 border-2 border-gray-300" do %>
+        <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>
+      <% end %>
+    </div>
+  </div>
+</main>
