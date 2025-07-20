@@ -9,7 +9,7 @@
       <i class="material-symbols-rounded" style="font-variation-settings: 'wght' 50;">kitchen</i>
       <span class="text-xs font-medium">Fridge</span>
     <% end %>
-    <%= link_to "#", class: "flex flex-col items-center space-y-1 p-3 rounded-2xl hover:bg-gray-100 text-gray-600 transition-colors" do %>
+    <%= link_to foods_path(category_id: 1), class: "flex flex-col items-center space-y-1 p-3 rounded-2xl hover:bg-gray-100 text-gray-600 transition-colors" do %>
       <i><%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6" } %></i>
       <span class="text-xs font-medium">Add Item</span>
     <% end %>
