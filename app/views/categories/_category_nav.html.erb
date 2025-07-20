@@ -1,0 +1,7 @@
+<ul class="flex space-x-4">
+  <% categories.each do |category| %>
+    <li>
+      <%= link_to category.name, foods_path(category_id: category.id), data: { turbo_frame: 'foods_list' }, class: "text-sm font-semibold hover:underline" %>
+    </li>
+  <% end %>
+</ul>
