@@ -13,9 +13,11 @@
             <% if food.user_id == current_user.id %>
               <div class="flex items-center space-x-2">
                 <%= food.name %>
-                <%= link_to "#" do %>
-                  <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
-                <% end %>
+                <div data-turbo="false">
+                  <%= link_to edit_food_path(id: food.id) do %>
+                    <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
+                  <% end %>
+                </div>
               </div>
               <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
                 <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
@@ -33,9 +35,9 @@
           </div>
         <% end %>
         <div data-turbo="false">
-        <%= link_to new_food_path(category_id: params[:category_id]), class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-8 border-2 border-gray-300" do %>
-          <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>          
-        <% end %>
+          <%= link_to new_food_path(category_id: params[:category_id]), class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-8 border-2 border-gray-300" do %>
+            <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>          
+          <% end %>
         </div>
       </div>
     <% end %>

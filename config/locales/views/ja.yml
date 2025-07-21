@@ -44,8 +44,12 @@ ja:
       no_image: 画像なし
     new: 
       title: 食材リスト追加
+      back: キャンセル
+    edit:
+      title: 食品リスト編集
+      destroy: 削除
+      back: キャンセル
+    form:
       required: 必須
       day: 日
-      create: 登録
-      back: キャンセル
       
