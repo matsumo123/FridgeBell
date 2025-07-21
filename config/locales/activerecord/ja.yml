@@ -2,9 +2,19 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      category: カテゴリー
+      food: 食材
     attributes:
       user:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
+      category:
+        name: カテゴリー名
+      food:
+        name: 食材名
+        category_id: カテゴリー
+        quantity: 1カウントあたりの数量
+        unit: 1カウントあたりの単位
+        default_deadline: 冷蔵保管期限
