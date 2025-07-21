@@ -21,7 +21,9 @@
 
   <body class="min-h-screen flex flex-col bg-gradient-to-br from-orange-50 to-green-50">
       <%= render 'shared/header' %>
-      <%= render 'shared/flash_message' %>
+      <div id="flash">
+        <%= render 'shared/flash_message' %>
+      </div>
       <%= yield %>
       <% if user_signed_in? %>
         <%= render 'shared/footer' %>

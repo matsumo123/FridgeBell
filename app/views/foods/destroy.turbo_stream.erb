@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "foods_list" do %>
+  <%= render "foods_list", foods: @foods %>
+<% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash_message" %>
+<% end %>

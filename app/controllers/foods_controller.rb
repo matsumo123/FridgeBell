@@ -15,7 +15,7 @@ class FoodsController < ApplicationController
   def create
     @food = current_user.foods.build(food_params)
     if @food.save
-      redirect_to foods_path(category_id: @food.category_id), notice: "食品リストを追加しました"
+      redirect_to foods_path(category_id: @food.category_id), notice: t('helpers.flash_messages.foods_list_add')
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update(food_params)
-      redirect_to foods_path(category_id: @food.category_id), notice: "食品リストを更新しました"
+      redirect_to foods_path(category_id: @food.category_id), notice: t('helpers.flash_messages.foods_list_update')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,8 @@ class FoodsController < ApplicationController
 
   def destroy
     @food.destroy!
-    redirect_to foods_path(category_id: @food.category_id), notice: "食品リストから削除しました", status: :see_other
+    @foods = current_user.foods.where(category_id: @food.category_id)
+    flash.now[:notice] = t('helpers.flash_messages.foods_list_delete')
   end
 
   private
