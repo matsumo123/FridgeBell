@@ -5,60 +5,11 @@
         <%= t('.title') %>
       </h1>
     </div>
-
     <div class="rounded-2xl bg-white/70 backdrop-blur-sm mt-4 pt-4 p-8 shadow-lg border border-orange-100">
-      <%= form_with(model: @food, html: { method: :post }) do |f| %>
-        <%= render "shared/error_messages", object: @food %>
-          <div class="flex space-x-6">
-            <div class="flex justify-center items-center">
-              <div class="w-50 h-50 rounded-full bg-gradient-to-br from-orange-200 to-green-100 flex items-center justify-center">
-                <i class="material-symbols-rounded !text-6xl" style="font-variation-settings: 'wght' 100;">washoku</i>
-              </div>
-            </div>
-
-            <div class="flex flex-col justify-center space-y-2">
-              <div>
-                <%= f.label :name, class: "text-sm font-medium text-gray-700" %>
-                <span class="text-red-500 font-normal text-sm">
-                  <%= t('.required') %>
-                </span>
-                <%= f.text_field :name, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800"%>
-              </div>
-
-              <div>
-                <%= f.label :quantity, class: "text-sm font-medium text-gray-700" %>
-                <span class="text-red-500 font-normal text-sm">
-                  <%= t('.required') %>
-                </span>
-                <%= f.text_field :quantity, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
-              </div>
-
-              <div>
-                <%= f.label :unit, class: "text-sm font-medium text-gray-700" %>
-                <span class="text-red-500 font-normal text-sm">
-                  <%= t('.required') %>
-                </span>
-                <%= f.text_field :unit, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
-              </div>
-
-              <div>
-                <%= f.label :default_deadline, class: "block text-left text-sm font-medium text-gray-700" %>
-                <%= f.text_field :default_deadline, class: "w-1/2 ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
-                <span class="text-lg font-medium text-gray-700">
-                  <%= t('.day') %>
-                </span>
-              </div>
-
-              <%= f.hidden_field :category_id %>
-            </div>
-          </div>
-        
-          <div class="space-y-2">
-            <%= f.submit t('.create'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %> 
-            <%= link_to t('.back'), foods_path(category_id: params[:category_id]), class: "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
-          </div>
-      <% end %>
+      <%= render 'form', food: @food %>
+      <div class="space-y-2">
+        <%= link_to t('.back'), foods_path(category_id: params[:category_id]), class: "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+      </div>
     </div>
   </div>
 </div>
-

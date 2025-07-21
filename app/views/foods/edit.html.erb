@@ -1,0 +1,15 @@
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-5">
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-xl">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
+        <%= t('.title') %>
+      </h1>
+    </div>
+
+    <div class="rounded-2xl bg-white/70 backdrop-blur-sm mt-4 pt-4 p-8 shadow-lg border border-orange-100">
+      <%= render 'form', food: @food %>
+      <%= link_to t('.destroy'), food_path(id: @food.id), data:{ turbo_method: :delete, turbo_confirm: "食品リストから削除してよろしいですか" }, class: "w-full inline-block text-center mt-2 bg-sky-200 hover:bg-sky-300 text-sky-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+      <%= link_to t('.back'), foods_path(category_id: @food.category_id), class: "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+    </div>
+  </div>
+</div>
