@@ -38,4 +38,14 @@ ja:
         password_edit: パスワード変更
         update: 更新
         back: キャンセル
+  foods:
+    index:
+      title: 食材一覧
+      no_image: 画像なし
+    new: 
+      title: 食材リスト追加
+      required: 必須
+      day: 日
+      create: 登録
+      back: キャンセル
       

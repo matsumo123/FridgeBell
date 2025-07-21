@@ -4,11 +4,11 @@ class FoodsController < ApplicationController
 
   def index
     @categories = Category.order(id: :asc)
-    @foods = Food.where(category_id: params[:category_id]).order(name: :asc) 
+    @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
   end
 
   def new
-    @food = current_user.foods.new
+    @food = current_user.foods.new(category_id: params[:category_id])
   end
 
   def create
