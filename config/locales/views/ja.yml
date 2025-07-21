@@ -4,6 +4,9 @@ ja:
       logged_in_user: すでにログインしています
       password_update: パスワードを変更しました
       user_profile_update: ユーザー情報を更新しました
+      foods_list_add: 食材リストを追加しました
+      foods_list_update: 食材リストを更新しました
+      foods_list_delete: 食材リストから削除しました
   header:
     login: ログイン
     app_name: FridgeBell
@@ -44,8 +47,12 @@ ja:
       no_image: 画像なし
     new: 
       title: 食材リスト追加
+      back: キャンセル
+    edit:
+      title: 食品リスト編集
+      destroy: 削除
+      back: キャンセル
+    form:
       required: 必須
       day: 日
-      create: 登録
-      back: キャンセル
       

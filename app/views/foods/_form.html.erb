@@ -1,0 +1,46 @@
+<%= form_with(model: food, data: { turbo: false }) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="flex space-x-6">
+      <div class="flex justify-center items-center">
+        <div class="w-50 h-50 rounded-full bg-gradient-to-br from-orange-200 to-green-100 flex items-center justify-center">
+          <i class="material-symbols-rounded !text-6xl" style="font-variation-settings: 'wght' 100;">washoku</i>
+        </div>
+      </div>
+      <div class="flex flex-col justify-center space-y-2">
+        <div>
+          <%= f.label :name, class: "text-sm font-medium text-gray-700" %>
+          <span class="text-red-500 font-normal text-sm">
+            <%= t('.required') %>
+          </span>
+          <%= f.text_field :name, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800"%>
+        </div>
+
+        <div>
+          <%= f.label :quantity, class: "text-sm font-medium text-gray-700" %>
+          <span class="text-red-500 font-normal text-sm">
+            <%= t('.required') %>
+          </span>
+          <%= f.text_field :quantity, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
+        </div>
+
+        <div>
+          <%= f.label :unit, class: "text-sm font-medium text-gray-700" %>
+          <span class="text-red-500 font-normal text-sm">
+            <%= t('.required') %>
+          </span>
+          <%= f.text_field :unit, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
+        </div>
+
+        <div>
+          <%= f.label :default_deadline, class: "block text-left text-sm font-medium text-gray-700" %>
+          <%= f.text_field :default_deadline, class: "w-1/2 ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
+          <span class="text-lg font-medium text-gray-700">
+            <%= t('.day') %>
+          </span>
+        </div>
+
+        <%= f.hidden_field :category_id %>
+      </div>
+    </div>
+    <%= f.submit nil, class: "w-full inline-block text-center mt-2 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %> 
+<% end %>
