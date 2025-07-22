@@ -11,11 +11,12 @@ categories = [
 ]
 
 categories.each do |category|
-  Category.find_or_initialize_by(name: category[:name])
+  category = Category.find_or_initialize_by(name: category[:name])
   if category.save
     puts "✅ 登録成功: #{category.name}"
   else
     puts "❌ 登録失敗: #{category.name}"
+    puts category.errors.full_messages
   end
 end
 
@@ -281,7 +282,7 @@ egg_ane_dairies = [
   { name: "バター", quantity: 1, unit: "箱", default_deadline: 28, file: "乳類_バター.png" },
   { name: "無塩バター", quantity: 1, unit: "箱", default_deadline: 28, file: "乳類_無塩バター.png" },
   { name: "クリームチーズ", quantity: 1, unit: "箱", default_deadline: 28, file: "乳類_クリームチーズ.png" },
-  { name: "モッツァレラチーズ", quantity: 1, unit: "袋", default_deadline: 7, file: "モッツァレラ.png" },
+  { name: "モッツァレラチーズ", quantity: 1, unit: "袋", default_deadline: 7, file: "乳類_モッツァレラ.png" },
   { name: "カマンベールチーズ", quantity: 1, unit: "個", default_deadline: 28, file: "乳類_カマンベールチーズ.png" },
   { name: "プロセスチーズ", quantity: 1, unit: "袋", default_deadline: 28, file: "乳類_プロセスチーズ.png" },
   { name: "スライスチーズ", quantity: 1, unit: "袋", default_deadline: 28, file: "乳類_スライスチーズ.png" },
@@ -423,7 +424,7 @@ processed_foods = [
   { name: "ベーコン", quantity: 1, unit: "パック", default_deadline: 10, file: "肉類_ベーコン.png" },
   { name: "ハム", quantity: 1, unit: "袋", default_deadline: 14, file: "肉類_ハム.png" },
   { name: "生ハム", quantity: 1, unit: "パック", default_deadline: 21, file: "肉類_生ハム.png" },
-  { name: "ランチョンミート(開封済)", quantity: 1, unit: "個", default_deadline: 5, file: "肉類_ランチョンミート.png" },
+  { name: "ランチョンミート", quantity: 1, unit: "個", default_deadline: 5, file: "肉類_ランチョンミート.png" },
   { name: "ちくわ", quantity: 1, unit: "袋", default_deadline: 7, file: "魚介類_ちくわ.png" },
   { name: "はんぺん", quantity: 1, unit: "袋", default_deadline: 7, file: "魚介類_はんぺん.png" },
   { name: "かまぼこ", quantity: 1, unit: "パック", default_deadline: 7, file: "魚介類_かまぼこ.png" },
