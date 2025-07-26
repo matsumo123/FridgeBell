@@ -2,6 +2,7 @@ class Food < ApplicationRecord
   has_one_attached :food_image
   belongs_to :category
   belongs_to :user, optional: true
+  has_many :user_foods, dependent: :destroy
   validates :category_id, presence: true
   validates :name, presence: true
   validates :quantity, presence: true
