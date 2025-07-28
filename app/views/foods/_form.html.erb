@@ -20,7 +20,7 @@
           <span class="text-red-500 font-normal text-sm">
             <%= t('.required') %>
           </span>
-          <%= f.text_field :quantity, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
+          <%= f.number_field :quantity, min: 1, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
         </div>
 
         <div>
@@ -33,7 +33,7 @@
 
         <div>
           <%= f.label :default_deadline, class: "block text-left text-sm font-medium text-gray-700" %>
-          <%= f.text_field :default_deadline, class: "w-1/2 ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
+          <%= f.number_field :default_deadline, min: 1, class: "w-1/2 ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800" %>
           <span class="text-lg font-medium text-gray-700">
             <%= t('.day') %>
           </span>

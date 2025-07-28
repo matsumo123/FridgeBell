@@ -1,7 +1,10 @@
-<ul class="flex space-x-4">
-  <% categories.each do |category| %>
-    <li>
-      <%= link_to category.name, foods_path(category_id: category.id), data: { turbo_frame: 'foods_list' }, class: "text-sm font-semibold hover:underline" %>
-    </li>
-  <% end %>
-</ul>
+<div class="overflow-x-auto whitespace-nowrap px-4">
+  <ul class="inline-flex space-x-4">
+    <% categories.each do |category| %>
+      <li>
+        <%= link_to category.name, new_user_food_path(category_id: category.id), data: { turbo_frame: 'foods_list' }, class: "px-4 py-1 rounded-full border text-sm font-medium transition " +
+           (params[:category_id].to_i == category.id ? "bg-pink-200 text-pink-800 font-bold" : "bg-white border-gray-300 hover:bg-pink-100") %>
+      </li>
+    <% end %>
+  </ul>
+</div>
