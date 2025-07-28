@@ -37,10 +37,20 @@
               <div class="flex items-center justify-center">
                 <%= f.label :quantity, class: "w-10 text-left" %>
                 <%= f.number_field :quantity, class: "w-20 border rounded px-2 py-0.5" %>
+                <%= food.unit %>
               </div>
               <div class="mb-3 text-left">
                 <%= f.label :deadline_date, class: "block mb-1" %>
                 <div class="flex space-x-2 mb-1">
+                  <% unless food.default_deadline.present? %>
+                    <% food.default_deadline = 
+                          case food.category_id
+                          when 3, 4
+                            2
+                          else
+                            7
+                          end %>
+                  <% end %>
                   <%= f.date_select :deadline_date, 
                       { default: (Time.now + food.default_deadline.days) }, 
                       { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
