@@ -1,5 +1,8 @@
 class UserFoodsController < ApplicationController
   before_action :authenticate_user!
+  def index
+    @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
+  end
   def new
     @categories = Category.order(id: :asc)
     @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
