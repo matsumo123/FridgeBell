@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       category: カテゴリー
       food: 食材
+      user_food: 登録食材
     attributes:
       user:
         name: ユーザー名
@@ -18,3 +19,7 @@ ja:
         quantity: 1カウントあたりの数量
         unit: 1カウントあたりの単位
         default_deadline: 冷蔵保管期限
+      user_food:
+        quantity: 数量
+        deadline_date: 期限
+        mini_memo: メモ
