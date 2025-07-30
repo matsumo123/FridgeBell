@@ -52,7 +52,7 @@
                           end %>
                   <% end %>
                   <%= f.date_select :deadline_date, 
-                      { default: (Time.now + food.default_deadline.days) }, 
+                      { default: (Time.now + food.default_deadline.days), start_year: Date.today.year, end_year: Date.today.year + 5, , use_month_numbers: true }, 
                       { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
                 </div>
                 <p class="text-sm text-gray-600">
