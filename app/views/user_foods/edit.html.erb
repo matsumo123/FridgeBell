@@ -1,0 +1,54 @@
+<%= turbo_frame_tag "user_food_modal" do %>
+  <div data-controller="user-food-modal" data-user-food-modal-target="userFoodModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-5">
+    <div class="bg-white p-6 rounded shadow-md w-full md:max-w-xl max-w-md">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
+        冷蔵庫内の食材を修正
+        </h1>
+      </div>
+
+      <div class="rounded-2xl bg-white/70 backdrop-blur-sm mt-4 p-8 shadow-lg border border-orange-100">
+        <%= form_with(model: @user_food, data: { action: "turbo:submit-end->user-food-modal#close" }) do |f| %>
+        <%= render "shared/error_messages", object: f.object %>
+          <div class="flex items-center justify-center gap-4 mb-6">
+            <%= image_tag @user_food.food.food_image.variant(resize_to_limit: [80, 80]) %>
+            <div>
+              <h3 class="text-lg font-medium text-gray-900"><%= @user_food.food.name %></h3>
+              <p class="text-sm test-gray-500">
+                カテゴリー: <%= Category.find(@user_food.food.category_id).name %>
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-sm">
+            <div class="flex flex-wrap md:flex-nowrap gap-4 items-start">
+              <div class="w-20">
+                <%= f.label :quantity, class: "block font-medium text-gray-700 mb-1" %>
+                <%= f.number_field :quantity, min: 1, class: "w-full border border-gray-400 rounded px-2 py-2 text-center" %>
+              </div>
+              <div class="flex-1">
+                <%= f.label :deadline_date, class: "block font-medium text-gray-700 mb-1" %>
+                <div class="flex">
+                  <div class="border border-gray-400 rounded px-2 py-2 text-sm">
+                    <%= f.date_select :deadline_date,  { start_year: Date.today.year, end_year: Date.today.year + 5, use_month_numbers: true } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= f.label :mini_memo, class: "block font-medium text-gray-700 mb-1" %>
+              <%= f.text_area :mini_memo, class: "w-full border border-gray-400 rounded px-4 py-2 text-sm resize-none" %>
+              <div class="text-right text-xs text-gray-500 mt-1">
+                <%= @user_food.mini_memo.length %>/50
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-between mt-6 gap-3">
+            <%= link_to "キャンセル", user_foods_path, class: "flex-1 text-center py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium", data: { action:"click->user-food-modal#closeModal" } %>
+            <%= f.submit "更新", class: "flex-1 text-center py-2 rounded-md bg-orange-400 hover:bg-orange-500 text-white font-medium" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

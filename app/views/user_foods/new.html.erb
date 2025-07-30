@@ -1,5 +1,5 @@
 <main class="flex-1 px-6 py-8 md:px-8">
-  <div class="mx-auto max-w-md space-y-6">
+  <div class="mx-auto max-w-md md:max-w-6xl space-y-6">
     <div class="text-center">
       <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
         登録する食材
@@ -52,7 +52,7 @@
                           end %>
                   <% end %>
                   <%= f.date_select :deadline_date, 
-                      { default: (Time.now + food.default_deadline.days) }, 
+                      { default: (Time.now + food.default_deadline.days), start_year: Date.today.year, end_year: Date.today.year + 5, use_month_numbers: true }, 
                       { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
                 </div>
                 <p class="text-sm text-gray-600">
