@@ -1,0 +1,48 @@
+<%= turbo_frame_tag user_food do %>
+  <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
+  <% bg_color = case remaining_days
+                when ...0
+                  "bg-gray-200"
+                when 0..2
+                  "bg-red-200"
+                when 3..5
+                  "bg-yellow-200"
+                else
+                  "bg-green-200"
+                end %>
+  <% deadline_text = remaining_days %>
+  <div class="flex items-center rounded-xl shadow-md border p-4 mb-4 space-x-4 <%= bg_color %>">
+
+    <div class="flex-shrink-0 w-25 h-25 rounded-full flex items-center justify-center overflow-hidden">
+      <%= image_tag user_food.food.food_image.variant(resize_to_limit: [80, 80]) %>
+    </div>
+
+    <div class="flex flex-col flex-1 self-center text-sm space-y-1">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-start md:gap-4">
+        <div class="font-bold text-lg"><%= user_food.food.name %></div>
+        <% if deadline_text < 0 %>
+          <div class="flex items-center space-x-1 font-bold text-lg text-red-500">
+            <span>お早めにどうぞ</span>
+            <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
+          </div>
+        <% else %>
+          <div class="font-bold text-lg text-red-500">あと<%= deadline_text %>日</div>
+        <% end %>
+      </div>
+      <div class="font-semibold">期限: <%= user_food.deadline_date %></div>
+      <div>数量: <%= user_food.quantity %><%= user_food.food.unit %></div>
+      <% if user_food.mini_memo.present? %>
+        <div class="text-gray-700">メモ: <%= user_food.mini_memo %></div>
+      <% end %>
+    </div>
+
+    <div class="flex flex-col items-center justify-center space-y-4">
+      <%= link_to edit_user_food_path(id: user_food.id), class: "text-gray-500 hover:text-blue-600", data: { turbo_frame: 'user_food_modal' } do %>
+        <%= heroicon "pencil", options: { class: "w-6 h-6"} %>
+      <% end %>
+      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか" }, class: "text-gray-500 hover:text-red-600" do %>
+        <%= heroicon "trash", options: { class: "w-6 h-6"} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
