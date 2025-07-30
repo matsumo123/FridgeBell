@@ -1,6 +1,6 @@
 class UserFoodsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_registered_user_food, only: %i[ edit update]
+  before_action :find_registered_user_food, only: %i[ edit update destroy]
   def index
     @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
   end
@@ -34,6 +34,15 @@ class UserFoodsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @user_food.destroy!
+    flash[:notice] = "冷蔵庫内から食材を削除しました"
+    render turbo_stream: [
+      turbo_stream.remove(@user_food),
+      turbo_stream.update("flash", partial: "shared/flash_message")
+    ]
   end
 
   private
