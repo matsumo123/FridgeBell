@@ -13,5 +13,8 @@ application.register("foods-modal", FoodsModalController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import UserFoodModalController from "./user_food_modal_controller"
+application.register("user-food-modal", UserFoodModalController)
+
 import UserMenuController from "./user_menu_controller"
 application.register("user-menu", UserMenuController)

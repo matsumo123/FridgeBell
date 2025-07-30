@@ -26,7 +26,11 @@ class UserFoodsController < ApplicationController
 
   def update
     if @user_food.update(user_foods_params)
-      redirect_to user_foods_path, notice: "冷蔵庫内の食材情報を更新しました"
+      flash[:notice] = "冷蔵庫内の食材情報を更新しました"
+      render turbo_stream: [
+        turbo_stream.replace(@user_food),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
