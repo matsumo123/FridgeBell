@@ -45,8 +45,13 @@ class FoodsController < ApplicationController
 
   def destroy
     @food.destroy!
-    @foods = current_user.foods.where(category_id: @food.category_id)
     flash.now[:notice] = t("helpers.flash_messages.foods_list_delete")
+    @foods = Food.where(category_id: @food.category_id).order(name: :asc)
+    @user_food = current_user.user_foods.new
+    render turbo_stream: [
+      turbo_stream.update("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
+      turbo_stream.update("flash", partial: "shared/flash_message")
+    ]  
   end
 
   private
