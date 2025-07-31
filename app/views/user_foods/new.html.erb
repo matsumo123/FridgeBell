@@ -6,75 +6,11 @@
       </h1>
     </div>
     <%= render 'categories/category_nav', categories: @categories %>
-      <div class="flex flex-wrap gap-4">
-        <% @foods.each do |food| %>
-          <%= form_with(model: @user_food, data: { turbo: false }) do |f| %>
-          <%= render "shared/error_messages", object: f.object %>
-            <div class="flex flex-col items-center space-y-2">
-              <% if food.user_id == current_user.id %>
-                <div class="text-center space-x-2">
-                  <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'food' }, class: "inline-flex items-center space-x-1" do %>
-                    <%= food.name %>
-                    <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
-                  <% end %>
-                </div>
-                <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
-                  <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
-                </div>
-              <% else %>
-                <div class="text-center">
-                  <%= food.name %>
-                </div>
-                <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
-                  <% if food.food_image.attached? %>
-                    <%= image_tag food.food_image.variant(resize_to_limit: [80, 80]) %>
-                  <% else %>
-                    <span class="text-xs text-gray-400"><%= t('.no_image') %></span>
-                  <% end %>
-                </div>
-              <% end %>
-              <%= f.hidden_field :food_id, value: food.id %>
-              <div class="flex items-center justify-center">
-                <%= f.label :quantity, class: "w-10 text-left" %>
-                <%= f.number_field :quantity, class: "w-20 border rounded px-2 py-0.5" %>
-                <%= food.unit %>
-              </div>
-              <div class="mb-3 text-left">
-                <%= f.label :deadline_date, class: "block mb-1" %>
-                <div class="flex space-x-2 mb-1">
-                  <% unless food.default_deadline.present? %>
-                    <% food.default_deadline = 
-                          case food.category_id
-                          when 3, 4
-                            2
-                          else
-                            7
-                          end %>
-                  <% end %>
-                  <%= f.date_select :deadline_date, 
-                      { default: (Time.now + food.default_deadline.days), start_year: Date.today.year, end_year: Date.today.year + 5, use_month_numbers: true }, 
-                      { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
-                </div>
-                <p class="text-sm text-gray-600">
-                  この食材の冷蔵保存目安は
-                  <span class="text-red-500 font-semibold"><%= food.default_deadline %>日</span>です。<br>
-                  賞味期限や消費期限が記載されて<br>
-                  いれば、そちらに従ってください。
-                </p>
-              </div>
-              <div class="mb-4 text-left">
-                <%= f.label :mini_memo, class: "block mb-1"  %>
-                <%= f.text_field :mini_memo, class: "flex-1 border rounded  px-2 py-0.5", placeholder: "冷凍済み, 小分け済み" %>
-              </div>
-              <%= f.submit "登録", class: "block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="flex flex-wrap gap-4">
-        <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'food' }, class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-6 border-2 border-gray-300" do %>
-          <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>          
-        <% end %>
-      </div>
+    <%= render "new_form", foods: @foods, user_food: @user_food %>
+    <div class="flex flex-wrap gap-4">
+      <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'foods_modal' }, class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-6 border-2 border-gray-300" do %>
+        <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>          
+      <% end %>
+    </div>
   </div>
 </main>
