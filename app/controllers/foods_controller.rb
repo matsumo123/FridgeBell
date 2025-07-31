@@ -51,7 +51,7 @@ class FoodsController < ApplicationController
     render turbo_stream: [
       turbo_stream.update("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
       turbo_stream.update("flash", partial: "shared/flash_message")
-    ]  
+    ]
   end
 
   private
