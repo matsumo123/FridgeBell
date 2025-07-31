@@ -31,7 +31,13 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update(food_params)
-      redirect_to foods_path(category_id: @food.category_id), notice: t("helpers.flash_messages.foods_list_update")
+      @foods = Food.where(category_id: @food.category_id).order(name: :asc)
+      @user_food = current_user.user_foods.new
+      flash.now[:notice] = t("helpers.flash_messages.foods_list_update")
+      render turbo_stream: [
+        turbo_stream.replace("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
