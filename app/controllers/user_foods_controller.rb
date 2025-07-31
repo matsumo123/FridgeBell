@@ -26,7 +26,7 @@ class UserFoodsController < ApplicationController
 
   def update
     if @user_food.update(user_foods_params)
-      flash[:notice] = "冷蔵庫内の食材情報を更新しました"
+      flash.now[:notice] = "冷蔵庫内の食材情報を更新しました"
       render turbo_stream: [
         turbo_stream.replace(@user_food),
         turbo_stream.update("flash", partial: "shared/flash_message")
@@ -38,7 +38,7 @@ class UserFoodsController < ApplicationController
 
   def destroy
     @user_food.destroy!
-    flash[:notice] = "冷蔵庫内から食材を削除しました"
+    flash.now[:notice] = "冷蔵庫内から食材を削除しました"
     render turbo_stream: [
       turbo_stream.remove(@user_food),
       turbo_stream.update("flash", partial: "shared/flash_message")
