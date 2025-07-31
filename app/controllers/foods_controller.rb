@@ -15,7 +15,13 @@ class FoodsController < ApplicationController
   def create
     @food = current_user.foods.build(food_params)
     if @food.save
-      redirect_to foods_path(category_id: @food.category_id), notice: t("helpers.flash_messages.foods_list_add")
+      @foods = Food.where(category_id: @food.category_id).order(name: :asc)
+      @user_food = current_user.user_foods.new
+      flash.now[:notice] = t("helpers.flash_messages.foods_list_add")
+      render turbo_stream: [
+        turbo_stream.replace("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
