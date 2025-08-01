@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
   resources :foods, only: %i[index new create edit update destroy]
   resources :user_foods, only: %i[index new create edit update destroy]
+  resources :food_actions, only: %i[ create ]
+  get "food_actions/consume" => "food_actions#consume"
+  get "food_actions/discard" => "food_actions#discard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
