@@ -5,7 +5,7 @@
         消費した食材を登録
       </h1>
     </div>
-    <%= form_with model: @form, url: food_actions_path, method: :post do |form| %>
+    <%= form_with model: @form, url: food_actions_consume_path, method: :post do |form| %>
       <% @user_foods.each do |user_food| %>
         <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
         <% bg_color = case remaining_days
