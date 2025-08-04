@@ -12,7 +12,7 @@ module FoodActions
         redirect_to home_path, notice: "食材を廃棄しました"
       else
         flash.now[:alert] = "食材を廃棄できませんでした"
-        @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)  
+        @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
         render :consume, status: :unprocessable_entity
       end
     end
@@ -20,7 +20,7 @@ module FoodActions
     private
 
     def collection_params
-      params.require(:form_food_action_collection).permit(food_actions_attributes: [:user_food_id, :action_type, :action_date, :quantity, :availability])
+      params.require(:form_food_action_collection).permit(food_actions_attributes: [ :user_food_id, :action_type, :action_date, :quantity, :availability ])
     end
 
     def user_foods_present?
