@@ -5,6 +5,7 @@ ja:
       category: カテゴリー
       food: 食材
       user_food: 登録食材
+      food_action: 消費・廃棄
     attributes:
       user:
         name: ユーザー名
@@ -23,3 +24,10 @@ ja:
         quantity: 数量
         deadline_date: 期限
         mini_memo: メモ
+      food_action:
+        action_date: 消費・廃棄した日
+        quantity: 登録する数量
+        action_type:
+        action_types:
+          consumed: 消費
+          discarded: 廃棄

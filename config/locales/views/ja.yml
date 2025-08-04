@@ -7,6 +7,10 @@ ja:
       foods_list_add: 食材リストを追加しました
       foods_list_update: 食材リストを更新しました
       foods_list_delete: 食材リストから削除しました
+      consumed_foods: 食べた食材を登録しました
+      discarded_foods: 廃棄した食材を登録しました
+      registration_unsuccessful: うまく登録できませんでした。もう一度お試しください。
+      no_food_items: 冷蔵庫に登録されている食材がありません。まずは食材を追加してください。
   header:
     login: ログイン
     app_name: FridgeBell
@@ -55,4 +59,18 @@ ja:
     form:
       required: 必須
       day: 日
+  food_actions:
+    form:
+      hurry_up: お早めにどうぞ
+      rest: あと
+      days: 日
+      deadline: "期限: "
+      mini_memo: "メモ: "
+      registration: 登録
+    consumes:
+      new:
+        title: 食べたものを登録しよう
+    discards:
+      new:
+        title: 捨てたものを登録しよう
       

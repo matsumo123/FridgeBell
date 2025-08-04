@@ -38,25 +38,29 @@
               <div class="font-bold text-lg"><%= user_food.food.name %></div>
               <% if deadline_text < 0 %>
                 <div class="flex items-center space-x-1 font-bold text-lg text-red-500">
-                  <span>お早めにどうぞ</span>
+                  <span><%= t('.hurry_up') %></span>
                   <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
                 </div>
               <% else %>
-                <div class="font-bold text-lg text-red-500">あと<%= deadline_text %>日</div>
+                <div class="font-bold text-lg text-red-500">
+                  <%= t('.rest') %><%= deadline_text %><%= t('.days') %>
+                </div>
               <% end %>
             </div>
-            <div class="font-semibold">期限: <%= user_food.deadline_date %></div>
+            <div class="font-semibold">
+              <%= t('.deadline') %><%= user_food.deadline_date %>
+            </div>
             <div>
-              <label>数値:</label>
-              <%= f.number_field :quantity, value: user_food.quantity, max: user_food.quantity, min: 1, class: "w-14 border rounded px-2 py-1" %><%= user_food.food.unit %>
+              <%= f.label :quantity %>:
+              <%= f.number_field :quantity, value: user_food.quantity, max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
             </div>
             <% if user_food.mini_memo.present? %>
-              <div class="text-gray-700">メモ: <%= user_food.mini_memo %></div>
+              <div class="text-gray-700"><%= t('.mini_memo') %><%= user_food.mini_memo %></div>
             <% end %>
           </div>
         </div>
       </div>
     <% end %>
   <% end %>
-  <%= form.submit "登録", class: "w-full mx-auto block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+  <%= form.submit t('.registration'), class: "w-full mx-auto block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
 <% end %>

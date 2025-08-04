@@ -9,9 +9,9 @@ module FoodActions
     def create
       @form = Form::FoodActionCollection.new(current_user, collection_params)
       if @form.save
-        redirect_to home_path, notice: "食材を廃棄しました"
+        redirect_to home_path, notice: t("helpers.flash_messages.discarded_foods")
       else
-        flash.now[:alert] = "食材を廃棄できませんでした"
+        flash.now[:alert] = t("helpers.flash_messages.registration_unsuccessful")
         @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
         render :consume, status: :unprocessable_entity
       end
@@ -26,7 +26,7 @@ module FoodActions
     def user_foods_present?
       @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
       unless @user_foods.present?
-        redirect_to home_path, alert: "冷蔵庫に登録されている食材がありません。まずは食材を追加してください。"
+        redirect_to home_path, alert: t("helpers.flash_messages.no_food_items")
       end
     end
   end
