@@ -9,7 +9,6 @@ ja:
       foods_list_delete: 食材リストから削除しました
       consumed_foods: 食べた食材を登録しました
       discarded_foods: 廃棄した食材を登録しました
-      registration_unsuccessful: うまく登録できませんでした。もう一度お試しください。
       no_food_items: 冷蔵庫に登録されている食材がありません。まずは食材を追加してください。
   header:
     login: ログイン

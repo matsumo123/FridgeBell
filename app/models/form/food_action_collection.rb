@@ -19,20 +19,23 @@ class Form::FoodActionCollection < Form::Base
 
   def save
     FoodAction.transaction do
-      self.food_actions.each do |food_action|
-        if food_action.availability
-          if food_action.save
-            user_food = UserFood.find_by(id: food_action.user_food_id, user_id: @user.id)
-            subtraction = user_food.quantity - food_action.quantity
-            if subtraction > 0
-              user_food.update!(quantity: subtraction)
-            else
-              user_food.destroy!
-            end
+      availability_foods = self.food_actions.select(&:availability)
+      if availability_foods.blank?
+        errors.add(:base, "食材を1つ以上選択してください")
+        return false
+      end
+      availability_foods.each do |availability_food|
+        if availability_food.save
+          user_food = UserFood.find_by(id: availability_food.user_food_id, user_id: @user.id)
+          subtraction = user_food.quantity - availability_food.quantity
+          if subtraction > 0
+            user_food.update!(quantity: subtraction)
           else
-            puts food_action.errors.full_messages
-            raise ActiveRecord::Rollback
+            user_food.destroy!
           end
+        else
+          puts availability_food.errors.full_messages
+          raise ActiveRecord::Rollback
         end
       end
     end

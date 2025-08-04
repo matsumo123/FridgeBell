@@ -11,9 +11,8 @@ module FoodActions
       if @form.save
         redirect_to home_path, notice: t("helpers.flash_messages.consumed_foods")
       else
-        flash.now[:alert] = t(".helpers.flash_messages.registration_unsuccessful")
         @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
-        render :consume, status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
