@@ -14,7 +14,11 @@ class UserFoodsController < ApplicationController
   def create
     @user_food = current_user.user_foods.build(user_foods_params)
     if @user_food.save
-      redirect_to user_foods_path, notice: "冷蔵庫に食材を登録しました"
+      flash.now[:notice] = "冷蔵庫に食材を登録しました"
+      render turbo_stream: [
+        turbo_stream.replace("user_food", partial: "user_foods/user_food", locals: { user_food: @user_food }),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       @categories = Category.order(id: :asc)
       @foods = Food.where(category_id: params[:category_id]).order(name: :asc)

@@ -5,4 +5,5 @@ class FoodAction < ApplicationRecord
 
   validates :user_id, :user_food_id, :action_type, :action_date, :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :availability, inclusion: { in: [ true, false ] }
 end
