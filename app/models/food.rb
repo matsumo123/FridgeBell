@@ -31,4 +31,16 @@ class Food < ApplicationRecord
       errors.add(:name, "すでに登録している名前は使用できません")
     end
   end
+
+  def image_content_type
+    if food_image.attached? && !food_image.content_type.in?(%w[image/jpeg image/png image/webp])
+      errors.add(:food_image, ":ファイル形式がJPEG, PNG, WebP以外になっています。ファイル形式をご確認ください。")
+    end
+  end
+
+  def image_size
+    if food_image.attached? && food_image.blob.byte_size > 5.megabytes
+      errors.add(:food_image, ":5MB以下のファイルをアップロードしてください。")
+    end
+  end
 end
