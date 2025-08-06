@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_05_123020) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_06_155119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_05_123020) do
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
+  create_table "user_characters", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "character_id", null: false
+    t.integer "consecutive_days", default: 0, null: false
+    t.datetime "last_consumed_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_user_characters_on_character_id"
+    t.index ["user_id"], name: "index_user_characters_on_user_id"
+  end
+
   create_table "user_foods", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
@@ -116,6 +127,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_05_123020) do
   add_foreign_key "food_actions", "users"
   add_foreign_key "foods", "categories"
   add_foreign_key "foods", "users"
+  add_foreign_key "user_characters", "characters"
+  add_foreign_key "user_characters", "users"
   add_foreign_key "user_foods", "foods"
   add_foreign_key "user_foods", "users"
 end
