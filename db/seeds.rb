@@ -28,7 +28,7 @@ vegetables = [
   { name: "ピーマン", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_ピーマン.png" },
   { name: "パプリカ", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_パプリカ.png" },
   { name: "しし唐", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_ししとう.png" },
-  { name: "かぼちゃ", quantity: 1/4, unit: "個", default_deadline: 8, file: "野菜類_かぼちゃ.png" },
+  { name: "かぼちゃ", quantity: 1, unit: "個", default_deadline: 8, file: "野菜類_かぼちゃ.png" },
   { name: "ゴーヤ", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_ゴーヤ.png" },
   { name: "オクラ", quantity: 1, unit: "パック", default_deadline: 7, file: "野菜類_オクラ.png" },
   { name: "いんげん", quantity: 1, unit: "本", default_deadline: 7, file: "野菜類_いんげん.png" },
@@ -37,8 +37,8 @@ vegetables = [
   { name: "スナップエンドウ", quantity: 1, unit: "袋", default_deadline: 7, file: "野菜類_スナップえんどう.png" },
   { name: "そら豆", quantity: 1, unit: "袋", default_deadline: 3, file: "野菜類_そら豆.png" },
   { name: "グリンピース", quantity: 1, unit: "袋", default_deadline: 3, file: "野菜類_グリンピース.png" },
-  { name: "キャベツ", quantity: 1/4, unit: "個", default_deadline: 7, file: "野菜類_キャベツ.png" },
-  { name: "白菜", quantity: 1/4, unit: "個", default_deadline: 7, file: "野菜類_はくさい.png" },
+  { name: "キャベツ", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_キャベツ.png" },
+  { name: "白菜", quantity: 1, unit: "個", default_deadline: 7, file: "野菜類_はくさい.png" },
   { name: "ほうれん草", quantity: 1, unit: "袋", default_deadline: 7, file: "野菜類_ほうれんそう.png" },
   { name: "小松菜", quantity: 1, unit: "袋", default_deadline: 7, file: "野菜類_小松菜.png" },
   { name: "チンゲン菜", quantity: 1, unit: "袋", default_deadline: 7, file: "野菜類_チンゲンサイ.png" },
@@ -107,7 +107,7 @@ vegetables.each do |data|
     puts "✅ 登録成功: #{vegetable.name}"
   else
     puts "❌ 登録失敗: #{vegetable.name}"
-    puts food.errors.full_messages
+    puts vegetable.errors.full_messages
   end
 end
 
@@ -144,7 +144,7 @@ mushrooms.each do |data|
     puts "✅ 登録成功: #{mushroom.name}"
   else
     puts "❌ 登録失敗: #{mushroom.name}"
-    puts food.errors.full_messages
+    puts mushroom.errors.full_messages
   end
 end
 
@@ -201,7 +201,7 @@ meats.each do |data|
     puts "✅ 登録成功: #{meat.name}"
   else
     puts "❌ 登録失敗: #{meat.name}"
-    puts food.errors.full_messages
+    puts meat.errors.full_messages
   end
 end
 
@@ -268,7 +268,7 @@ seafoods.each do |data|
     puts "✅ 登録成功: #{seafood.name}"
   else
     puts "❌ 登録失敗: #{seafood.name}"
-    puts food.errors.full_messages
+    puts seafood.errors.full_messages
   end
 end
 
@@ -312,7 +312,7 @@ egg_ane_dairies.each do |data|
     puts "✅ 登録成功: #{egg_ane_dairy.name}"
   else
     puts "❌ 登録失敗: #{egg_ane_dairy.name}"
-    puts food.errors.full_messages
+    puts egg_ane_dairy.errors.full_messages
   end
 end
 
@@ -362,7 +362,7 @@ staple_foods.each do |data|
     puts "✅ 登録成功: #{staple_food.name}"
   else
     puts "❌ 登録失敗: #{staple_food.name}"
-    puts food.errors.full_messages
+    puts staple_food.errors.full_messages
   end
 end
 
@@ -385,7 +385,7 @@ fruits = [
   { name: "柿", quantity: 1, unit: "個", default_deadline: 14, file: "果実類_柿.png" },
   { name: "梨", quantity: 1, unit: "個", default_deadline: 14, file: "果実類_なし.png" },
   { name: "マンゴー", quantity: 1, unit: "個", default_deadline: 5, file: "果実類_マンゴー.png" },
-  { name: "スイカ", quantity: 1/4, unit: "カット", default_deadline: 3, file: "果実類_スイカ.png" },
+  { name: "スイカ", quantity: 1, unit: "カット", default_deadline: 3, file: "果実類_スイカ.png" },
   { name: "さくらんぼ", quantity: 1, unit: "パック", default_deadline: 3, file: "果実類_さくらんぼ.png" },
   { name: "桃", quantity: 1, unit: "個", default_deadline: 7, file: "果実類_もも.png" },
   { name: "イチジク", quantity: 1, unit: "個", default_deadline: 4, file: "果実類_イチジク.png" },
@@ -415,7 +415,7 @@ fruits.each do |data|
     puts "✅ 登録成功: #{fruit.name}"
   else
     puts "❌ 登録失敗: #{fruit.name}"
-    puts food.errors.full_messages
+    puts fruit.errors.full_messages
   end
 end
 
@@ -456,7 +456,7 @@ processed_foods.each do |data|
     puts "✅ 登録成功: #{processed_food.name}"
   else
     puts "❌ 登録失敗: #{processed_food.name}"
-    puts food.errors.full_messages
+    puts processed_food.errors.full_messages
   end
 end
 
@@ -487,6 +487,40 @@ others.each do |data|
     puts "✅ 登録成功: #{other.name}"
   else
     puts "❌ 登録失敗: #{other.name}"
-    puts food.errors.full_messages
+    puts other.errors.full_messages
+  end
+end
+
+characters = [
+  { stage_number: 0, description: "すべての食材がモンスター😈に...冷蔵庫が荒れている！！", file: "ステージ0.png" },
+  { stage_number: 1, description: "🥛牛乳が元の姿に戻った！少し希望が見えてきたぞ！", file: "ステージ1.png" },
+  { stage_number: 2, description: "🥚たまごがモンスターから解放された！", file: "ステージ2.png" },
+  { stage_number: 3, description: "🍄‍🟫きのこがパックになって帰ってきた！冷蔵庫から不穏な気配が少しずつ消えていく…", file: "ステージ3.png" },
+  { stage_number: 4, description: "魚が新鮮な姿に！封印が解けてきたぞ🪇", file: "ステージ4.png" },
+  { stage_number: 5, description: "🥕にんじんが元に戻った！また一歩、冷蔵庫の平和に近づいた！", file: "ステージ5.png" },
+  { stage_number: 6, description: "🥦ブロッコリーが復活！あとも少しだ！！", file: "ステージ6.png" },
+  { stage_number: 7, description: "ついに🥩お肉がモンスターから解放！！すべての食材が元の姿に！冷蔵庫に平和が戻った🎉ありがとう!!", file: "ステージ7.png" }
+]
+
+characters.each do |data|
+  character = Character.find_or_initialize_by(stage_number: data[:stage_number])
+  character.assign_attributes(
+    description: data[:description]
+  )
+  file_path = Rails.root.join("db/seeds/images/character", data[:file])
+  if File.exist?(file_path)
+    character.image.attach(
+      io: File.open(file_path),
+      filename: data[:file]
+    )
+  else
+    puts "画像ファイルが見つかりません: #{file_path}"
+  end
+
+  if character.save
+    puts "✅ 登録成功: #{character.stage_number}"
+  else
+    puts "❌ 登録失敗: #{character.stage_number}"
+    puts character.errors.full_messages
   end
 end
