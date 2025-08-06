@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :foods, dependent: :destroy
   has_many :user_foods, dependent: :destroy
   has_many :food_actions, dependent: :destroy
+  has_one :user_character, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
