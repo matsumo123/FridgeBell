@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
-  get  "users/profile" => "users#show"
+  get "users/profile", to: "users#show"
   root "homes#top"
-  get "home" => "homes#home"
+  get "home", to: "homes#home"
   namespace :account do
     resource :password, only: %i[edit update]
   end
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resource :consume, only: %i[new create]
     resource :discard, only: %i[new create]
   end
+  get "character_stage", to: "user_characters#character_stage"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
