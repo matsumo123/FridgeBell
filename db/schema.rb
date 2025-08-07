@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_06_163031) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_07_111704) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_06_163031) do
     t.bigint "user_id", null: false
     t.bigint "character_id", null: false
     t.integer "consecutive_days", default: 0, null: false
-    t.datetime "last_consumed_at", null: false
+    t.datetime "last_consumed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_user_characters_on_character_id"
