@@ -1,6 +1,6 @@
 <%= form_with model: form, url: url, method: :post do |form| %>
   <%= render "shared/error_messages", object: form.object %>
-  <% user_foods.each do |user_food| %>
+  <% user_foods.each_with_index do |user_food, i| %>
     <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
     <% bg_color = case remaining_days
                   when ...0
@@ -13,7 +13,8 @@
                     "bg-green-200"
                   end %>
     <% deadline_text = remaining_days %>
-    <%= form.fields_for :food_actions do |f| %>
+    <% fa = form.object.food_actions[i] %>
+    <%= form.fields_for :food_actions, fa do |f| %>
       <%= f.hidden_field :action_type, value: object %>
       <%= f.hidden_field :user_food_id, value: user_food.id %>
       <%= f.hidden_field :action_date, value: Time.current %>
@@ -53,7 +54,7 @@
             </div>
             <div>
               <%= f.label :quantity %>:
-              <%= f.number_field :quantity, value: user_food.quantity, max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
+              <%= f.number_field :quantity, value: (fa.quantity || user_food.quantity), max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
             </div>
             <% if user_food.mini_memo.present? %>
               <div class="text-gray-700"><%= t('.mini_memo') %><%= user_food.mini_memo %></div>
