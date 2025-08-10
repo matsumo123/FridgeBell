@@ -9,7 +9,7 @@ module FoodActions
     def create
       @form = Form::FoodActionCollection.new(current_user, collection_params)
       if @form.save
-        redirect_to home_path, notice: t("helpers.flash_messages.discarded_foods")
+        redirect_to character_stage_path, notice: t("helpers.flash_messages.discarded_foods")
       else
         @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
         render :new, status: :unprocessable_entity
