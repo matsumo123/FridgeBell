@@ -4,9 +4,9 @@ class UserCharacter < ApplicationRecord
   validates :user_id, :character_id, presence: true
   validates :consecutive_days, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  # すでに今日、消費済みか
-  def consumed_today?(at = Time.current)
-    ts = last_consumed_at
+  # last_action_atは今日の日付か
+  def registered_today?(at = Time.current)
+    ts = last_action_at
     return false unless ts
     (at.beginning_of_day..at.end_of_day).cover?(ts)
   end
@@ -16,15 +16,15 @@ class UserCharacter < ApplicationRecord
     update!(
       character_id: next_character_id,
       consecutive_days: consecutive_days + 1,
-      last_consumed_at: at
+      last_action_at: at
     )
   end
 
   # action_typeが廃棄の際はリセット
-  def apply_discard!
+  def apply_discard!(at = Time.current)
     update!(
       consecutive_days: 0,
-      last_consumed_at: nil
+      last_action_at: at
     )
   end
 

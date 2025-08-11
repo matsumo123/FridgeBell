@@ -51,9 +51,9 @@ class Form::FoodActionCollection < Form::Base
       # 廃棄の場合は、連続日数をリセット
       # 消費の場合は、当日未消費なら連続日数を更新
       if any_discard
-        uc.apply_discard! unless uc.consecutive_days == 0
+        uc.apply_discard!(at)
       elsif any_consume
-        uc.apply_consumption!(at) unless uc.consumed_today?(at)
+        uc.apply_consumption!(at) unless uc.registered_today?(at)
       end
 
       success = true
