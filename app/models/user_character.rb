@@ -32,7 +32,7 @@ class UserCharacter < ApplicationRecord
 
   # characterのステージは8ステージ以内
   def next_character_stage
-    [consecutive_days + 1, 8].min
+    [ consecutive_days + 1, 8 ].min
   end
 
   # ステージに沿ったcharacter_idを取得
