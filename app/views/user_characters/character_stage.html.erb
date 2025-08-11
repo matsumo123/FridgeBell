@@ -1,0 +1,27 @@
+<main class="flex-1 px-6 py-8 md:px-8 bg-fridge bg-cover min-h-screen relative">
+
+  <div class="inset-x-0 top-8 flex justify-center z-10">
+    <div class="max-w-xl w-full rounded-2xl px-4 py-3 bg-white/70 backdrop-blur shadow-lg">
+      <p class="text-center text-xl md:text-2xl font-bold text-gray-800">
+        <%= @character_stage.character.description %>
+      </p>
+      <p class="text-center text-sm text-gray-600 mt-1">
+        <%= @character_stage.consecutive_days %>
+        日連続で廃棄ゼロ！
+      </p>
+    </div>
+  </div>
+
+  <div class="inset-0 flex flex-col items-center justify-center">
+    <%= image_tag @character_stage.character.image,
+      class: "object-contain w-[clamp(300px,50vw,200px)] h-auto" %>
+
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex justify-center gap-3">
+        <%= link_to "捨てた食材を登録", new_food_actions_discard_path, class: "py-4 px-8 mr-8  bg-gradient-to-r from-blue-400 to-sky-400 rounded-xl text-white text-lg font-semibold hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-500 shadow-lg hover:shadow-xl transition-all duration-200" %>
+        <%= link_to "食べた食材を登録", new_food_actions_consume_path, class: "py-4 px-8 bg-gradient-to-r from-pink-400 to-rose-400 rounded-xl text-white text-lg font-semibold hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500 shadow-lg hover:shadow-xl transition-all duration-200" %>
+      </div>
+      <%= link_to "ホームに戻る", home_path, class: "rounded-xl px-8 py-4 bg-white/80 backdrop-blur shadow hover:shadow-md transition text-gray-800 font-medium" %>
+    </div>
+  </div>
+</main>
