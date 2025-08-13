@@ -1,9 +1,12 @@
 <%= turbo_frame_tag "foods", id: "foods" do %>
   <div class="flex flex-wrap gap-4">
-    <% foods.each do |food| %>
-      <%= form_with model: user_food do |f| %>
-      <%= render "shared/error_messages", object: f.object %>
+    <%= form_with model: @form, url: user_foods_path do |form| %>
+      <% foods.each_with_index do |food, i| %>
+      <%= render "shared/error_messages", object: form.object %>
         <div class="flex flex-col items-center space-y-2">
+
+          <%# ユーザーが食材リストに追加した食材の場合、食材の編集ができる %>
+          <%# ユーザーが追加した食材リストの画像は指定 %>
           <% if food.user_id == current_user.id %>
             <div class="text-center space-x-2">
               <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center space-x-1" do %>
@@ -15,6 +18,7 @@
               <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
             </div>
           <% else %>
+            <%# デフォルトの食材を表示 %>
             <div class="text-center">
               <%= food.name %>
             </div>
@@ -26,42 +30,48 @@
               <% end %>
             </div>
           <% end %>
-          <%= f.hidden_field :food_id, value: food.id %>
-          <div class="flex items-center justify-center">
-            <%= f.label :quantity, class: "w-10 text-left" %>
-            <%= f.number_field :quantity, class: "w-20 border rounded px-2 py-0.5" %>
-            <%= food.unit %>
-          </div>
-          <div class="mb-3 text-left">
-            <%= f.label :deadline_date, class: "block mb-1" %>
-            <div class="flex space-x-2 mb-1">
-              <% unless food.default_deadline.present? %>
-              <% food.default_deadline = 
-                case food.category_id
-                when 3, 4
-                  2
-                else
-                  7
-                end %>
-              <% end %>
-              <%= f.date_select :deadline_date, 
-                { default: (Time.now + food.default_deadline.days), start_year: Date.today.year, end_year: Date.today.year + 5, use_month_numbers: true }, 
-                { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
+          <%# 冷蔵庫に登録するform %>
+          <% fa = form.object.user_foods[i] %>
+          <%= form.fields_for :user_foods, fa do |f| %>
+            <%= f.hidden_field :food_id, value: food.id %>
+            <div class="flex items-center justify-center">
+              <%= f.label :quantity, class: "w-10 text-left" %>
+              <%= f.number_field :quantity, min: 0, class: "w-20 border rounded px-2 py-0.5" %>
+              <%= food.unit %>
             </div>
-            <p class="text-sm text-gray-600">
-              この食材の冷蔵保存目安は
-              <span class="text-red-500 font-semibold"><%= food.default_deadline %>日</span>です。<br>
-              賞味期限や消費期限が記載されて<br>
-              いれば、そちらに従ってください。
-            </p>
-          </div>
-          <div class="mb-4 text-left">
-            <%= f.label :mini_memo, class: "block mb-1"  %>
-            <%= f.text_field :mini_memo, class: "flex-1 border rounded  px-2 py-0.5", placeholder: "冷凍済み, 小分け済み" %>
-          </div>
-          <%= f.submit "登録", class: "block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+            <div class="mb-3 text-left">
+              <%= f.label :deadline_date, class: "block mb-1" %>
+              <div class="flex space-x-2 mb-1">
+                <%# default_deadlineがnilの場合は、肉・魚介は2
+                日、それ以外は7日で計算 %>
+                <% unless food.default_deadline.present? %>
+                <% food.default_deadline = 
+                  case food.category_id
+                  when 3, 4
+                    2
+                  else
+                    7
+                  end %>
+                <% end %>
+                <%= f.date_select :deadline_date, 
+                  { default: (Time.now + food.default_deadline.days), start_year: Date.today.year, end_year: Date.today.year + 5, use_month_numbers: true }, 
+                  { class: "border rounded px-1 py-0.5 text-sm", date_separator: '', order: [:year, :month, :day] } %>
+              </div>
+              <p class="text-sm text-gray-600">
+                この食材の冷蔵保存目安は
+                <span class="text-red-500 font-semibold"><%= food.default_deadline %>日</span>です。<br>
+                賞味期限や消費期限が記載されて<br>
+                いれば、そちらに従ってください。
+              </p>
+            </div>
+            <div class="mb-4 text-left">
+              <%= f.label :mini_memo, class: "block mb-1"  %>
+              <%= f.text_field :mini_memo, class: "flex-1 border rounded  px-2 py-0.5", placeholder: "冷凍済み, 小分け済み" %>
+            </div>
+          <% end %>
         </div>
       <% end %>
+      <%= form.submit "登録", class: "block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
     <% end %>
   </div>
 <% end %>

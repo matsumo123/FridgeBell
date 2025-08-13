@@ -8,12 +8,14 @@ class UserFoodsController < ApplicationController
   def new
     @categories = Category.order(id: :asc)
     @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
-    @user_food = current_user.user_foods.new
+    @form = Form::UserFoodCollection.new(current_user, @foods)
   end
 
   def create
-    @user_food = current_user.user_foods.build(user_foods_params)
-    if @user_food.save
+    @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
+    @form = Form::UserFoodCollection.new(current_user, @foods, user_foods_params)
+    if @form.save
+      @user_food = current_user.user_foods.order(created_at: :desc).first
       flash.now[:notice] = "冷蔵庫に食材を登録しました"
       render turbo_stream: [
         turbo_stream.replace("user_food", partial: "user_foods/user_food", locals: { user_food: @user_food }),
@@ -52,7 +54,7 @@ class UserFoodsController < ApplicationController
   private
 
   def user_foods_params
-    params.require(:user_food).permit(:food_id, :quantity, :deadline_date, :mini_memo)
+    params.require(:form_user_food_collection).permit(user_foods_attributes:  [:food_id, :quantity, :deadline_date, :mini_memo])
   end
 
   def find_registered_user_food
