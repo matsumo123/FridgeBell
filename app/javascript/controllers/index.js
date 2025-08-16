@@ -7,8 +7,14 @@ import { application } from "./application"
 import AccountModalController from "./account_modal_controller"
 application.register("account-modal", AccountModalController)
 
+import DetailsModalController from "./details_modal_controller"
+application.register("details-modal", DetailsModalController)
+
 import FoodsModalController from "./foods_modal_controller"
 application.register("foods-modal", FoodsModalController)
+
+import FoodsSelectionController from "./foods_selection_controller"
+application.register("foods-selection", FoodsSelectionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
