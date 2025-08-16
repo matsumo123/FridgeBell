@@ -1,30 +1,30 @@
 <%= turbo_frame_tag "foods", id: "foods" do %>
   <div data-controller="foods-selection">
-    <%= form_with model: @form, url: user_foods_path, html: { class: "flex flex-wrap gap-6" } do |form| %>
+    <%= form_with model: @form, url: user_foods_path, html: { class: "mx-auto max-w-7xl grid gap-6 grid-cols-2 md:grid-cols-3 xl:grid-cols-5" } do |form| %>
     <%= render "shared/error_messages", object: form.object %>
 
       <% foods.each_with_index do |food, i| %>
-        <div class="basis-44 shrink-0 flex flex-col items-center gap-2">
+        <div class="flex flex-col items-stretch gap-3 rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 p-4">
           <%# ユーザーが食材リストに追加した食材の場合、食材の編集ができる %>
           <%# ユーザーが追加した食材リストの画像は指定 %>
           <% if food.user_id == current_user.id %>
-            <div class="text-center space-x-2">
+            <div class="text-left space-x-2 font-semibold text-gray-800 px-1">
               <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center space-x-1" do %>
                 <%= food.name %>
                 <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
               <% end %>
             </div>
-            <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
-              <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
+            <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
+              <p>画像なし</p>
             </div>
           <% else %>
             <%# デフォルトの食材を表示 %>
-            <div class="text-center">
+            <div class="text-left font-semibold text-gray-800 px-1">
               <%= food.name %>
             </div>
-            <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
+            <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
               <% if food.food_image.attached? %>
-                <%= image_tag food.food_image.variant(resize_to_limit: [80, 80]) %>
+                <%= image_tag food.food_image.variant(resize_to_limit: [150, 150]) %>
               <% else %>
                 <span class="text-xs text-gray-400"><%= t('.no_image') %></span>
               <% end %>
@@ -35,22 +35,24 @@
           <% fa = form.object.user_foods[i] %>
           <%= form.fields_for(:user_foods, fa, child_index: i) do |f| %>
             <%= f.hidden_field :food_id, value: food.id %>
-            <div class="flex items-center justify-center">
-              <%= f.label :quantity, class: "w-10 text-left" %>
-              <%= f.number_field :quantity, min: 0, step: 1, data: { foods_selection_target: "quantity", index: i, action: "input->foods-selection#check" }, class: "w-20 border rounded px-2 py-0.5" %>
-              <%= food.unit %>
+            <div class="mt-2 flex items-center gap-3">
+              <%= f.label :quantity, class: "mr-2 text-sm text-gray-600" %>
+              <%= f.number_field :quantity, min: 0, step: 1, data: { foods_selection_target: "quantity", index: i, action: "input->foods-selection#check" }, class: "w-16 text-center border border-gray-300 rounded-lg px-3 py-2 shadow-inner" %>
+              <span class="text-sm text-gray-600"><%= food.unit %></span>
             </div>
           <% end %>
         </div>
       <% end %>
-
-      <button
-        data-action="click->foods-selection#open"
-        data-foods-selection-target="nextButton"
-        type="button"
-        class="px-8 py-3 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"  disabled>
-        次へ
-      </button>
+      
+      <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 pb-safe">
+        <button
+          data-action="click->foods-selection#open"
+          data-foods-selection-target="nextButton"
+          type="button"
+          class="w-full py-4 px-6 bg-orange-500 text-white font-medium rounded-2xl shadow-lg transition-all duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed enabled:hover:bg-orange-600 enabled:active:scale-98 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"  disabled>
+          次へ
+        </button>
+      </div>
 
       <%= render 'details', form: form, foods: @foods, class: "hidden" %>
     <% end %>

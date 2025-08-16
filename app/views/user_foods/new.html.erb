@@ -1,16 +1,36 @@
 <main class="flex-1 px-6 py-8 md:px-8">
-  <div class="mx-auto max-w-md md:max-w-6xl space-y-6">
+  <div class="mx-auto max-w-xl md:max-w-7xl space-y-6">
     <div class="text-center">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
-        登録する食材
+      <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-gray-600">
+        冷蔵庫に追加する食材を選択
       </h1>
     </div>
-    <%= render 'categories/category_nav', categories: @categories %>
-    <%= render "new_form", foods: @foods, user_food: @user_food %>
-    <div class="flex flex-wrap gap-4">
-      <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'foods_modal' }, class: "bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center mt-6 border-2 border-gray-300" do %>
-        <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>          
-      <% end %>
+    <div class="min-h-screen flex justify-center items-start">
+      <div class="bg-white shadow-sm border border-gray-100 rounded-2xl w-full max-w-6xl">
+        <div class="py-6 text-center">
+          <h1 class="text-xl font-medium text-gray-900 leading-relaxed">
+            step1: 登録したい食材の数量を入力してください
+          </h1>
+          <p class="text-sm text-gray-600 mt-2">
+            登録はカテゴリー単位です。同じカテゴリー内なら複数の食材を一度に登録できます。
+          </p>
+        </div>
+
+        <div class="border-b border-gray-100">
+          <%= render 'categories/category_nav', categories: @categories %>
+        </div>
+
+        <div class="mt-4 mx-4">
+          <%= render "new_form", foods: @foods, user_food: @user_food %>
+        </div>
+
+        <div class="flex justify-center my-4">
+          <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'foods_modal' }, class: "flex items-center gap-2 px-6 py-3 bg-white rounded-xl border-1 border-gray-200 shadow-sm hover:shadow-md transition text-gray-700 font-medium" do %>
+            <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>
+            食材追加    
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </main>
