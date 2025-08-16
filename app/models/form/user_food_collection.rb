@@ -1,7 +1,7 @@
 class Form::UserFoodCollection < Form::Base
   attr_accessor :user_foods, :user, :foods
 
-  def initialize(user, foods, attributes={})
+  def initialize(user, foods, attributes = {})
     @user = user
     @foods = foods
     super attributes
@@ -35,12 +35,12 @@ class Form::UserFoodCollection < Form::Base
     end
     UserFood.transaction do
       # すでに登録済みのuser_foodsのfood_id, deadline_dateを取得
-      rows = @user.user_foods.index_by{ |uf| [uf.food_id, uf.deadline_date] }
+      rows = @user.user_foods.index_by { |uf| [ uf.food_id, uf.deadline_date ] }
       registered_user_foods.each do |ruf|
         # フォームから取得した食材が登録済みの食材と期限が一致している場合は既存のデータを更新
         # 新規または期限が異なる場合は新規登録
-        if rows.key?([ruf.food_id, ruf.deadline_date])
-          existing = rows[[ruf.food_id, ruf.deadline_date]]
+        if rows.key?([ ruf.food_id, ruf.deadline_date ])
+          existing = rows[[ ruf.food_id, ruf.deadline_date ]]
           sum = existing.quantity + ruf.quantity.to_i
           existing.update!(quantity: sum)
         else

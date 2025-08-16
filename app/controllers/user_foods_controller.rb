@@ -54,7 +54,7 @@ class UserFoodsController < ApplicationController
   private
 
   def user_foods_params
-    params.require(:form_user_food_collection).permit(user_foods_attributes:  [:food_id, :quantity, :deadline_date, :mini_memo])
+    params.require(:form_user_food_collection).permit(user_foods_attributes:  [ :food_id, :quantity, :deadline_date, :mini_memo ])
   end
 
   def find_registered_user_food
