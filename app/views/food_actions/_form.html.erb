@@ -1,68 +1,84 @@
 <%= form_with model: form, url: url, method: :post do |form| %>
   <%= render "shared/error_messages", object: form.object %>
-  <% user_foods.each_with_index do |user_food, i| %>
-    <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
-    <% bg_color = case remaining_days
-                  when ...0
-                    "bg-gray-200"
-                  when 0..2
-                    "bg-red-200"
-                  when 3..5
-                    "bg-yellow-200"
-                  else
-                    "bg-green-200"
-                  end %>
-    <% deadline_text = remaining_days %>
-    <% fa = form.object.food_actions[i] %>
-    <%= form.fields_for :food_actions, fa do |f| %>
-      <%= f.hidden_field :action_type, value: object %>
-      <%= f.hidden_field :user_food_id, value: user_food.id %>
-      <%= f.hidden_field :action_date, value: Time.current %>
-      <div class="flex items-center rounded-xl shadow-md border p-4 mb-4 space-x-4 <%= bg_color %>">
+  <div class="bg-white rounded-2xl shadow-md px-4 py-2 max-w-3xl mx-2 mb-2">
+    <div class="py-2 text-center">
+      <h1 class="text-xl font-medium text-gray-900 leading-relaxed">
+        食材を選択し、数量を入力してください
+      </h1>
+      <p class="text-sm text-gray-600">
+        チェックがついていない食材は登録されません
+      </p>
+    </div>
+    <% user_foods.each_with_index do |user_food, i| %>
+      <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
+      <% bg_color = case remaining_days
+                    when ...0
+                      "before:bg-gray-400"
+                    when 0..2
+                      "before:bg-red-400"
+                    when 3..5
+                      "before:bg-yellow-400"
+                    else
+                      "before:bg-green-400"
+                    end %>
+      <% deadline_text = remaining_days %>
+      <% fa = form.object.food_actions[i] %>
+      <%= form.fields_for :food_actions, fa do |f| %>
+        <%= f.hidden_field :action_type, value: object %>
+        <%= f.hidden_field :user_food_id, value: user_food.id %>
+        <%= f.hidden_field :action_date, value: Time.current %>
+        <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
 
-        <div class="mr-4">
-          <%= f.check_box :availability, { class: "w-5 h-5" } %>
-        </div>
-        
-        <div class="flex items-center space-x-4 flex-1">
-          <div class="flex-shrink-0 w-25 h-25 rounded-full flex items-center justify-center overflow-hidden">
-            <% if user_food.food.food_image.attached? %>
-              <%= image_tag user_food.food.food_image.variant(resize_to_limit: [80, 80]) %>
-            <% else %>
-              <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
-                <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
-              </div>
-            <% end %>
+          <div class="self-center ml-4">
+            <%= f.check_box :availability, { class: "w-5 h-5" } %>
           </div>
-
-          <div class="flex flex-col text-sm space-y-1">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-start md:gap-4">
-              <div class="font-bold text-lg"><%= user_food.food.name %></div>
-              <% if deadline_text < 0 %>
-                <div class="flex items-center space-x-1 font-bold text-lg text-red-500">
-                  <span><%= t('.hurry_up') %></span>
-                  <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
-                </div>
+        
+          <div class="flex items-center flex-1">
+            <div class="flex-shrink-0 w-30 h-30 md:w-40 md:h-40 bg-white flex items-center justify-center">
+              <% if user_food.food.food_image.attached? %>
+                <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
               <% else %>
-                <div class="font-bold text-lg text-red-500">
-                  <%= t('.rest') %><%= deadline_text %><%= t('.days') %>
+                <div class="flex-shrink-0 w-30 h-30 md:w-40 md:h-40 rounded-xl ring-1 ring-gray-200 bg-white flex items-center justify-center">
+                  <p class="text-gray-700">画像なし</P>
                 </div>
               <% end %>
             </div>
-            <div class="font-semibold">
-              <%= t('.deadline') %><%= user_food.deadline_date %>
+
+            <div class="flex flex-col flex-1 ml-2 self-center text-sm leading-relaxed space-y-1.5">
+              <div class="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
+                <div class="font-semibold text-base md:text-lg text-gray-900">
+                  <%= user_food.food.name %>
+                </div>
+                <% if deadline_text < 0 %>
+                  <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
+                    <span><%= t('.hurry_up') %></span>
+                    <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
+                  </div>
+                <% else %>
+                  <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
+                    <%= t('.rest') %><%= deadline_text %><%= t('.days') %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="text-sm text-gray-600">
+                <%= t('.deadline') %><%= user_food.deadline_date %>
+              </div>
+              <div class="text-sm text-gray-600">
+                <%= f.label :quantity %>:
+                <%= f.number_field :quantity, value: (fa.quantity || user_food.quantity), max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
+              </div>
+              <% if user_food.mini_memo.present? %>
+                <div class="text-sm text-gray-700">
+                  <%= t('.mini_memo') %><%= user_food.mini_memo %>
+                </div>
+              <% end %>
             </div>
-            <div>
-              <%= f.label :quantity %>:
-              <%= f.number_field :quantity, value: (fa.quantity || user_food.quantity), max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
-            </div>
-            <% if user_food.mini_memo.present? %>
-              <div class="text-gray-700"><%= t('.mini_memo') %><%= user_food.mini_memo %></div>
-            <% end %>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <%= form.submit t('.registration'), class: "w-full mx-auto block text-center px-4 bg-orange-200 hover:bg-orange-300 text-orange-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+    <div class="fixed bottom-0 left-20 right-20 md:left-50 md:right-50 xl:left-100 xl:right-100 p-4 pb-safe">
+      <%= form.submit t('.registration'), class: "w-full px-4 py-4 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 shadow" %>
+    </div>
+  </div>
 <% end %>
