@@ -11,11 +11,11 @@
                   "before:bg-green-400"
                 end %>
   <% deadline_text = remaining_days %>
-  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
+  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
     
     <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-white flex items-center justify-center">
       <% if user_food.food.food_image.attached? %>
-        <%= image_tag user_food.food.food_image.variant(resize_to_limit: [80, 80]) %>
+        <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
       <% else %>
         <p class="text-gray-700">画像なし</P>
       <% end %>
@@ -29,7 +29,7 @@
         <% if deadline_text < 0 %>
           <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
             <span>お早めにどうぞ</span>
-            <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
+            <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
           </div>
         <% else %>
           <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
@@ -46,7 +46,7 @@
     </div>
 
     <div class="flex flex-col items-center justify-start gap-2">
-      <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" do %>
+      <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" do %>
         <%= heroicon "pencil", variant: :outline, options: { class: "w-5 h-5"} %>
       <% end %>
       <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか" }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>

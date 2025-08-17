@@ -31,7 +31,7 @@ class UserFoodsController < ApplicationController
   def edit; end
 
   def update
-    if @user_food.update(user_foods_params)
+    if @user_food.update(update_params)
       flash.now[:notice] = "冷蔵庫内の食材情報を更新しました"
       render turbo_stream: [
         turbo_stream.replace(@user_food),
@@ -52,6 +52,10 @@ class UserFoodsController < ApplicationController
   end
 
   private
+
+  def update_params
+    params.require(:user_food).permit(:food_id, :quantity, :deadline_date, :mini_memo)
+  end
 
   def user_foods_params
     params.require(:form_user_food_collection).permit(user_foods_attributes:  [ :food_id, :quantity, :deadline_date, :mini_memo ])
