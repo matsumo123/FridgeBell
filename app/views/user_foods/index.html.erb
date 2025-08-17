@@ -1,9 +1,12 @@
-<main class="flex-1 px-6 py-8 md:px-8">
-  <div class="mx-auto max-w-md md:max-w-xl space-y-6">
-    <div class="text-center">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
-        冷蔵庫の中
+<main class="flex-1 md:px-6">
+  <div class="mx-auto max-w-lg md:max-w-2xl space-y-4">
+    <div class="sticky top-0 z-10 backdrop-blur border-b border-gray-100 px-4 pb-2 flex flex-col items-center gap-1">
+      <h1 class="text-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight">
+        冷蔵庫の食材一覧
       </h1>
+      <p class="mx-auto w-fit inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-200">
+        <%= @user_foods.count %>件
+      </p>
     </div>
     <% @user_foods.each do |user_food| %>
       <%= render partial: "user_food", locals: { user_food: user_food } %>
