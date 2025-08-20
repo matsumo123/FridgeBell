@@ -13,7 +13,7 @@
   <% deadline_text = remaining_days %>
   <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
     
-    <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-white flex items-center justify-center">
+    <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-gray-100 flex items-center justify-center">
       <% if user_food.food.food_image.attached? %>
         <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
       <% else %>
