@@ -35,6 +35,7 @@ export default class extends Controller {
   close(event){
     if(event.detail.success){
       this.detailModalTarget.classList.add("hidden");
+      window.location.href = "/user_foods";
     }
   }
 
