@@ -38,10 +38,11 @@
           </div>
 
           <%= f.submit t('.update'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
-          
-          <div data-action="click->account-modal#closeUserModal">
-            <%= link_to t('.back'), users_profile_path, class: "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
-          </div>
+        
+          <button type="button" data-action="click->account-modal#closeUserModal"
+            class= "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+              キャンセル
+          </button>
         <% end %>
       </div>
       </div>
