@@ -5,12 +5,14 @@
         <i class="material-symbols-rounded text-xl text-white">kitchen</i>
       </div>
       <%= link_to '/' do %>
-        <h1 class="text-4xl font-exo2 font-bold leading-tight overflow-visible bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-3xl"><%= t('header.app_name') %></h1>
+        <h1 class="text-4xl font-exo2 font-bold leading-tight overflow-visible bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-3xl">
+          <%= t('header.app_name') %>
+        </h1>
       <% end %>
     </div>
     <% if user_signed_in? %>
       <div data-controller="user-menu" class="space-x-2 px-4 py-2">
-        <button data-action="click->user-menu#toggle" class="flex mt-2 items-center text-gray-700 hover:font-semibold">
+        <button data-action="click->user-menu#toggle" class="flex items-center text-gray-700 hover:font-semibold">
           <%= heroicon "user", options: { class: "w-4 h-4 text-gray-600" } %>
           <span class="ml-2 text-sm font-medium text-gray-70"><%= current_user.name %></span>
         </button>
