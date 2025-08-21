@@ -7,10 +7,8 @@ export default class extends Controller {
   connect() {
   }
 
-  close(event){
-    if(event.detail.success){
-      this.foodModalTarget.classList.add("hidden");
-    }
+  closeIfSuccess(event){
+    if(event.detail?.success) this.closeModal();
   }
 
   closeModal(){

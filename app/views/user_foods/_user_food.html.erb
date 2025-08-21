@@ -2,52 +2,55 @@
   <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
   <% bg_color = case remaining_days
                 when ...0
-                  "bg-gray-200"
+                  "before:bg-gray-400"
                 when 0..2
-                  "bg-red-200"
+                  "before:bg-red-400"
                 when 3..5
-                  "bg-yellow-200"
+                  "before:bg-yellow-400"
                 else
-                  "bg-green-200"
+                  "before:bg-green-400"
                 end %>
   <% deadline_text = remaining_days %>
-  <div class="flex items-center rounded-xl shadow-md border p-4 mb-4 space-x-4 <%= bg_color %>">
+  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
     
-    <div class="flex-shrink-0 w-25 h-25 rounded-full flex items-center justify-center overflow-hidden">
+    <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-gray-100 flex items-center justify-center">
       <% if user_food.food.food_image.attached? %>
-        <%= image_tag user_food.food.food_image.variant(resize_to_limit: [80, 80]) %>
+        <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
       <% else %>
-        <div class="bg-white w-[100px] h-[100px] rounded-full flex items-center justify-center border-2 border-gray-300">
-          <i class="material-symbols-rounded !text-4xl" style="font-variation-settings: 'wght' 100;">washoku</i>
-        </div>
+        <p class="text-gray-700">画像なし</P>
       <% end %>
     </div>
 
-    <div class="flex flex-col flex-1 self-center text-sm space-y-1">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-start md:gap-4">
-        <div class="font-bold text-lg"><%= user_food.food.name %></div>
+    <div class="flex flex-col flex-1 self-start text-sm leading-relaxed space-y-1.5">
+      <div class="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
+        <div class="font-semibold text-base md:text-lg text-gray-900">
+          <%= user_food.food.name %>
+        </div>
         <% if deadline_text < 0 %>
-          <div class="flex items-center space-x-1 font-bold text-lg text-red-500">
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
             <span>お早めにどうぞ</span>
-            <%= heroicon "exclamation-triangle", options: { class: "w-5 h-5" } %>
+            <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
           </div>
         <% else %>
-          <div class="font-bold text-lg text-red-500">あと<%= deadline_text %>日</div>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
+            あと<%= deadline_text %>日
+          </div>
         <% end %>
       </div>
-      <div class="font-semibold">期限: <%= user_food.deadline_date %></div>
-      <div>数量: <%= user_food.quantity %><%= user_food.food.unit %></div>
+
+      <div class="text-sm text-gray-600">期限: <%= user_food.deadline_date %></div>
+      <div class="text-sm text-gray-600">数量: <%= user_food.quantity %><%= user_food.food.unit %></div>
       <% if user_food.mini_memo.present? %>
-        <div class="text-gray-700">メモ: <%= user_food.mini_memo %></div>
+        <div class="text-sm text-gray-700">メモ: <%= user_food.mini_memo %></div>
       <% end %>
     </div>
 
-    <div class="flex flex-col items-center justify-center space-y-4">
-      <%= link_to edit_user_food_path(id: user_food.id), class: "text-gray-500 hover:text-blue-600", data: { turbo_frame: 'user_food_modal' } do %>
-        <%= heroicon "pencil", options: { class: "w-6 h-6"} %>
+    <div class="flex flex-col items-center justify-start gap-2">
+      <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" do %>
+        <%= heroicon "pencil", variant: :outline, options: { class: "w-5 h-5"} %>
       <% end %>
-      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか" }, class: "text-gray-500 hover:text-red-600" do %>
-        <%= heroicon "trash", options: { class: "w-6 h-6"} %>
+      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか" }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>
+        <%= heroicon "trash", variant: :outline, options: { class: "w-5 h-5"} %>
       <% end %>
     </div>
   </div>

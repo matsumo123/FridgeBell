@@ -1,12 +1,33 @@
-<main class="flex-1 px-6 py-8 md:px-8">
-  <div class="mx-auto max-w-md md:max-w-xl space-y-6">
-    <div class="text-center">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl">
-        冷蔵庫の中
+<main class="flex-1 md:px-6">
+  <div class="mx-auto max-w-lg md:max-w-2xl space-y-4">
+    <div class="border-b border-gray-100 px-4 pb-2 flex flex-col items-center gap-1">
+      <h1 class="text-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight">
+        冷蔵庫の食材一覧
       </h1>
+    <!--  <p class="mx-auto w-fit inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-200">
+        <%= @user_foods.count %>件
+      </p> -->
     </div>
-    <% @user_foods.each do |user_food| %>
-      <%= render partial: "user_food", locals: { user_food: user_food } %>
+    <% if @user_foods.blank? %>
+      <span class="block text-center text-gray-600 md:text-xl font-semibold tracking-tight">
+        冷蔵庫は空です。
+      </span>
+      <div class="mt-3 flex justify-center items-center gap-2">
+        <span class="text-gray-600 font-semibold text-sm">
+          まずは、
+        </span>
+        <%= link_to new_user_food_path(category_id: 1), class: "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-400 to-pink-400 text-white font-semibold shadow-sm hover:shadow-md hover:from-orange-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-300 transition" do %>
+          <%= heroicon "plus", options: { class: "w-5 h-5 text-white" } %>
+          食材を登録
+        <% end %>
+        <span class="text-gray-600 font-semibold text-sm">
+          しよう🍴
+        </span>
+      </span>
+    <% else %>
+      <% @user_foods.each do |user_food| %>
+        <%= render partial: "user_food", locals: { user_food: user_food } %>
+      <% end %>
     <% end %>
   </div>
 </main>

@@ -14,14 +14,14 @@ ja:
     login: ログイン
     app_name: FridgeBell
     user_profile: マイページ
-    terms_of_service: 利用規約
-    privacy_policy: プライバシーポリシー
-    contact_us: お問い合わせ
+    terms_of_service: 利用規約(準備中)
+    privacy_policy: プライバシーポリシー(準備中)
+    contact_us: お問い合わせ(準備中)
     logout: ログアウト
   footer:
-    terms_of_service: 利用規約
-    privacy_policy: プライバシーポリシー
-    contact_us: お問い合わせ
+    terms_of_service: 利用規約(準備中)
+    privacy_policy: プライバシーポリシー(準備中)
+    contact_us: お問い合わせ(準備中)
     copyright: © %{year} %{app_name}
   homes:
     top:
