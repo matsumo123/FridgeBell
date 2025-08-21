@@ -9,13 +9,9 @@ class FoodsController < ApplicationController
   def create
     @food = current_user.foods.build(food_params)
     if @food.save
-      @foods = Food.where(category_id: @food.category_id).order(name: :asc)
-      @user_food = current_user.user_foods.new
-      flash.now[:notice] = t("helpers.flash_messages.foods_list_add")
-      render turbo_stream: [
-        turbo_stream.replace("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
-        turbo_stream.update("flash", partial: "shared/flash_message")
-      ]
+      redirect_to new_user_food_path(category_id: @food.category_id),
+                  status: :see_other,
+                  notice: t("helpers.flash_messages.foods_list_add")
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,13 +21,9 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update(food_params)
-      @foods = Food.where(category_id: @food.category_id).order(name: :asc)
-      @user_food = current_user.user_foods.new
-      flash.now[:notice] = t("helpers.flash_messages.foods_list_update")
-      render turbo_stream: [
-        turbo_stream.replace("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
-        turbo_stream.update("flash", partial: "shared/flash_message")
-      ]
+      redirect_to new_user_food_path(category_id: @food.category_id),
+                  status: :see_other,
+                  notice: t("helpers.flash_messages.foods_list_update")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,13 +31,9 @@ class FoodsController < ApplicationController
 
   def destroy
     @food.destroy!
-    flash.now[:notice] = t("helpers.flash_messages.foods_list_delete")
-    @foods = Food.where(category_id: @food.category_id).order(name: :asc)
-    @user_food = current_user.user_foods.new
-    render turbo_stream: [
-      turbo_stream.update("foods", partial: "user_foods/new_form", locals: { foods: @foods, user_food: @user_food }),
-      turbo_stream.update("flash", partial: "shared/flash_message")
-    ]
+    redirect_to new_user_food_path(category_id: @food.category_id),
+                status: :see_other,
+                notice: t("helpers.flash_messages.foods_list_delete")
   end
 
   private

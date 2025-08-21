@@ -6,14 +6,29 @@
           <%= t('.title') %>
         </h1>
         <button type="button"
-              class="absolute right-5 top-5 inline-flex items-center justify-center rounded-full size-8 hover:bg-gray-100"
-              data-action="click->foods-modal#closeModal" aria-label="閉じる"><%= heroicon "x-circle",  variant: :outline, options: { class: "w-10 h-10 text-gray-700"} %></button>
+          class="absolute right-5 top-5 inline-flex items-center justify-center rounded-full size-8 hover:bg-gray-100"
+          data-action="click->foods-modal#closeModal">
+          <%= heroicon "x-circle",  variant: :outline, options: { class: "w-10 h-10 text-gray-700"} %>
+        </button>
       </div>
+      
       <div class="mt-2 rounded-lg bg-white border border-gray-200 p-6 shadow-sm">
         <%= render 'form', food: @food %>
-        <div class="mt-2 flex justify-between space-x-3">
-          <%= link_to t('.back'), foods_path(category_id: @food.category_id), data: { action: "click->foods-modal#closeModal" }, class: "w-1/2 px-4 py-2 text-center rounded-xl border border-gray-600 text-gray-800 hover:bg-gray-50 shadow-sm" %>
-          <%= link_to t('.destroy'), food_path(id: @food.id), data:{ turbo_method: :delete, turbo_confirm: "食品リストから削除してよろしいですか" }, class: "w-1/2 px-4 py-2 rounded-xl text-center rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 shadow-sm" %>
+        <div class="mt-2 flex gap-3">
+          <button type="button"
+          data-action= "click->foods-modal#closeModal"
+          class= "basis-1/2 px-4 py-2 text-center rounded-xl border border-gray-600 text-gray-800 hover:bg-gray-50 shadow-sm">
+            キャンセル
+          </button>
+
+          <%= button_to t('.destroy'), food_path(@food),
+          method: :delete ,
+          data:{ turbo_confirm: "食品リストから削除してよろしいですか" },
+          form: { class: "basis-1/2", data: { 
+            turbo_frame: "foods",
+            action: "turbo:submit-end->foods-modal#closeIfSuccess"
+          } },
+          class: "w-full px-4 py-2 text-center rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 shadow-sm" %>
         </div>
       </div>
     </div>
