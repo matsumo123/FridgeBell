@@ -4,9 +4,9 @@
       <h1 class="text-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight">
         冷蔵庫の食材一覧
       </h1>
-      <p class="mx-auto w-fit inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-200">
+    <!--  <p class="mx-auto w-fit inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-200">
         <%= @user_foods.count %>件
-      </p>
+      </p> -->
     </div>
     <% @user_foods.each do |user_food| %>
       <%= render partial: "user_food", locals: { user_food: user_food } %>
