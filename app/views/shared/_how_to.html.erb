@@ -1,0 +1,64 @@
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-orange-100 border-2 border-orange-400 flex items-center justify-center">
+        <%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6 text-orange-500" } %>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">食材登録</h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      カテゴリーから選んで数量・期限・メモを入力<br>
+      同じカテゴリーならまとめて登録OK
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-green-100 border-2 border-green-400 flex items-center justify-center">
+        <i class="material-symbols-rounded text-xl text-green-500">nutrition</i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">食材リスト追加</h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      「登録したい食材がリストにない！」場合は食材リストに追加可能
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-blue-100 border-2 border-blue-400 flex items-center justify-center">
+        <i class="material-symbols-rounded text-xl text-blue-500">kitchen</i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">食材一覧</h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      登録した食材は期限短い順に表示<br>
+      期限色分けラベル付き（グレー・赤・黄・緑）
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-pink-100 border-2 border-pink-400 flex items-center justify-center">
+        <i class="material-symbols-rounded text-xl text-pink-500">fork_spoon</i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">消費・廃棄登録</h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      消費または廃棄した食材を登録<br>
+      連続廃棄ゼロ日数の記録を伸ばして、モンスター化した食材たちを助けて
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-violet-100 border-2 border-violet-400 flex items-center justify-center">
+        <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 text-violet-500" } %>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-500">リマインド（準備中）</h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      LINEで期限間近の食材を通知予定
+    </p>
+  </div>
+</div>

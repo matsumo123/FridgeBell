@@ -6,7 +6,7 @@ class UserFoodsController < ApplicationController
   end
 
   def new
-    @categories = Category.order(id: :asc)
+    @categories = Category.custom_order
     @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
     @form = Form::UserFoodCollection.new(current_user, @foods)
   end
@@ -22,7 +22,7 @@ class UserFoodsController < ApplicationController
         turbo_stream.update("flash", partial: "shared/flash_message")
       ]
     else
-      @categories = Category.order(id: :asc)
+      @categories = Category.custom_order
       @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
       render :new, status: :unprocessable_entity
     end
