@@ -19,6 +19,9 @@ application.register("foods-selection", FoodsSelectionController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HowToModalController from "./how_to_modal_controller"
+application.register("how-to-modal", HowToModalController)
+
 import UserFoodModalController from "./user_food_modal_controller"
 application.register("user-food-modal", UserFoodModalController)
 
