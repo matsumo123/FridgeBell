@@ -15,6 +15,6 @@ class User < ApplicationRecord
   private
 
   def set_user_character
-    create_user_character!(character_id: Character.find_by(stage_number: 0).id, consecutive_days: 0, last_consumed_at: nil)
+    create_user_character!(character_id: Character.find_by(stage_number: 0).id, consecutive_days: 0, last_action_at: nil)
   end
 end

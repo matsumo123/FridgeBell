@@ -11,6 +11,9 @@ class Food < ApplicationRecord
   validate :check_default_food
   validate :check_same_name_food
 
+  scope :user_foods, ->(user) { where(user_id: [ nil, user.id ]) }
+  scope :by_category, ->(category_id) { where(category_id: category_id) }
+
   private
 
   # デフォルト食材が既にデフォルト食材名として登録されていた場合は登録不可
