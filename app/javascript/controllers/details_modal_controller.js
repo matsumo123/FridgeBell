@@ -5,8 +5,7 @@ import { Turbo } from "@hotwired/turbo-rails";
 export default class extends Controller {
   static targets = ["detailModal", "item"]
 
-  connect() {
-    this.detailModalTarget.classList.add("hidden");
+  connect(){
   }
 
   populate(event){

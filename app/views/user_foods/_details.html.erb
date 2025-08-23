@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "details_modal" do %>
   <!-- モーダル全体 -->
-  <div data-controller="details-modal" data-details-modal-target="detailModal" data-action="foods:selected@document->details-modal#populate turbo:submit-end@document->details-modal#close" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+  <div data-controller="details-modal" data-details-modal-target="detailModal" data-action="foods:selected@document->details-modal#populate turbo:submit-end@document->details-modal#close" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hidden" role="dialog" aria-modal="true">
     <!-- 背景 -->
     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-action="click->details-modal#closeModal"></div>
     <!-- 本体カード -->
