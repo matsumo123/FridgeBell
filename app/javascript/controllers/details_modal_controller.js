@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { Turbo } from "@hotwired/turbo-rails";
 
 // Connects to data-controller="details-modal"
 export default class extends Controller {
@@ -33,9 +34,14 @@ export default class extends Controller {
   }
 
   close(event){
+    const form = event.target;
+    const owningForm = this.element.closest(`form`);
+
+    if(form !== owningForm) return;
+
     if(event.detail.success){
       this.detailModalTarget.classList.add("hidden");
-      window.location.href = "/user_foods";
+      Turbo.visit("/user_foods");
     }
   }
 
