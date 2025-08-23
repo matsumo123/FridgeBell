@@ -7,12 +7,12 @@ class UserFoodsController < ApplicationController
 
   def new
     @categories = Category.custom_order
-    @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
+    @foods = Food.user_foods(current_user).by_category(params[:category_id]).order(name: :asc)
     @form = Form::UserFoodCollection.new(current_user, @foods)
   end
 
   def create
-    @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
+    @foods = Food.user_foods(current_user).by_category(params[:category_id]).order(name: :asc)
     @form = Form::UserFoodCollection.new(current_user, @foods, user_foods_params)
     if @form.save
       @user_food = current_user.user_foods.order(created_at: :desc).first
@@ -23,7 +23,7 @@ class UserFoodsController < ApplicationController
       ]
     else
       @categories = Category.custom_order
-      @foods = Food.where(category_id: params[:category_id]).order(name: :asc)
+      @foods = Food.user_foods(current_user).by_category(params[:category_id]).order(name: :asc)
       render :new, status: :unprocessable_entity
     end
   end
