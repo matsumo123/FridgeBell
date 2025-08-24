@@ -1,5 +1,6 @@
 class Account::PasswordsController < ApplicationController
   before_action :authenticate_user!
+  before_action :password_present?, only: %i[ update ]
 
   def edit; end
 
@@ -16,5 +17,12 @@ class Account::PasswordsController < ApplicationController
 
   def password_params
     params.require(:user).permit(:current_password, :password, :password_confirmation)
+  end
+
+  def password_present?
+    if params[:user][:current_password].present? && params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      current_user.errors.add(:base, "新しいパスワードを設定してください")
+      render :edit, status: :unprocessable_entity
+    end
   end
 end
