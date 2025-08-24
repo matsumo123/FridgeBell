@@ -20,14 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    if current_user.update(user_params)
-      bypass_sign_in current_user
-      redirect_to users_profile_path, notice: t("helpers.flash_messages.user_profile_update")
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #    super
+  # end
 
   # DELETE /resource
   # def destroy
