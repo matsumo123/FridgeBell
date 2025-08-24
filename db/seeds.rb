@@ -7,6 +7,7 @@ categories = [
   { name: "穀・豆" },
   { name: "果物" },
   { name: "加工品" },
+  { name: "調味料" },
   { name: "その他" }
 ]
 
@@ -522,5 +523,56 @@ characters.each do |data|
   else
     puts "❌ 登録失敗: #{character.stage_number}"
     puts character.errors.full_messages
+  end
+end
+
+seasonings = [
+  { name: "味噌", quantity: 1, unit: "パック", default_deadline: 84, file: "調味料_味噌.png" },
+  { name: "醤油", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_しょうゆ.png" },
+  { name: "酢", quantity: 1, unit: "本", default_deadline: 365, file: "調味料_酢.png" },
+  { name: "みりん", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_みりん.png" },
+  { name: "酒", quantity: 1, unit: "本", default_deadline: 180, file: "調味料_酒.png" },
+  { name: "めんつゆ", quantity: 1, unit: "本", default_deadline: 30, file: "調味料_めんつゆ.png" },
+  { name: "ポン酢", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_ポン酢.png" },
+  { name: "マヨネーズ", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_マヨネーズ.png" },
+  { name: "ケチャップ", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_ケチャップ.png" },
+  { name: "中濃ソース", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_中濃ソース.png" },
+  { name: "ウスターソース", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_ウスターソース.png" },
+  { name: "和風ドレッシング", quantity: 1, unit: "本", default_deadline: 28, file: "調味料_和風ドレッシング.png" },
+  { name: "フレンチドレッシング", quantity: 1, unit: "本", default_deadline: 28, file: "調味料_フレンチドレッシング.png" },
+  { name: "しょうがチューブ", quantity: 1, unit: "本", default_deadline: 30, file: "調味料_おろししょうが.png" },
+  { name: "にんにくチューブ", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_おろしにんにく.png" },
+  { name: "わさびチューブ", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_わさび.png" },
+  { name: "からしチューブ", quantity: 1, unit: "本", default_deadline: 84, file: "調味料_からし.png" },
+  { name: "オイスターソース", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_オイスターソース.png" },
+  { name: "豆板醤", quantity: 1, unit: "個", default_deadline: 56, file: "調味料_豆板醤.png" },
+  { name: "甜麺醤", quantity: 1, unit: "個", default_deadline: 56, file: "調味料_甜麺醤.png" },
+  { name: "マスタード", quantity: 1, unit: "本", default_deadline: 56, file: "調味料_マスタード.png" }
+]
+
+seasoning_category = Category.find_by(name: "調味料")
+seasonings.each do |data|
+  seasoning = Food.find_or_initialize_by(name: data[:name], user_id: nil)
+  seasoning.assign_attributes(
+    category_id: seasoning_category.id,
+    quantity: data[:quantity],
+    unit: data[:unit],
+    default_deadline: data[:default_deadline]
+  )
+  file_path = Rails.root.join("db/seeds/images", data[:file])
+  if File.exist?(file_path)
+    seasoning.food_image.attach(
+      io: File.open(file_path),
+      filename: data[:file]
+    )
+  else
+    puts "画像ファイルが見つかりません: #{file_path}"
+  end
+
+  if seasoning.save
+    puts "✅ 登録成功: #{seasoning.name}"
+  else
+    puts "❌ 登録失敗: #{seasoning.name}"
+    puts seasoning.errors.full_messages
   end
 end
