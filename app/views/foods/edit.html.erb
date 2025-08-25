@@ -18,12 +18,12 @@
           <button type="button"
           data-action= "click->foods-modal#closeModal"
           class= "basis-1/2 px-4 py-2 text-center rounded-xl border border-gray-600 text-gray-800 hover:bg-gray-50 shadow-sm">
-            キャンセル
+            <%= t('.back')%>
           </button>
 
           <%= button_to t('.destroy'), food_path(@food),
           method: :delete ,
-          data:{ turbo_confirm: "食品リストから削除してよろしいですか" },
+          data:{ turbo_confirm: t('helpers.turbo_confirm.foods_list') },
           form: { class: "basis-1/2", data: { 
             turbo_frame: "foods",
             action: "turbo:submit-end->foods-modal#closeIfSuccess"

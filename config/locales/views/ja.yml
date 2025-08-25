@@ -10,6 +10,8 @@ ja:
       consumed_foods: 食べた食材を登録しました
       discarded_foods: 廃棄した食材を登録しました
       no_food_items: 冷蔵庫に登録されている食材がありません。まずは食材を追加してください。
+    turbo_confirm:
+      foods_list: 食材リストから削除してよろしいですか
   header:
     login: ログイン
     app_name: FridgeBell
@@ -56,8 +58,14 @@ ja:
       destroy: 削除
       back: キャンセル
     form:
+      no_image: 画像なし
       required: 必須
       day: 日
+      deadline_description: 設定しない場合はカテゴリーが肉, 魚介･海藻の場合は2日、それ以外は7日で設定されます。
+      placeholders:
+        quantity: 例）1
+        unit: 例）個 , 本 , パック
+        deadline: 例）7
   food_actions:
     form:
       hurry_up: お早めにどうぞ

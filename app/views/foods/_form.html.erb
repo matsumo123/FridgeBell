@@ -4,7 +4,7 @@
     <div class="flex justify-center">
       <div class="w-24 h-24 border-1 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100">
         <span class="text-xs text-gray-500 text-center px-2">
-          画像なし
+          <%= t('.no_image') %>
         </span>
       </div>
     </div>
@@ -26,7 +26,7 @@
             <%= t('.required') %>
           </span>
         </div>
-        <%= f.number_field :quantity, min: 1, class: "mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: "例）1" %>
+        <%= f.number_field :quantity, min: 1, class: "mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: t('.placeholders.quantity') %>
       </div>
 
       <div>
@@ -36,18 +36,17 @@
             <%= t('.required') %>
           </span>
         </div>
-        <%= f.text_field :unit, class: "mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: "例）個 , 本 , パック" %>
+        <%= f.text_field :unit, class: "mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: t('.placeholders.unit') %>
       </div>
 
       <div>
         <%= f.label :default_deadline, class: "block text-sm font-medium text-gray-700" %>
-        <%= f.number_field :default_deadline, min: 1, class: "mt-1 w-1/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: "例）7" %>
+        <%= f.number_field :default_deadline, min: 1, class: "mt-1 w-1/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-300", placeholder: t('.placeholders.deadline') %>
         <span class="text-lg font-medium text-gray-700">
           <%= t('.day') %>
         </span>
         <p class="text-sm text-muted-foreground text-gray-700">
-          設定しない場合はカテゴリーが肉, 魚介･海藻の場合は2日、
-          それ以外は7日で設定されます。 
+          <%= t('.deadline_description') %> 
         </p>
       </div>
 
