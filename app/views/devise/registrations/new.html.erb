@@ -11,7 +11,7 @@
 
           <div class="flex flex-col space-y-2">
             <%= f.label :name, class: "block text-left text-sm font-medium text-gray-700" %>
-            <%= f.text_field :name, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: "ユーザー名" %>
+            <%= f.text_field :name, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: t('.placeholders.user_name') %>
           </div>
 
           <div class="flex flex-col space-y-2 mt-2">
@@ -21,12 +21,12 @@
 
           <div class="flex flex-col space-y-2 mt-2">
             <%= f.label :password , class: "block text-left text-sm font-medium text-gray-700" %>
-            <%= f.password_field :password, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: "大文字･小文字･数字含めて8文字以上" %>
+            <%= f.password_field :password, class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: t('.placeholders.password') %>
           </div>
 
           <div class="flex flex-col space-y-2 mt-2">
             <%= f.label :password_confirmation, class: "block text-left text-sm font-medium text-gray-700" %>
-            <%= f.password_field :password_confirmation,  class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: "もう一度入力してください" %>
+            <%= f.password_field :password_confirmation,  class: "w-full mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-4 py-3 text-gray-800", placeholder: t('.placeholders.password_confirmation') %>
           </div>
 
           <%= f.submit t('.create_user') , class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"%>
@@ -35,7 +35,7 @@
     
       <div class="my-6 flex items-center">
         <div class="flex-1 border-t-2 border-gray-300"></div>
-        <div class="mx-4 text-sm text-gray-500">または</div>
+        <div class="mx-4 text-sm text-gray-500"><%= t('.or') %></div>
         <div class="flex-1 border-t-2 border-gray-300"></div>
       </div>
 
@@ -51,7 +51,7 @@
       </div>
 
       <div class="my-4 text-center">
-        <span class="text-gray-600">すでにアカウントをお持ちの方は</span>
+        <span class="text-gray-600"><%= t('.already_account') %></span>
         <%= render "devise/shared/links" %>
       </div>
 
