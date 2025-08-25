@@ -26,7 +26,7 @@ class Form::FoodActionCollection < Form::Base
 
       # チェックが1つもついていなかったらエラー
       if availability_foods.blank?
-        errors.add(:base, "食材を1つ以上選択してください")
+        errors.add(:base, :availability_required_message)
         raise ActiveRecord::Rollback
       end
 

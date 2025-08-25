@@ -113,11 +113,13 @@ ja:
       mini_memo: メモ    
   food_actions:
     form:
-      hurry_up: お早めにどうぞ
-      rest: あと
-      days: 日
-      deadline: "期限: "
-      mini_memo: "メモ: "
+      title: 食材を選択し、数量を入力してください
+      follow_message: チェックがついていない食材は登録されません
+      please_come_early: お早めにどうぞ 
+      how_many_days: "あと%{deadline_days}日"
+      no_image: 画像なし
+      deadline: 期限
+      mini_memo: メモ
       registration: 登録
     consumes:
       new:
