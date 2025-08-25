@@ -17,7 +17,7 @@
       <% if user_food.food.food_image.attached? %>
         <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
       <% else %>
-        <p class="text-gray-700">画像なし</P>
+        <p class="text-gray-700"><%= t('.no_image') %></P>
       <% end %>
     </div>
 
@@ -28,20 +28,27 @@
         </div>
         <% if deadline_text < 0 %>
           <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
-            <span>お早めにどうぞ</span>
+            <span><%= t('.please_come_early') %></span>
             <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
           </div>
         <% else %>
           <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
-            あと<%= deadline_text %>日
+            <%= t('.how_many_days', deadline_days: deadline_text) %>
           </div>
         <% end %>
       </div>
 
-      <div class="text-sm text-gray-600">期限: <%= user_food.deadline_date %></div>
-      <div class="text-sm text-gray-600">数量: <%= user_food.quantity %><%= user_food.food.unit %></div>
+      <div class="text-sm text-gray-600">
+        <%= t('.deadline') %>: <%= user_food.deadline_date %>
+      </div>
+      <div class="text-sm text-gray-600">
+        <%= t('.quantity') %>: 
+        <%= user_food.quantity %><%= user_food.food.unit %>
+      </div>
       <% if user_food.mini_memo.present? %>
-        <div class="text-sm text-gray-700">メモ: <%= user_food.mini_memo %></div>
+        <div class="text-sm text-gray-700">
+          <%= t('.mini_memo') %>: <%= user_food.mini_memo %>
+        </div>
       <% end %>
     </div>
 
@@ -49,7 +56,7 @@
       <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" do %>
         <%= heroicon "pencil", variant: :outline, options: { class: "w-5 h-5"} %>
       <% end %>
-      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: "削除してよろしいですか" }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>
+      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: t('helpers.turbo_confirm.delete') }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>
         <%= heroicon "trash", variant: :outline, options: { class: "w-5 h-5"} %>
       <% end %>
     </div>

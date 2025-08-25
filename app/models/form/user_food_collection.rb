@@ -30,7 +30,7 @@ class Form::UserFoodCollection < Form::Base
     registered_user_foods = select_user_foods
     # 空だった場合は1つ以上の食材の数量を選択するよう にエラー
     if registered_user_foods.blank?
-      errors.add(:base, "登録する食材の数量を入力してください")
+      errors.add(:base, :quantity_required_message)
       return false
     end
     UserFood.transaction do

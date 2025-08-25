@@ -16,7 +16,7 @@ class UserFoodsController < ApplicationController
     @form = Form::UserFoodCollection.new(current_user, @foods, user_foods_params)
     if @form.save
       @user_food = current_user.user_foods.order(created_at: :desc).first
-      flash[:notice] = "冷蔵庫に食材を登録しました"
+      flash[:notice] = t("helpers.flash_messages.user_foods_create")
       render turbo_stream: [
         turbo_stream.replace("user_food", partial: "user_foods/user_food", locals: { user_food: @user_food }),
         turbo_stream.update("flash", partial: "shared/flash_message")
@@ -32,7 +32,7 @@ class UserFoodsController < ApplicationController
 
   def update
     if @user_food.update(update_params)
-      flash.now[:notice] = "冷蔵庫の食材情報を更新しました"
+      flash.now[:notice] = t("helpers.flash_messages.user_foods_update")
       render turbo_stream: [
         turbo_stream.replace(@user_food),
         turbo_stream.update("flash", partial: "shared/flash_message")
@@ -44,7 +44,7 @@ class UserFoodsController < ApplicationController
 
   def destroy
     @user_food.destroy!
-    flash.now[:notice] = "冷蔵庫から食材を削除しました"
+    flash.now[:notice] = t("helpers.flash_messages.user_foods_delete")
     render turbo_stream: [
       turbo_stream.remove(@user_food),
       turbo_stream.update("flash", partial: "shared/flash_message")

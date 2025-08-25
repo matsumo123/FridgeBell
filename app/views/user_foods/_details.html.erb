@@ -8,11 +8,13 @@
       <!-- 閉じる -->
       <button type="button"
               class="absolute right-3 top-3 inline-flex items-center justify-center rounded-full size-8 hover:bg-gray-100"
-              data-action="click->details-modal#closeModal" aria-label="閉じる"><%= heroicon "x-circle",  variant: :outline, options: { class: "w-10 h-10 text-gray-700"} %></button>
+              data-action="click->details-modal#closeModal">
+        <%= heroicon "x-circle",  variant: :outline, options: { class: "w-10 h-10 text-gray-700"} %>
+      </button>
 
       <div class="p-4 sm:p-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
-        <h2 class="text-lg font-semibold">step2: 期限・メモを入力してください</h2>
-        <p class="text-sm text-gray-600 mt-1 mb-2">メモは必須ではありません。保存状態や使い方などを自由に記録できます。</p>
+        <h2 class="text-lg font-semibold">step2: <%= t('.subtitle') %></h2>
+        <p class="text-sm text-gray-600 mt-1 mb-2"><%= t('.description') %></p>
 
         <div class="space-y-4">
           <% foods.each_with_index do |food, i| %>
@@ -33,10 +35,12 @@
                         <% end %>
                       </div>
                       <div class="bg-gray-100 h-30 w-30 md:h-48 md:w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-                        <p>画像なし</p>
+                        <p><%= t('.no_image') %></p>
                       </div>
                     <% else %>
-                      <div class="font-medium text-lg text-gray-900"><%= food.name %></div>
+                      <div class="font-medium text-lg text-gray-900">
+                        <%= food.name %>
+                      </div>
                       <div class="bg-gray-100 h-30 w-30 md:48  md:w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
                         <% if food.food_image.attached? %>
                           <%= image_tag food.food_image.variant(resize_to_limit: [100, 100]), class: "block" %>
@@ -63,17 +67,18 @@
                           { class: "border rounded px-2 py-1 text-sm" } %>
                       </div>
                       <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-                        この食材の冷蔵保存の目安は
+                        <%= t('.estimated_deadline', food_name: food.name) %>
                         <span class="text-red-500 font-semibold">
-                          <%= default_deadline %>日
-                        </span>です。<br>
-                        賞味期限や消費期限の表示がある場合は、そちらに従ってください。
+                          <%= t('.deadline', days: default_deadline) %>
+                        </span>
+                        <br>
+                        <%= t('.follow_label_message') %>
                       </p>
                     </div>
 
                     <div class="mb-1 text-left">
                       <%= f.label :mini_memo, class: "block mb-1 font-medium" %>
-                      <%= f.text_area :mini_memo, class: "w-full border rounded px-3 py-2", placeholder: "例) 冷凍済み, 小分け済み" %>
+                      <%= f.text_area :mini_memo, class: "w-full border rounded px-3 py-2", placeholder: t('.placeholders.mini_memo') %>
                     </div>
                   </div>
                 </div>
@@ -83,8 +88,10 @@
         </div>
 
         <div class="mt-6 flex justify-end gap-3">
-          <button type="button" class="px-4 py-2 rounded-xl border hover:bg-gray-50" data-action="click->details-modal#closeModal">閉じる</button>
-          <%= form.submit "保存する", class: "px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 shadow" %>
+          <button type="button" class="px-4 py-2 rounded-xl border hover:bg-gray-50" data-action="click->details-modal#closeModal">
+            <%= t('.close') %>
+          </button>
+          <%= form.submit t('.keep'), class: "px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 shadow" %>
         </div>
       </div>
     </div>

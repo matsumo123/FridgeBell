@@ -16,7 +16,7 @@
               <% end %>
             </div>
             <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-              <p>画像なし</p>
+              <p><%= t('.no_image') %></p>
             </div>
           <% else %>
             <%# デフォルトの食材を表示 %>
@@ -51,7 +51,7 @@
           data-foods-selection-target="nextButton"
           type="button"
           class="w-full py-4 px-6 bg-orange-500 text-white font-medium rounded-2xl shadow-lg transition-all duration-200 disabled:bg-gray-300 disabled:cursor-not-allowed enabled:hover:bg-orange-600 enabled:active:scale-98 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"  disabled>
-          次へ
+          <%= t('.next') %>
         </button>
       </div>
 
