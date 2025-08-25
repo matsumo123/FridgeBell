@@ -20,7 +20,7 @@ class Food < ApplicationRecord
   # 管理画面でデフォルト食材を作成・編集する際に有効
   def check_default_food
     if user_id.nil? && Food.where(name: name, user_id: nil).where.not(id: self.id).exists?
-      errors.add(:name, "すでに登録している名前は使用できません")
+      errors.add(:name, :same_name)
     end
   end
 
@@ -28,22 +28,22 @@ class Food < ApplicationRecord
   # ユーザーが既に登録した食材名は使用できない
   def check_same_name_food
     if user_id.present? && Food.exists?(name: name, user_id: nil)
-      errors.add(:name, "デフォルトで登録されている名前は使用できません")
+      errors.add(:name, :default_same_name)
     end
     if user_id.present? && Food.where(name: name, user_id: user.id).    where.not(id: self.id).exists?
-      errors.add(:name, "すでに登録している名前は使用できません")
+      errors.add(:name, :same_name)
     end
   end
 
   def image_content_type
     if food_image.attached? && !food_image.content_type.in?(%w[image/jpeg image/png image/webp])
-      errors.add(:food_image, ":ファイル形式がJPEG, PNG, WebP以外になっています。ファイル形式をご確認ください。")
+      errors.add(:base, ":ファイル形式がJPEG, PNG, WebP以外になっています。ファイル形式をご確認ください。")
     end
   end
 
   def image_size
     if food_image.attached? && food_image.blob.byte_size > 5.megabytes
-      errors.add(:food_image, ":5MB以下のファイルをアップロードしてください。")
+      errors.add(:base, ":5MB以下のファイルをアップロードしてください。")
     end
   end
 end

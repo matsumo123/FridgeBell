@@ -7,22 +7,44 @@ ja:
       foods_list_add: 食材リストを追加しました
       foods_list_update: 食材リストを更新しました
       foods_list_delete: 食材リストから削除しました
+      user_foods_create: 冷蔵庫に食材を登録しました
+      user_foods_update: 冷蔵庫の食材情報を更新しました
+      user_foods_delete: 冷蔵庫から食材を削除しました
       consumed_foods: 食べた食材を登録しました
       discarded_foods: 廃棄した食材を登録しました
       no_food_items: 冷蔵庫に登録されている食材がありません。まずは食材を追加してください。
-  header:
-    login: ログイン
-    app_name: FridgeBell
-    user_profile: マイページ
-    terms_of_service: 利用規約(準備中)
-    privacy_policy: プライバシーポリシー(準備中)
-    contact_us: お問い合わせ(準備中)
-    logout: ログアウト
-  footer:
-    terms_of_service: 利用規約(準備中)
-    privacy_policy: プライバシーポリシー(準備中)
-    contact_us: お問い合わせ(準備中)
-    copyright: © %{year} %{app_name}
+    turbo_confirm:
+      delete: 削除してよろしいですか
+      foods_list: 食材リストから削除してよろしいですか
+  shared:
+    header:
+      login: ログイン
+      app_name: FridgeBell
+      user_profile: マイページ
+      terms_of_service: 利用規約(準備中)
+      privacy_policy: プライバシーポリシー(準備中)
+      contact_us: お問い合わせ(準備中)
+      logout: ログアウト
+      how_to: 使い方
+    how_to:
+      user_foods_new: 食材登録
+      user_foods_new_description1: カテゴリーから選んで数量・期限・メモを入力
+      user_foods_new_description2: 同じカテゴリーならまとめて登録OK
+      user_foods_index: 食材一覧
+      user_foods_index_description1: 登録した食材は期限短い順に表示
+      user_foods_index_description2: 期限色分けラベル付き（グレー・赤・黄・緑）
+      foods_new: 食材リスト追加
+      foods_description: 「登録したい食材がリストにない！」場合は食材リストに追加可能
+      consume_discard: 消費･廃棄登録
+      consume_discard_description1: 消費または廃棄した食材を登録
+      consume_discard_description2: 連続廃棄ゼロ日数の記録を伸ばして、モンスター化した食材たちを助けて
+      remind: リマインド（準備中）
+      remind_description: LINEで期限間近の食材を通知予定
+    before_login_footer:
+      terms_of_service: 利用規約(準備中)
+      privacy_policy: プライバシーポリシー(準備中)
+      contact_us: お問い合わせ(準備中)
+      copyright: © %{year} %{app_name}
   homes:
     top:
       title: FridgeBell
@@ -30,6 +52,7 @@ ja:
       how_to_use: 使い方
       create_user: まずは新規登録
     home:
+      no_discarded_days: 日連続で廃棄ゼロ！
       discard: 捨てる
       consume: 食べる
   users:
@@ -43,7 +66,10 @@ ja:
       edit:
         password_edit: パスワード変更
         update: 更新
-        back: キャンセル
+        cancel: キャンセル
+        placeholders:
+          password: 大文字･小文字･数字含めて8文字以上
+          password_confirmation: もう一度入力してください
   foods:
     index:
       title: 食材一覧
@@ -56,15 +82,64 @@ ja:
       destroy: 削除
       back: キャンセル
     form:
+      no_image: 画像なし
       required: 必須
       day: 日
+      deadline_description: 設定しない場合はカテゴリーが肉, 魚介･海藻の場合は2日、それ以外は7日で設定されます。
+      placeholders:
+        quantity: 例）1
+        unit: 例）個 , 本 , パック
+        deadline: 例）7
+  user_foods:
+    index:
+      title: 冷蔵庫の食材一覧
+      fridge_blank: 冷蔵庫は空です。
+      let_us: まずは、
+      user_foods_new: 食材を登録
+      try: しよう
+    new:
+      title: 冷蔵庫に追加する食材を選択しよう
+      subtitle: 登録したい食材の数量を入力してください
+      description: 登録はカテゴリー単位です。同じカテゴリー内なら複数の食材を一度に登録できます。
+      add_food: 食材追加
+    edit:
+      title: 冷蔵庫内の食材を修正
+      no_image: 画像なし
+      category: カテゴリー
+      cancel: キャンセル
+      update: 更新
+      placeholders:
+        mini_memo: 例) 冷凍済み, 小分け済み
+    new_form:
+      no_image: 画像なし
+      next: 次へ
+    details:
+      subtitle: 期限・メモを入力してください
+      description: メモは必須ではありません。保存状態や使い方などを自由に記録できます。
+      no_image: 画像なし
+      estimated_deadline: "%{food_name}の冷蔵保存の目安は"
+      deadline: "%{days}日"
+      follow_label_message: 賞味期限や消費期限の表示がある場合は、そちらに従ってください。
+      close: 閉じる
+      keep: 保存する
+      placeholders:
+        mini_memo: 例) 冷凍済み, 小分け済み
+    user_food:
+      no_image: 画像なし
+      please_come_early: お早めにどうぞ
+      how_many_days: "あと%{deadline_days}日"
+      deadline: 期限
+      quantity: 数量
+      mini_memo: メモ    
   food_actions:
     form:
-      hurry_up: お早めにどうぞ
-      rest: あと
-      days: 日
-      deadline: "期限: "
-      mini_memo: "メモ: "
+      title: 食材を選択し、数量を入力してください
+      follow_message: チェックがついていない食材は登録されません
+      please_come_early: お早めにどうぞ 
+      how_many_days: "あと%{deadline_days}日"
+      no_image: 画像なし
+      deadline: 期限
+      mini_memo: メモ
       registration: 登録
     consumes:
       new:

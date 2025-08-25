@@ -4,16 +4,16 @@
       <div class="bg-white shadow-sm border border-gray-100 rounded-2xl w-full max-w-6xl">
         <div class="my-4 text-center">
           <h1 class="text-2xl md:text-4xl font-semibold tracking-tight text-amber-600">
-            冷蔵庫に追加する食材を選択しよう
+            <%= t('.title') %>
           </h1>
         </div>
     
         <div class="py-2 text-center">
           <h1 class="text-xl font-medium text-gray-900 leading-relaxed">
-            step1: 登録したい食材の数量を入力してください
+            step1: <%= t('.subtitle') %>
           </h1>
           <p class="text-sm text-gray-600 mt-2">
-            登録はカテゴリー単位です。同じカテゴリー内なら複数の食材を一度に登録できます。
+            <%= t('.description') %>
           </p>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="flex justify-center my-4">
           <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'foods_modal' }, class: "flex items-center gap-2 px-6 py-3 bg-white rounded-xl border-1 border-gray-200 shadow-sm hover:shadow-md transition text-gray-700 font-medium" do %>
             <%= heroicon "plus", options: { class: "w-10 h-10 text-gray-800" } %>
-            食材追加    
+            <%= t('.add_food') %>   
           <% end %>
         </div>
       </div>

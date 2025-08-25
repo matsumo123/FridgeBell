@@ -1,4 +1,15 @@
 ja:
+  activemodel:
+    errors:
+      models:
+        form/food_action_collection:
+          attributes:
+            base:
+              availability_required_message: 食材を1つ以上選択してください
+        form/user_food_collection:
+          attributes:
+            base:
+              quantity_required_message: 登録する食材の数量を入力してください
   activerecord:
     models:
       user: ユーザー
@@ -6,6 +17,17 @@ ja:
       food: 食材
       user_food: 登録食材
       food_action: 消費・廃棄
+    errors:
+      models:
+        food:
+          attributes:
+            name:
+              default_same_name: はすでに標準の食材リストに存在しています
+              same_name: はすでに登録済みです
+        user:
+          attributes:
+            base:
+              new_password_required: 新しいパスワードを設定してください
     attributes:
       user:
         name: ユーザー名

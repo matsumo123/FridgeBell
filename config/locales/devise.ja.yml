@@ -89,13 +89,19 @@ ja:
         title: "%{resource}編集"
         unhappy: 気に入りません
         update: 更新
-        back: キャンセル
+        cancel: キャンセル
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
       new:
         sign_up: ユーザー登録
         password: パスワード
         create_user: 登録
+        or: または
+        already_account: すでにアカウントをお持ちの方は
         line_login: LINEでログイン(準備中)
+        placeholders:
+          user_name: ユーザー名
+          password: 大文字･小文字･数字含めて8文字以上
+          password_confirmation: もう一度入力してください
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
       signed_up_but_locked: アカウントがロックされているためログインできません。
@@ -109,6 +115,7 @@ ja:
         sign_in: ログイン
         submit: ログイン
         line_login: LINEでログイン(準備中)
+        or: または
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     shared:
@@ -120,6 +127,7 @@ ja:
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: 新規登録
+        no_account: アカウントをお持ちでない方は 
       minimum_password_length:
         other: "（%{count}字以上）"
     unlocks:
