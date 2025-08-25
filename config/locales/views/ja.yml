@@ -52,6 +52,7 @@ ja:
       how_to_use: 使い方
       create_user: まずは新規登録
     home:
+      no_discarded_days: 日連続で廃棄ゼロ！
       discard: 捨てる
       consume: 食べる
   users:
