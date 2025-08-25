@@ -16,19 +16,35 @@ ja:
     turbo_confirm:
       delete: 削除してよろしいですか
       foods_list: 食材リストから削除してよろしいですか
-  header:
-    login: ログイン
-    app_name: FridgeBell
-    user_profile: マイページ
-    terms_of_service: 利用規約(準備中)
-    privacy_policy: プライバシーポリシー(準備中)
-    contact_us: お問い合わせ(準備中)
-    logout: ログアウト
-  footer:
-    terms_of_service: 利用規約(準備中)
-    privacy_policy: プライバシーポリシー(準備中)
-    contact_us: お問い合わせ(準備中)
-    copyright: © %{year} %{app_name}
+  shared:
+    header:
+      login: ログイン
+      app_name: FridgeBell
+      user_profile: マイページ
+      terms_of_service: 利用規約(準備中)
+      privacy_policy: プライバシーポリシー(準備中)
+      contact_us: お問い合わせ(準備中)
+      logout: ログアウト
+      how_to: 使い方
+    how_to:
+      user_foods_new: 食材登録
+      user_foods_new_description1: カテゴリーから選んで数量・期限・メモを入力
+      user_foods_new_description2: 同じカテゴリーならまとめて登録OK
+      user_foods_index: 食材一覧
+      user_foods_index_description1: 登録した食材は期限短い順に表示
+      user_foods_index_description2: 期限色分けラベル付き（グレー・赤・黄・緑）
+      foods_new: 食材リスト追加
+      foods_description: 「登録したい食材がリストにない！」場合は食材リストに追加可能
+      consume_discard: 消費･廃棄登録
+      consume_discard_description1: 消費または廃棄した食材を登録
+      consume_discard_description2: 連続廃棄ゼロ日数の記録を伸ばして、モンスター化した食材たちを助けて
+      remind: リマインド（準備中）
+      remind_description: LINEで期限間近の食材を通知予定
+    before_login_footer:
+      terms_of_service: 利用規約(準備中)
+      privacy_policy: プライバシーポリシー(準備中)
+      contact_us: お問い合わせ(準備中)
+      copyright: © %{year} %{app_name}
   homes:
     top:
       title: FridgeBell

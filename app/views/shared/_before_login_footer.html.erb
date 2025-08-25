@@ -1,11 +1,11 @@
 <footer class="mt-auto border-t border-orange-100 bg-white/50 p-6">
   <div class="mx-auto max-w-4xl">
     <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-300 md:gap-8">
-      <%= link_to t('footer.terms_of_service'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
-      <%= link_to t('footer.privacy_policy'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
-      <%= link_to t('footer.contact_us'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
+      <%= link_to t('.terms_of_service'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
+      <%= link_to t('.privacy_policy'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
+      <%= link_to t('.contact_us'), "#", class: "hover:text-orange-600 transition-colors duration-200" %>
     </div>
 
-    <p class="mt-2 text-center text-xs text-gray-500"><%= t('footer.copyright', year: Time.current.year, app_name: 'FridgeBell') %></P>
+    <p class="mt-2 text-center text-xs text-gray-500"><%= t('.copyright', year: Time.current.year, app_name: 'FridgeBell') %></P>
   </div>
 </footer>
