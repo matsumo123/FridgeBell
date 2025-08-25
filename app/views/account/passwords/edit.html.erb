@@ -27,19 +27,19 @@
 
             <div class="flex flex-col space-y-2 mt-2">
               <%= f.label :password, class: "block text-left text-sm font-medium text-gray-700" %>
-              <%= f.password_field :password, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: "大文字･小文字･数字含めて8文字以上" %>
+              <%= f.password_field :password, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: t('.placeholders.password') %>
             </div>
 
             <div class="flex flex-col space-y-2 mt-2">
               <%= f.label :password_confirmation, class: "block text-left text-sm font-medium text-gray-700" %>
-              <%= f.password_field :password_confirmation, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: "もう一度入力してください" %>
+              <%= f.password_field :password_confirmation, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: t('.placeholders.password_confirmation') %>
             </div>
 
             <%= f.submit t('.update'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
 
             <button type="button" data-action="click->account-modal#closePasswordModal"
             class = "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
-              キャンセル
+              <%= t('.cancel') %>
             </button>
           <% end %>
         </div>

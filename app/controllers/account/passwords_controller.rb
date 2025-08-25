@@ -20,8 +20,8 @@ class Account::PasswordsController < ApplicationController
   end
 
   def password_present?
-    if params[:user][:current_password].present? && params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      current_user.errors.add(:base, "新しいパスワードを設定してください")
+    if params.dig(:user, :current_password).present? && params.dig(:user, :password).blank? && params.dig(:user, :password_confirmation).blank?
+      current_user.errors.add(:base, :new_password_required)
       render :edit, status: :unprocessable_entity
     end
   end

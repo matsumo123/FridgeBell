@@ -24,6 +24,10 @@ ja:
             name:
               default_same_name: はすでに標準の食材リストに存在しています
               same_name: はすでに登録済みです
+        user:
+          attributes:
+            base:
+              new_password_required: 新しいパスワードを設定してください
     attributes:
       user:
         name: ユーザー名

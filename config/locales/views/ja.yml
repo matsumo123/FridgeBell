@@ -49,7 +49,10 @@ ja:
       edit:
         password_edit: パスワード変更
         update: 更新
-        back: キャンセル
+        cancel: キャンセル
+        placeholders:
+          password: 大文字･小文字･数字含めて8文字以上
+          password_confirmation: もう一度入力してください
   foods:
     index:
       title: 食材一覧
