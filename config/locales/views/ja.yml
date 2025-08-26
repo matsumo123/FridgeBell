@@ -45,6 +45,8 @@ ja:
       privacy_policy: プライバシーポリシー(準備中)
       contact_us: お問い合わせ(準備中)
       copyright: © %{year} %{app_name}
+    footer:
+      copyright: © %{year} %{app_name}
   homes:
     top:
       title: FridgeBell
