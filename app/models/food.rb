@@ -48,6 +48,6 @@ class Food < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["category_id", "created_at", "default_deadline", "id", "id_value", "name", "quantity", "unit", "updated_at", "user_id"]
+    [ "category_id", "created_at", "default_deadline", "id", "id_value", "name", "quantity", "unit", "updated_at", "user_id" ]
   end
 end
