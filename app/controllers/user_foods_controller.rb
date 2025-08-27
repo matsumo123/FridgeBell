@@ -7,7 +7,8 @@ class UserFoodsController < ApplicationController
 
   def new
     @categories = Category.custom_order
-    @foods = Food.user_foods(current_user).by_category(params[:category_id]).order(name: :asc)
+    @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
+    @foods = @q.result(distinct: true).order(name: :asc)
     @form = Form::UserFoodCollection.new(current_user, @foods)
   end
 

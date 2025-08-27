@@ -45,6 +45,8 @@ ja:
       privacy_policy: プライバシーポリシー(準備中)
       contact_us: お問い合わせ(準備中)
       copyright: © %{year} %{app_name}
+    footer:
+      copyright: © %{year} %{app_name}
   homes:
     top:
       title: FridgeBell
@@ -130,7 +132,11 @@ ja:
       how_many_days: "あと%{deadline_days}日"
       deadline: 期限
       quantity: 数量
-      mini_memo: メモ    
+      mini_memo: メモ
+    search:
+      search: 検索
+      placeholders:
+        search_form: 食材を検索   
   food_actions:
     form:
       title: 食材を選択し、数量を入力してください

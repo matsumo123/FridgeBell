@@ -21,6 +21,8 @@
           <%= render 'categories/category_nav', categories: @categories %>
         </div>
 
+        <%= render 'search', q: @q, url: new_user_food_path(category_id: params[:category_id]) %>
+
         <div class="mx-4">
           <%= render "new_form", foods: @foods, user_food: @user_food %>
         </div>

@@ -30,6 +30,8 @@ gem "image_processing", "~> 1.2"
 
 gem "aws-sdk-s3", require: false
 
+gem "ransack"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
