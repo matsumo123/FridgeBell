@@ -1,8 +1,18 @@
 <%= search_form_for @q, url: url do |f| %>
-  <div class="flex justify-center mt-4">
-    <div class="flex items-center gap-2 w-full max-w-md">
-      <%= f.search_field :name_cont, class: "flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400", placeholder: "食材名" %>
-      <%= f.submit "検索", class: "px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-500 shadow-sm" %>
+  <div class="flex justify-center mx-4 mt-2">
+    <%= hidden_field_tag :category_id, params[:category_id] %>
+    <div class="relative flex-1 max-w-md">
+      <%= f.search_field :name_cont, class: "w-full pl-10 pr-12 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300", placeholder: "食材を検索" %>
+
+      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+        <%= heroicon "magnifying-glass", options: { class: "w-5 h-5" } %>
+      </span>
+
+      <%= link_to new_user_food_path(category_id: params[:category_id]), class:"absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-500 cursor-pointer z-10" do %>
+        <%= heroicon "x-circle",  variant: :outline, options: { class: "w-6 h-6 text-gray-400"} %>
+      <% end %>
     </div>
+
+    <%= f.submit "検索", class: "ml-2 px-4 py-2 rounded-full text-center text-white bg-orange-500 hover:bg-orange-600 shadow-sm whitespace-nowrap min-w-[84px]" %>
   </div>
 <% end %>
