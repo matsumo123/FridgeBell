@@ -1,0 +1,8 @@
+<%= search_form_for @q, url: url do |f| %>
+  <div class="flex justify-center mt-4">
+    <div class="flex items-center gap-2 w-full max-w-md">
+      <%= f.search_field :name_cont, class: "flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400", placeholder: "食材名" %>
+      <%= f.submit "検索", class: "px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-500 shadow-sm" %>
+    </div>
+  </div>
+<% end %>
