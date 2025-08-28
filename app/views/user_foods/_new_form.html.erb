@@ -39,14 +39,14 @@
 
             <div class="flex flex-col items-center gap-2">
 
-              <div class="flex items-center  gap-2">
-                <button type="button" class="border border-gray-300 rounded-lg text-gray-700 p-2 hover:border-2 hover:border-blue-400 hover:text-blue-400">
+              <div data-controller="counter" class="flex items-center  gap-2">
+                <button data-action="click->counter#subtraction" type="button" class="border border-gray-300 rounded-lg text-gray-700 p-2 hover:border-2 hover:border-blue-400 hover:text-blue-400">
                   <%= heroicon "minus", options: { class: "w-10 h-10 sm:w-5 sm:h-5"} %>
                 </button>
 
-                <%= f.number_field :quantity, min: 0, step: 1, data: { foods_selection_target: "quantity", index: i, action: "input->foods-selection#check" }, class: "w-20 sm:w-16 text-center border border-gray-300 rounded-lg px-3 py-4 sm:py-2 shadow-inner" %>
+                <%= f.number_field :quantity, min: 0, step: 1, data: { foods_selection_target: "quantity", counter_target: "output", index: i, action: "input->foods-selection#check" }, class: "w-20 sm:w-16 text-center border border-gray-300 rounded-lg px-3 py-4 sm:py-2 shadow-inner" %>
 
-                <button type="button" class="border border-gray-300 rounded-lg text-gray-700 p-2 hover:border-2 hover:border-red-400 hover:text-red-400">
+                <button data-action="click->counter#addition" type="button" class="border border-gray-300 rounded-lg text-gray-700 p-2 hover:border-2 hover:border-red-400 hover:text-red-400">
                   <%= heroicon "plus", options: { class: "w-10 h-10 sm:w-5 sm:h-5"} %>
                 </button>
                 <span class="text-sm text-gray-600"><%= food.unit %></span>
