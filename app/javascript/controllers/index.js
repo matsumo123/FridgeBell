@@ -7,6 +7,9 @@ import { application } from "./application"
 import AccountModalController from "./account_modal_controller"
 application.register("account-modal", AccountModalController)
 
+import CounterController from "./counter_controller"
+application.register("counter", CounterController)
+
 import DetailsModalController from "./details_modal_controller"
 application.register("details-modal", DetailsModalController)
 
