@@ -22,7 +22,7 @@ class Form::UserFoodCollection < Form::Base
 
   def select_user_foods
     # quantity>0の食材を取得
-    self.user_foods.select { |uf| (uf.quantity || 0).to_i > 0 }
+    self.user_foods.select { |uf| (uf.quantity || 0).to_f > 0 }
   end
 
 
@@ -41,7 +41,7 @@ class Form::UserFoodCollection < Form::Base
         # 新規または期限が異なる場合は新規登録
         if rows.key?([ ruf.food_id, ruf.deadline_date ])
           existing = rows[[ ruf.food_id, ruf.deadline_date ]]
-          sum = existing.quantity + ruf.quantity.to_i
+          sum = existing.quantity + ruf.quantity.to_f
           existing.update!(quantity: sum)
         else
           ruf.save!
