@@ -42,6 +42,9 @@ class Form::UserFoodCollection < Form::Base
         if rows.key?([ ruf.food_id, ruf.deadline_date ])
           existing = rows[[ ruf.food_id, ruf.deadline_date ]]
           sum = existing.quantity + ruf.quantity.to_f
+          if sum > 100
+            errors.add(:base, :quantity_max_one_hundred)
+          end
           existing.update!(quantity: sum)
         else
           ruf.save!

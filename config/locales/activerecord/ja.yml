@@ -10,6 +10,7 @@ ja:
           attributes:
             base:
               quantity_required_message: 登録する食材の数量を入力してください
+              quantity_max_one_hundred: 上限（100）を超えています。数量を減らしてください。
   activerecord:
     models:
       user: ユーザー
