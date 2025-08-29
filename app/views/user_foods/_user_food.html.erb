@@ -43,7 +43,8 @@
       </div>
       <div class="text-sm text-gray-600">
         <%= t('.quantity') %>: 
-        <%= user_food.quantity %><%= user_food.food.unit %>
+        <%= number_with_precision(user_food.quantity, precision: 2, strip_insignificant_zeros: true) %>
+        <%= user_food.food.unit %>
       </div>
       <% if user_food.mini_memo.present? %>
         <div class="text-sm text-gray-700">
