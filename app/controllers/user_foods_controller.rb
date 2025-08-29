@@ -24,7 +24,8 @@ class UserFoodsController < ApplicationController
       ]
     else
       @categories = Category.custom_order
-      @foods = Food.user_foods(current_user).by_category(params[:category_id]).order(name: :asc)
+      @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
+      @foods = @q.result(distinct: true).order(name: :asc)
       render :new, status: :unprocessable_entity
     end
   end
