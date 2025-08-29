@@ -5,7 +5,7 @@ class Food < ApplicationRecord
   has_many :user_foods, dependent: :destroy
   validates :category_id, presence: true
   validates :name, presence: true, length: { maximum: 15 }
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
   validates :unit, presence: true, length: { maximum: 5 }
   validates :default_deadline, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   validate :check_default_food
