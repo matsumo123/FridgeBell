@@ -49,7 +49,7 @@
                 <input type="hidden" data-counter-target="unit" value="<%= food.quantity %>">
                 
                 <%# カウントの反映 %>
-                <span data-counter-target="pretend" class= "w-20 sm:w-16 text-center border border-gray-300 rounded-lg px-3 py-4 sm:py-8 sm:py-2 shadow-inner">0</span>
+                <span data-counter-target="pretend" class= "w-20 sm:w-16 text-center border border-gray-300 rounded-lg px-3 py-4 sm:py-2 shadow-inner">0</span>
 
                 <%= f.hidden_field :quantity, data: { foods_selection_target: "quantity", counter_target: "output", index: i, action: "input->foods-selection#check" } %>
 
