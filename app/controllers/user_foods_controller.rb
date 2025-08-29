@@ -8,7 +8,7 @@ class UserFoodsController < ApplicationController
   def new
     @categories = Category.custom_order
     @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
-    @foods = @q.result(distinct: true).order(name: :asc)
+    @foods = @q.result(distinct: true).order(name: :asc).page(params[:page])
     @form = Form::UserFoodCollection.new(current_user, @foods)
   end
 
@@ -25,7 +25,7 @@ class UserFoodsController < ApplicationController
     else
       @categories = Category.custom_order
       @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
-      @foods = @q.result(distinct: true).order(name: :asc)
+      @foods = @q.result(distinct: true).order(name: :asc).page(params[:page])
       render :new, status: :unprocessable_entity
     end
   end
