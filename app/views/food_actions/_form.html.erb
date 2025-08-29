@@ -65,7 +65,7 @@
               </div>
               <div class="text-sm text-gray-600">
                 <%= f.label :quantity %>:
-                <%= f.number_field :quantity, value: (fa.quantity || user_food.quantity), max: user_food.quantity, min: 1, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
+                <%= f.number_field :quantity, value: (fa.quantity || user_food.quantity), max: user_food.quantity, min: user_food.food.quantity, step: 0.01, class: "w-14 md:w-16 mx-1 border rounded px-2 py-1" %><%= user_food.food.unit %>
               </div>
               <% if user_food.mini_memo.present? %>
                 <div class="text-sm text-gray-700">
