@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="counter"
 export default class extends Controller {
-  static targets = ["output", "unit"]
+  static targets = ["output", "unit", "pretend"]
 
   connect(){
   }
@@ -16,8 +16,7 @@ export default class extends Controller {
     if (this.countValue < 100){
       const unit = Number(this.unitTarget.value);
       this.countValue += unit;
-      this.outputTarget.value = this.countValue;
-      this.outputTarget.dispatchEvent(new Event("input", { bubbles: true }));
+      this.render();
     }
   }
 
@@ -25,8 +24,13 @@ export default class extends Controller {
     if (this.countValue > 0){
       const unit = Number(this.unitTarget.value);
       this.countValue -= unit;
-      this.outputTarget.value = this.countValue;
-      this.outputTarget.dispatchEvent(new Event("input", { bubbles: true }));
+      this.render();
     }
+  }
+
+  render(){
+    this.pretendTarget.textContent = this.countValue;
+    this.outputTarget.value = this.countValue;
+    this.outputTarget.dispatchEvent(new Event("input", { bubbles: true }));
   }
 }
