@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_11_070733) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_29_062746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_11_070733) do
     t.bigint "user_food_id", null: false
     t.integer "action_type", null: false
     t.datetime "action_date", null: false
-    t.integer "quantity", null: false
+    t.float "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "availability", default: false, null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_11_070733) do
     t.bigint "user_id"
     t.bigint "category_id", null: false
     t.string "name", null: false
-    t.integer "quantity", null: false
+    t.float "quantity", null: false
     t.string "unit", null: false
     t.integer "default_deadline"
     t.datetime "created_at", null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_11_070733) do
   create_table "user_foods", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "food_id", null: false
-    t.integer "quantity", null: false
+    t.float "quantity", null: false
     t.date "deadline_date", null: false
     t.text "mini_memo"
     t.datetime "created_at", null: false
