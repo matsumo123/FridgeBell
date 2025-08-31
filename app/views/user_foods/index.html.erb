@@ -28,6 +28,9 @@
       <% @user_foods.each do |user_food| %>
         <%= render partial: "user_food", locals: { user_food: user_food } %>
       <% end %>
+      <div class="mb-4">
+        <%= paginate @user_foods %>
+      </div>
     <% end %>
   </div>
 </main>

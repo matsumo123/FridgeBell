@@ -32,6 +32,8 @@ gem "aws-sdk-s3", require: false
 
 gem "ransack"
 
+gem "kaminari"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

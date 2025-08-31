@@ -2,13 +2,13 @@ class UserFoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_registered_user_food, only: %i[ edit update destroy]
   def index
-    @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc)
+    @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc).page(params[:page]).per(10)
   end
 
   def new
     @categories = Category.custom_order
     @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
-    @foods = @q.result(distinct: true).order(name: :asc)
+    @foods = @q.result(distinct: true).order(name: :asc).page(params[:page])
     @form = Form::UserFoodCollection.new(current_user, @foods)
   end
 
@@ -25,7 +25,7 @@ class UserFoodsController < ApplicationController
     else
       @categories = Category.custom_order
       @q = Food.user_foods(current_user).by_category(params[:category_id]).ransack(params[:q])
-      @foods = @q.result(distinct: true).order(name: :asc)
+      @foods = @q.result(distinct: true).order(name: :asc).page(params[:page])
       render :new, status: :unprocessable_entity
     end
   end

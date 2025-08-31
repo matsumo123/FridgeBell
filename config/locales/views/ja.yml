@@ -29,7 +29,7 @@ ja:
     how_to:
       user_foods_new: 食材登録
       user_foods_new_description1: カテゴリーから選んで数量・期限・メモを入力
-      user_foods_new_description2: 同じカテゴリーならまとめて登録OK
+      user_foods_new_description2: 同じページ内ならまとめて登録OK
       user_foods_index: 食材一覧
       user_foods_index_description1: 登録した食材は期限短い順に表示
       user_foods_index_description2: 期限色分けラベル付き（グレー・赤・黄・緑）
@@ -47,6 +47,10 @@ ja:
       copyright: © %{year} %{app_name}
     footer:
       copyright: © %{year} %{app_name}
+  views:
+    pagination:
+      previous: 前へ
+      next: 次へ
   homes:
     top:
       title: FridgeBell
@@ -102,7 +106,7 @@ ja:
     new:
       title: 冷蔵庫に追加する食材を選択しよう
       subtitle: 食材の数量を設定してください
-      description: 登録はカテゴリー単位です。同じカテゴリー内なら複数の食材を一度に登録できます。
+      description: ページをまたいだ一括登録はできません。1ページ内なら複数をまとめて登録できます。
       add_food: 食材追加
     edit:
       title: 冷蔵庫内の食材を修正
