@@ -47,6 +47,10 @@ ja:
       copyright: © %{year} %{app_name}
     footer:
       copyright: © %{year} %{app_name}
+  views:
+    pagination:
+      previous: 前へ
+      next: 次へ
   homes:
     top:
       title: FridgeBell

@@ -64,9 +64,10 @@
           <% end %>
         </div>
       <% end %>
-
-      <%= paginate @foods %>
       
+      <%# ページネーション %>
+      <%= paginate @foods %>
+
       <div class="col-span-full sticky bottom-[calc(64px+env(safe-area-inset-bottom))] z-40">
         <button
           data-action="click->foods-selection#open"
