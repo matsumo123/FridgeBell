@@ -3,6 +3,9 @@ class UserFoodsController < ApplicationController
   before_action :find_registered_user_food, only: %i[ edit update destroy]
   def index
     @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc).page(params[:page]).per(10)
+    @expired_foods = @user_foods.expired
+    @expiry_before_two = @user_foods.two_days_ago
+    @expiry_before_five = @user_foods.five_days_ago
   end
 
   def new
