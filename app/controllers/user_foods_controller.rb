@@ -4,12 +4,13 @@ class UserFoodsController < ApplicationController
   def index
     @current_tab = params[:tab] || "all"
     base = current_user.user_foods.includes(:food)
-    scope = case @current_tab
-            when "expired"   then base.expired
-            when "two_days"  then base.two_days_ago
-            when "five_days" then base.five_days_ago
-            else                  base
-            end
+    scope =
+      case @current_tab
+      when "expired"   then base.expired
+      when "two_days"  then base.two_days_ago
+      when "five_days" then base.five_days_ago
+      else base
+      end
     @user_foods = scope.order(:deadline_date).page(params[:"#{@current_tab}_page"]).per(10)
   end
 
