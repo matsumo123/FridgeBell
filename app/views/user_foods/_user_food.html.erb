@@ -26,13 +26,32 @@
         <div class="font-semibold text-base md:text-lg text-gray-900">
           <%= user_food.food.name %>
         </div>
+        <% emoji = case deadline_text
+                    when ...0
+                    "😵‍💫"
+                    when 0
+                    "😰"
+                    when 1..2
+                    "😟"
+                    when 3..5
+                    "😬"
+                    else
+                    "☺️"
+                    end %>
         <% if deadline_text < 0 %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
-            <span><%= t('.please_come_early') %></span>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-800 ring-1 ring-inset ring-gray-200">
+            <%= emoji %>
+            <%= t('.please_come_early') %>
             <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
           </div>
+        <% elsif deadline_text == 0 %>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+            <%= emoji %>
+            <%= t('.today') %>
+          </div>
         <% else %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+            <%= emoji %>
             <%= t('.how_many_days', deadline_days: deadline_text) %>
           </div>
         <% end %>

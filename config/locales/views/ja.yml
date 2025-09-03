@@ -138,6 +138,7 @@ ja:
     user_food:
       no_image: 画像なし
       please_come_early: お早めにどうぞ
+      today: 本日まで
       how_many_days: "あと%{deadline_days}日"
       deadline: 期限
       quantity: 数量
@@ -156,6 +157,7 @@ ja:
       deadline: 期限
       mini_memo: メモ
       registration: 登録
+      today: 本日まで
     consumes:
       new:
         title: 食べたものを登録しよう
