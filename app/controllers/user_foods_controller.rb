@@ -2,7 +2,7 @@ class UserFoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_registered_user_food, only: %i[ edit update destroy]
   def index
-    @current_tab = params[:tab] || "all"
+    @current_tab = %w[all expired two_days five_days].include?(params[:tab]) ? params[:tab] : "all"
     base = current_user.user_foods.includes(:food)
     scope =
       case @current_tab
