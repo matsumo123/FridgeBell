@@ -2,10 +2,15 @@ class UserFoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_registered_user_food, only: %i[ edit update destroy]
   def index
-    @user_foods = current_user.user_foods.includes(:food).order(deadline_date: :asc).page(params[:page]).per(10)
-    @expired_foods = @user_foods.expired
-    @expiry_before_two = @user_foods.two_days_ago
-    @expiry_before_five = @user_foods.five_days_ago
+    @current_tab = params[:tab] || "all"
+    base = current_user.user_foods.includes(:food)
+    scope = case @current_tab
+            when "expired"   then base.expired
+            when "two_days"  then base.two_days_ago
+            when "five_days" then base.five_days_ago
+            else                  base
+            end
+    @user_foods = scope.order(:deadline_date).page(params[:"#{@current_tab}_page"]).per(10)
   end
 
   def new
