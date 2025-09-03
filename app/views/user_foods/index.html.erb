@@ -10,16 +10,16 @@
     <div class="tabs tabs-bordered flex justify-center mb-4">
       <ul class="tab">
         <li>
-          <%= link_to "すべて", user_foods_path(tab: "all"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'all' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
+          <%= link_to t('.all'), user_foods_path(tab: "all"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'all' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
         </li>
         <li>
-          <%= link_to "期限切れ", user_foods_path(tab: "expired"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'expired' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
+          <%= link_to t('.expired'), user_foods_path(tab: "expired"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'expired' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
         </li>
         <li>
-          <%= link_to "2日前", user_foods_path(tab: "two_days"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'two_days' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }"  %>
+          <%= link_to t('.two_days_ago'), user_foods_path(tab: "two_days"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'two_days' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }"  %>
         </li>
         <li>
-          <%= link_to "5日前", user_foods_path(tab: "five_days"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'five_days' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
+          <%= link_to t('.five_days_ago'), user_foods_path(tab: "five_days"), data: { turbo_frame: "tab_content" }, class: "tab #{ @current_tab == 'five_days' ? 'tab-active font-bold border-b-4 border-orange-400 text-gray-800' : '' }" %>
         </li>
       </ul>
     </div>
@@ -46,7 +46,7 @@
             <div class="bg-white/50 rounded-full p-10">
               <%= heroicon "magnifying-glass", options: { class: "w-10 h-10 text-gray-500" } %>
             </div>
-            <span class="text-gray-700 mt-4">該当する食材はありません</span>
+            <span class="text-gray-700 mt-4"><%= t('.no_applicable_food') %></span>
           </div>
         <% else %>
           <% @user_foods.each do |user_food| %>

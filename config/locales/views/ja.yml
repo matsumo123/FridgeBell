@@ -93,7 +93,7 @@ ja:
       day: 日
       deadline_description: 設定しない場合はカテゴリーが肉, 魚介･海藻の場合は2日、それ以外は7日で設定されます。
       placeholders:
-        quantity: 例）1
+        quantity: 例）0.25, 0.5, 1
         unit: 例）個 , 本 , パック
         deadline: 例）7
   user_foods:
@@ -103,6 +103,11 @@ ja:
       let_us: まずは、
       user_foods_new: 食材を登録
       try: しよう
+      all: すべて
+      expired: 期限切れ
+      two_days_ago: 2日前
+      five_days_ago: 5日前
+      no_applicable_food: 該当する食材はありません
     new:
       title: 冷蔵庫に追加する食材を選択しよう
       subtitle: 食材の数量を設定してください
