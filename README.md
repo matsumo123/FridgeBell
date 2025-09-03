@@ -52,14 +52,14 @@ LINE通知で期限間近の食品をお知らせ。忙しい毎日でも「う�
   | 緑 | 6日以上 |
 
 ## ⚒️使用技術
-フロントエンド：TailwindCSS, daisyUI, Stimulus, Turbo(Hotwire)
-バックエンド：Rails7.2.2 , Ruby3.3.6
-データベース：PostgreSQL
-開発環境：Docker
-インフラ：Fly.io
-画像保存: Active Storage + AWS S3
-認証：Devise, omniauth-line(予定)
-API:LINE Messaging API(予定)
+- フロントエンド：TailwindCSS, daisyUI, Stimulus, Turbo(Hotwire)
+- バックエンド：Rails7.2.2 , Ruby3.3.6
+- データベース：PostgreSQL
+- 開発環境：Docker
+- インフラ：Fly.io
+- 画像保存: Active Storage + AWS S3
+- 認証：Devise, omniauth-line(予定)
+- API:LINE Messaging API(予定)
 
 ## 🌏画面遷移図
 Figma：https://www.figma.com/design/LulO6jUfPxdloTD4mlokQV/%E5%86%B7%E8%94%B5%E5%BA%AB%E3%81%AE%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%89%E3%82%A2%E3%83%97%E3%83%AA?node-id=0-1&t=kdDnlKmMoGcHmwTu-1

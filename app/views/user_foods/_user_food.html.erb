@@ -1,17 +1,6 @@
 <%= turbo_frame_tag user_food do %>
   <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
-  <% bg_color = case remaining_days
-                when ...0
-                  "before:bg-gray-400"
-                when 0..2
-                  "before:bg-red-400"
-                when 3..5
-                  "before:bg-yellow-400"
-                else
-                  "before:bg-green-400"
-                end %>
-  <% deadline_text = remaining_days %>
-  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color %>">
+  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color(remaining_days) %>">
     
     <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-gray-100 flex items-center justify-center">
       <% if user_food.food.food_image.attached? %>
@@ -26,14 +15,21 @@
         <div class="font-semibold text-base md:text-lg text-gray-900">
           <%= user_food.food.name %>
         </div>
-        <% if deadline_text < 0 %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200">
-            <span><%= t('.please_come_early') %></span>
+        <% if remaining_days < 0 %>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-800 ring-1 ring-inset ring-gray-200">
+            <%= emoji(remaining_days) %>
+            <%= t('.please_come_early') %>
             <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
           </div>
+        <% elsif remaining_days == 0 %>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+            <%= emoji(remaining_days) %>
+            <%= t('.today') %>
+          </div>
         <% else %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200">
-            <%= t('.how_many_days', deadline_days: deadline_text) %>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+            <%= emoji(remaining_days) %>
+            <%= t('.how_many_days', deadline_days: remaining_days) %>
           </div>
         <% end %>
       </div>
