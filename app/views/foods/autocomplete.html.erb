@@ -1,0 +1,5 @@
+<% @foods.each do |food| %>
+  <li class="flex w-full items-center text-sm py-2 px-3 hover:bg-amber-100" role="option" data-autocomplete-value="<%= food.id %>" data-autocomplete-label="<%= food.name %>">
+    <%= food.name %>
+  </li>
+<% end %>

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace :account do
     resource :password, only: %i[edit update]
   end
-  resources :foods, only: %i[new create edit update destroy]
+  resources :foods, only: %i[new create edit update destroy] do
+    collection do
+      get :autocomplete
+    end
+  end
   resources :user_foods, only: %i[index new create edit update destroy]
   namespace :food_actions do
     resource :consume, only: %i[new create]

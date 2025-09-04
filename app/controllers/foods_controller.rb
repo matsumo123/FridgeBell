@@ -36,6 +36,13 @@ class FoodsController < ApplicationController
                 notice: t("helpers.flash_messages.foods_list_delete")
   end
 
+  def autocomplete
+    @foods = Food.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def food_params
