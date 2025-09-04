@@ -37,7 +37,7 @@ class FoodsController < ApplicationController
   end
 
   def autocomplete
-    @foods = Food.where("name like ?", "%#{params[:q]}%")
+    @foods = Food.by_category(params[:category_id]).where("name like ?", "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end

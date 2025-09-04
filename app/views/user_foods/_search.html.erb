@@ -2,7 +2,7 @@
   <div class="flex justify-center mx-4 mt-2">
     <%= hidden_field_tag :category_id, params[:category_id] %>
     <div class="relative flex-1 max-w-md">
-      <div data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_foods_path %>" role="combobox">
+      <div data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_foods_path(category_id: params[:category_id]) %>" role="combobox">
         <%= f.search_field :name_cont, data: { autocomplete_target: 'input' } , class: "w-full pl-10 pr-12 py-2 rounded-full border border-gray-300 shadow-sm", placeholder: t('.placeholders.search_form') %>
         <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
         <ul class="list-group" data-autocomplete-target="results"></ul>
