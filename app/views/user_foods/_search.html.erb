@@ -2,7 +2,11 @@
   <div class="flex justify-center mx-4 mt-2">
     <%= hidden_field_tag :category_id, params[:category_id] %>
     <div class="relative flex-1 max-w-md">
-      <%= f.search_field :name_cont, class: "w-full pl-10 pr-12 py-2 rounded-full border border-gray-300 shadow-sm", placeholder: t('.placeholders.search_form') %>
+      <div data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_foods_path(category_id: params[:category_id]) %>" role="combobox">
+        <%= f.search_field :name_cont, data: { autocomplete_target: 'input' } , class: "w-full pl-10 pr-12 py-2 rounded-full border border-gray-300 shadow-sm", placeholder: t('.placeholders.search_form') %>
+        <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+        <ul class="list-group absolute w-[400px]" data-autocomplete-target="results"></ul>
+      </div>
 
       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
         <%= heroicon "magnifying-glass", options: { class: "w-5 h-5" } %>
