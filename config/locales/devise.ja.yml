@@ -82,8 +82,6 @@ ja:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
         user_profile_edit: プロフィール編集
-        are_you_sure: 本当にアカウントを削除してよろしいですか？
-        cancel_my_account: アカウントを削除する(準備中)
         currently_waiting_confirmation_for_email: '%{email} の確認待ち'
         leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
         title: "%{resource}編集"
