@@ -1,24 +1,43 @@
-<footer class="bg-white/80 backdrop-blur-sm border-t border-orange-100">
+<footer class="sticky bottom-0 bg-white/80 backdrop-blur-sm border-t border-orange-100">
   <div class="max-w-6xl mx-auto px-4 py-2">
     <nav class="flex justify-around items-center">
-      <%= link_to home_path, class: "flex flex-col items-center space-y-1 p-3 rounded-2xl #{ current_page?(home_path) ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
-        <i><%= heroicon "home", variant: :outline, options: { class: "w-6 h-6" } %></i>
+      <% item_base = "flex flex-col items-center gap-1 px-4 py-2 rounded-2xl transition-colors" %>
+
+      <%= link_to home_path,
+        class: "#{item_base}
+          #{ current_page?(home_path) ? 
+            'bg-orange-100 text-orange-600' :
+            'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
+        <%= heroicon "home", variant: :outline, options: { class: "w-6 h-6" } %>
         <span class="text-xs font-medium">Home</span>
       <% end %>
-      <%= link_to user_foods_path, class: "flex flex-col items-center space-y-1 p-3 rounded-2xl #{ current_page?(user_foods_path) ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
+
+      <%= link_to user_foods_path,
+        class: "#{item_base}
+          #{ current_page?(user_foods_path) ?
+            'bg-orange-100 text-orange-600' :
+            'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
         <i class="material-symbols-rounded" style="font-variation-settings: 'wght' 50;">kitchen</i>
         <span class="text-xs font-medium">Fridge</span>
       <% end %>
-      <%= link_to new_user_food_path(category_id: 1), class: "flex flex-col items-center space-y-1 p-3 rounded-2xl #{ current_page?(new_user_food_path(category_id: 1)) ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
-        <i><%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6" } %></i>
+
+      <%= link_to new_user_food_path(category_id: 1),
+        class: "#{item_base}
+          #{ current_page?(new_user_food_path(category_id: 1)) ?
+            'bg-orange-100 text-orange-600' :
+            'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
+        <%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6" } %>
         <span class="text-xs font-medium">Add Item</span>
       <% end %>
-      <%= link_to "#", class: "flex flex-col items-center text-gray-300 space-y-1 p-3 rounded-2xl" do %>
-        <i><%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6" } %></i>
-        <span class="text-xs font-medium">Reminders</span>
-        <span class="text-xs font-medium">(準備中)</span>
+
+      <%= link_to "#", class: "flex flex-col items-center text-gray-300 space-y-1 px-4 py-2 rounded-2xl" do %>
+        <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6" } %>
+        <span class="text-xs font-medium">準備中</span> 
       <% end %>
+
     </nav>
-    <p class="text-center text-xs text-gray-500"><%= t('.copyright', year: Time.current.year, app_name: 'FridgeBell') %></P>
+    <p class="text-center text-xs text-gray-500">
+      <%= t('shared.footer.copyright', year: Time.current.year, app_name: 'FridgeBell') %>
+    </p>
   </div>
 </footer>
