@@ -95,7 +95,7 @@ ja:
         create_user: 登録
         or: または
         already_account: すでにアカウントをお持ちの方は
-        line_login: LINEでログイン(準備中)
+        line_login: LINEでログイン
         placeholders:
           user_name: ユーザー名
           password: 大文字･小文字･数字含めて8文字以上
@@ -112,7 +112,7 @@ ja:
       new:
         sign_in: ログイン
         submit: ログイン
-        line_login: LINEでログイン(準備中)
+        line_login: LINEでログイン
         or: または
       signed_in: ログインしました。
       signed_out: ログアウトしました。
