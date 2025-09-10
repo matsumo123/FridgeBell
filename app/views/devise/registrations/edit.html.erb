@@ -31,11 +31,6 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %>  </div>
           <% end %>
-        
-          <div class="text-center mt-2">
-            <%= check_box_tag :user_destroy, class: "peer" %>
-            <%= label_tag :user_destroy, t('.cancel_my_account'), class: "text-gray-300 peer-checked:font-bold" %>
-          </div>
 
           <%= f.submit t('.update'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
         

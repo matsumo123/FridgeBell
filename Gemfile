@@ -34,6 +34,12 @@ gem "ransack"
 
 gem "kaminari"
 
+gem "omniauth-line"
+
+gem "omniauth-rails_csrf_protection"
+
+gem "dotenv-rails"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
