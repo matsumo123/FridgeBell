@@ -153,6 +153,7 @@ GEM
     hashie (5.0.0)
     heroicon (1.0.0)
       rails (>= 5.2)
+    high_voltage (4.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -434,6 +435,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   heroicon
+  high_voltage
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

@@ -40,6 +40,9 @@ gem "omniauth-rails_csrf_protection"
 
 gem "dotenv-rails"
 
+gem "high_voltage"
+
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
