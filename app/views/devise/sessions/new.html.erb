@@ -1,12 +1,12 @@
-<main class="flex flex-col items-center justify-center min-h-screen px-6 py-2 md:py-12">
-  <div class="w-full max-w-md space-y-8">
+<main class="flex flex-col items-center justify-center">
+  <div class="w-full max-w-md">
     <div class ="text-center">
-      <h2 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4x mb-4">
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-4xl mb-4">
         <%= t('.sign_in') %>
       </h2>
 
-      <div class="rounded-2xl bg-white/70 backdrop-blur-sm p-8 shadow-lg border border-orange-100">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-6") do |f| %>
+      <div class="rounded-2xl bg-white/70 backdrop-blur-sm mx-4 p-8 shadow-lg border border-orange-100">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6", data: { turbo: false } }) do |f| %>
 
           <div class="flex flex-col space-y-2">
             <%= f.label :email, class: "block text-left text-sm font-medium text-gray-700" %>
@@ -30,7 +30,7 @@
         <% end %>
       </div>
 
-      <div class="my-6 flex items-center">
+      <div class="my-6 mx-4 flex items-center">
         <div class="flex-1 border-t-2 border-gray-300"></div>
         <div class="mx-4 text-sm text-gray-500"><%= t('.or') %></div>
         <div class="flex-1 border-t-2 border-gray-300"></div>
