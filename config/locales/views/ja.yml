@@ -22,7 +22,7 @@ ja:
       app_name: FridgeBell
       user_profile: マイページ
       terms_of_service: 利用規約(準備中)
-      privacy_policy: プライバシーポリシー(準備中)
+      privacy_policy: プライバシーポリシー
       contact_us: お問い合わせ(準備中)
       logout: ログアウト
       how_to: 使い方
@@ -42,8 +42,7 @@ ja:
       remind_description: LINEで期限間近の食材を通知予定
     before_login_footer:
       terms_of_service: 利用規約(準備中)
-      privacy_policy: プライバシーポリシー(準備中)
-      contact_us: お問い合わせ(準備中)
+      privacy_policy: プライバシーポリシー
       copyright: © %{year} %{app_name}
     footer:
       copyright: © %{year} %{app_name}
