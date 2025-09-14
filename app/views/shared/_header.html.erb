@@ -1,4 +1,4 @@
-<header>
+<header class="sticky top-0 z-50 bg-orange-50">
   <div class="flex items-center justify-between shadow-sm border-b border-orange-100 px-6 py-4 md:px-8">
     <div class="flex items-center space-x-2">
       <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-400 rounded-full flex items-center justify-center">
@@ -29,7 +29,7 @@
             <div class="py-1">
               <%= link_to t('.user_profile'), users_profile_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
               <%= link_to t('.terms_of_service'), "#", class:"block px-4 py-2 text-sm text-gray-300 hover:bg-gray-200" %>
-              <%= link_to t('.privacy_policy'), "#", class:"block px-4 py-2 text-sm text-gray-300 hover:bg-gray-200" %>
+              <%= link_to t('.privacy_policy'), page_path('policy'), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
               <%= link_to t('.contact_us'), "#", class:"block px-4 py-2 text-sm text-gray-300 hover:bg-gray-200" %>
               <%= link_to t('.logout'), destroy_user_session_path, data: { turbo_method: :delete}, class:"block px-4 py-2 text-sm text-red-700 hover:bg-gray-200" %>
             </div>
