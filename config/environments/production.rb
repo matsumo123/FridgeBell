@@ -83,16 +83,16 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.delivery_method = :smtp
-  host = 'fridgebell.fly.dev'
-  config.action_mailer.default_url_options = { protocol: 'https', host: host }
+  host = "fridgebell.fly.dev"
+  config.action_mailer.default_url_options = { protocol: "https", host: host }
   config.action_mailer.smtp_settings = {
     port:                 587,
-    address:              'smtp.gmail.com',
+    address:              "smtp.gmail.com",
     domain:               host,
-    user_name:            ENV['MAILER_SENDER'],
-    password:             ENV['MAILER_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true 
+    user_name:            ENV["MAILER_SENDER"],
+    password:             ENV["MAILER_PASSWORD"],
+    authentication:       "plain",
+    enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
