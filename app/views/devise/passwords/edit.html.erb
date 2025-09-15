@@ -1,25 +1,33 @@
-<h2>Change your password</h2>
+<main class="flex-1 md:px-8">
+  <div class="mx-auto max-w-xl md:max-w-7xl">
+    <div class="min-h-screen flex justify-center items-start mb-6">
+      <div class="bg-white mx-4 py-4 px-8 md:my-6 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+        <div class="text-center">
+          <h1 class="text-2xl font-medium tracking-tight text-gray-700">
+            <%= t('.title') %>
+          </h1>
+        </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="field">
+            <%= f.label :password, t('.new_password'), class: "block mt-4 mb-1 text-left text-sm font-medium text-gray-700" %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: t('.placeholders.password'),  class: "w-full mb-2 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation, t('.confirm_new_password'), class: "block mt-2 mb-1 text-left text-sm font-medium text-gray-700" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('.placeholders.password_confirmation'), class: "w-full mb-2 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
+          </div>
+
+          <div class="actions mt-2">
+            <%= f.submit t('.change_your_password'), class: "w-full mt-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-4 text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</main>
