@@ -5,8 +5,8 @@ ja:
         current_password: 現在のパスワード
         email: メールアドレス
         password: パスワード
-        password_confirmation: 確認用パスワード
-        remember_me: 次回から自動的にログイン
+        password_confirmation: パスワード(確認用)
+        remember_me: ログイン状態を保持
         reset_password_sent_at: パスワードリセット送信時刻
         reset_password_token: パスワードリセット用トークン
         sign_in_count: ログイン回数
@@ -103,6 +103,7 @@ ja:
         or: または
         already_account: すでにアカウントをお持ちの方は
         line_login: LINEでログイン
+        sign_in: ログイン
         placeholders:
           user_name: ユーザー名
           password: 大文字･小文字･数字含めて8文字以上
@@ -121,6 +122,9 @@ ja:
         submit: ログイン
         line_login: LINEでログイン
         or: または
+        no_account: アカウントをお持ちでない方は
+        sign_up: 新規登録
+        forgot_your_password: パスワードをお忘れの方はこちら
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     shared:
@@ -128,7 +132,7 @@ ja:
         back: 戻る
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールを受け取っていませんか？
-        forgot_your_password: パスワードを忘れましたか？(準備中)
+        forgot_your_password: パスワードを忘れましたか？
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: 新規登録
