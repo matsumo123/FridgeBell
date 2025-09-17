@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resource :consume, only: %i[new create]
     resource :discard, only: %i[new create]
   end
+  resource :reminder, only: %i[show new create]
   get "character_stage", to: "user_characters#character_stage"
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
