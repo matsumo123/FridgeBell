@@ -18,6 +18,7 @@ ja:
       food: 食材
       user_food: 登録食材
       food_action: 消費・廃棄
+      reminder: リマインド
     errors:
       models:
         food:
@@ -54,3 +55,6 @@ ja:
         action_types:
           consumed: 消費
           discarded: 廃棄
+      reminder:
+        days_before: リマインド
+        remind_time: 通知時刻
