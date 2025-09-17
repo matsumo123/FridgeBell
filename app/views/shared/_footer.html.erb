@@ -30,7 +30,10 @@
         <span class="text-xs font-medium">Add Item</span>
       <% end %>
 
-      <%= link_to "#", class: "flex flex-col items-center text-gray-300 space-y-1 px-4 py-2 rounded-2xl" do %>
+      <%= link_to reminder_path, class: "#{item_base}
+          #{ current_page?(reminder_path) ?
+            'bg-orange-100 text-orange-600' :
+            'hover:bg-gray-100 text-gray-300 transition-colors' }" do %>
         <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6" } %>
         <span class="text-xs font-medium">準備中</span> 
       <% end %>
