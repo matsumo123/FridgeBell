@@ -1,0 +1,37 @@
+<main class="flex-1 md:px-8">
+  <div class="mx-auto max-w-xl md:max-w-7xl">
+    <div class="min-h-screen flex justify-center items-start mb-6">
+      <div class="bg-white mx-4 py-4 px-8 md:my-6 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono">
+
+        <div class="text-center">
+          <h1 class="text-2xl font-medium tracking-tight text-gray-700">
+            リマインド設定
+          </h1>
+        </div>
+
+        <%= form_with model: @reminder, url: reminder_path, html: { class: "" } do |f| %>
+          <%= render "shared/error_messages", object: f.object %>
+
+          <div>
+            <%= f.label :days_before, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
+            <span class="text-sm text-gray-700">期限切れ</span>
+            <%= f.number_field :days_before, class: "w-1/4 mb-2 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white", placeholder: "例) 2" %>
+            <span class="text-sm text-gray-700">日前に通知</span>
+          </div>
+
+          <div>
+            <%= f.label :remind_time, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
+            <%= f.time_select :remind_time, 
+                {
+                  minute_step: 15,
+                  prompt: { hour: '時', minute: '分' }
+                },
+                class: "mb-2 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
+          </div>
+
+          <%= f.submit "登録", class: "w-full mt-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-4 text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

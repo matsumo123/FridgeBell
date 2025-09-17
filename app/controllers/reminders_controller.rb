@@ -5,6 +5,7 @@ class RemindersController < ApplicationController
   end
 
   def new
+    @reminder = Reminder.new
   end
 
   def create
