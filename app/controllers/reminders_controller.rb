@@ -18,6 +18,14 @@ class RemindersController < ApplicationController
     end
   end
 
+  def destroy
+    @reminder = current_user.reminder
+    @reminder.destroy!
+    redirect_to reminder_path,
+                notice: "リマインド設定を削除しました",
+                status: :see_other
+  end
+
   private
 
   def reminder_params
