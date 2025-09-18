@@ -1,24 +1,54 @@
-<%= form_with model: reminder, url: reminder_path, html: { class: "" } do |f| %>
-  <%= render "shared/error_messages", object: f.object %>
+<%= turbo_frame_tag "reminder_modal" do %>
+  <div data-controller="reminder-modal" data-reminder-modal-target="reminderModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+
+      <div class="bg-white mx-4 py-4 px-8 md:my-6 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono  relative">
+
+        <div class="text-center">
+          <h1 class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gray-800">
+            <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 inline-block shrink-0" } %>
+            リマインド設定
+          </h1>
+          <span class="rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-600">
+            <%= object %>
+          </span>
+        </div>
+        
+        <button type="button"
+                class="absolute right-5 top-3 inline-flex items-center justify-center rounded-full size-8 hover:bg-gray-100"
+                data-action="click->reminder-modal#closeModal">
+          <%= heroicon "x-circle",  variant: :outline, options: { class: "w-10 h-10 text-gray-700"} %>
+        </button>
+
+
+        <div class="border rounded-md border-gray-200 my-4 px-4 py-2">
+          <%= form_with model: reminder, url: reminder_path, data: { action: "turbo:submit-end->reminder-modal#close" } do |f| %>
+            <%= render "shared/error_messages", object: f.object %>
   
-  <div>
-    <%= f.label :days_before, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
-    <div class="flex items-center gap-2 flex-wrap">
-      <span class="text-sm text-gray-700">期限切れ</span>
-      <%= f.number_field :days_before, min: 0, class: "w-24 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white", placeholder: "例) 2" %>
-      <span class="text-sm text-gray-700">日前に通知</span>
+            <div>
+              <%= f.label :days_before, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-sm text-gray-700">期限切れ</span>
+                <%= f.number_field :days_before, min: 0, class: "w-20 sm:w-24 rounded-lg border border-gray-400 bg-white/80 px-4 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white", placeholder: "例) 2" %>
+                <span class="text-sm text-gray-700">日前に通知</span>
+              </div>
+            </div>
+
+            <div>
+              <%= f.label :remind_time, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
+              <%= f.time_select :remind_time, 
+                              {
+                                minute_step: 15,
+                                prompt: { hour: '時', minute: '分' }
+                              },
+                              class: "mb-2 rounded-lg border border-gray-400 bg-white/80 px-8 sm:px-6 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
+            </div>
+
+            <%= f.submit "登録", class: "w-full mt-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold mb-2 py-4 text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+          <% end %>
+        </div>
+
+      </div>
     </div>
   </div>
-
-  <div>
-    <%= f.label :remind_time, class: "block mt-4 mb-1 text-left text-sm font-semibold text-gray-700" %>
-      <%= f.time_select :remind_time, 
-          {
-            minute_step: 15,
-            prompt: { hour: '時', minute: '分' }
-          },
-          class: "mb-2 rounded-lg border border-gray-400 bg-white/80 px-8 sm:px-6 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
-    </div>
-
-  <%= f.submit "登録", class: "w-full mt-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-4 text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
 <% end %>
