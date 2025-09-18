@@ -25,6 +25,9 @@ application.register("hello", HelloController)
 import HowToModalController from "./how_to_modal_controller"
 application.register("how-to-modal", HowToModalController)
 
+import ReminderModalController from "./reminder_modal_controller"
+application.register("reminder-modal", ReminderModalController)
+
 import UserFoodModalController from "./user_food_modal_controller"
 application.register("user-food-modal", UserFoodModalController)
 
