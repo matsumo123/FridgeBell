@@ -172,4 +172,9 @@ ja:
   reminders:
     show:
       title: Remind
+  pages:
+    policy:
+      title: プライバシーポリシー
+    terms:
+      title: 利用規約
       
