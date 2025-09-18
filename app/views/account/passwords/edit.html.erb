@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "account_modal" do %>
   <div data-controller="account-modal" data-account-modal-target="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div class="w-full max-w-md bg-white rounded-xl shadow-md p-6 relative">
+      <div class="w-full max-w-md bg-white rounded-xl shadow-md p-6 relative font-mono">
         <div class="text-center relative">
           <div class="flex items-center justify-center gap-2 mb-4">
             <%= heroicon "key", options: { class: "w-5 h-5 text-gray-700" } %>
@@ -16,29 +16,29 @@
           </button>
         </div>
 
-        <div class="mt-2 rounded-lg bg-white border border-gray-200 p-6 shadow-sm">
+        <div class="mt-2 rounded-lg bg-white border border-gray-200 py-4 px-8 shadow-sm">
           <%= form_with(model: current_user, url: account_password_path, data: { action: "turbo:submit-end->account-modal#closePassword" }, html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: current_user %>
 
-            <div class="flex flex-col space-y-2">
+            <div class="flex flex-col space-y-1">
               <%= f.label :current_password, class: "block text-left text-sm font-medium text-gray-700" %>
-              <%= f.password_field :current_password, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800"%>
+              <%= f.password_field :current_password, class: "w-full ml-2 mb-2 rounded-lg border border-gray-400 px-4 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white" %>
             </div>
 
-            <div class="flex flex-col space-y-2 mt-2">
+            <div class="flex flex-col space-y-1 mt-1">
               <%= f.label :password, class: "block text-left text-sm font-medium text-gray-700" %>
-              <%= f.password_field :password, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: t('.placeholders.password') %>
+              <%= f.password_field :password, class: "w-full ml-2 mb-2 rounded-lg border border-gray-400 px-4 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white", placeholder: t('.placeholders.password') %>
             </div>
 
-            <div class="flex flex-col space-y-2 mt-2">
+            <div class="flex flex-col space-y-1 mt-1">
               <%= f.label :password_confirmation, class: "block text-left text-sm font-medium text-gray-700" %>
-              <%= f.password_field :password_confirmation, class: "w-full ml-2 mb-2 rounded-xl border-2 border-gray-400 bg-white/80 px-3 py-2 text-gray-800", placeholder: t('.placeholders.password_confirmation') %>
+              <%= f.password_field :password_confirmation, class: "w-full ml-2 mb-2 rounded-lg border border-gray-400 px-4 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 focus:ring-offset-2 focus:ring-offset-white", placeholder: t('.placeholders.password_confirmation') %>
             </div>
 
-            <%= f.submit t('.update'), class: "w-full mt-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" %>
+            <%= f.submit t('.update'), class: "w-full mt-2 px-4 py-2 rounded-xl bg-orange-500 text-sm text-white font-semibold hover:bg-orange-600 shadow" %>
 
             <button type="button" data-action="click->account-modal#closePasswordModal"
-            class = "w-full inline-block text-center mt-2 bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold py-2 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200">
+            class = "w-full inline-block text-sm text-center mt-2 px-4 py-2 rounded-xl border hover:bg-gray-50">
               <%= t('.cancel') %>
             </button>
           <% end %>

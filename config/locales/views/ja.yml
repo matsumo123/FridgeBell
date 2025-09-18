@@ -63,6 +63,7 @@ ja:
       consume: 食べる
   users:
     show:
+      title: マイページ
       my_page: マイページ
       user_edit: プロフィールを編集
       password_edit: パスワードを変更
