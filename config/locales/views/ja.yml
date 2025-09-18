@@ -57,6 +57,7 @@ ja:
       how_to_use: 使い方
       create_user: まずは新規登録
     home:
+      title: Home
       no_discarded_days: 日連続で廃棄ゼロ！
       discard: 捨てる
       consume: 食べる
@@ -97,7 +98,8 @@ ja:
         deadline: 例）7
   user_foods:
     index:
-      title: 冷蔵庫の食材一覧
+      title: Fridge
+      semi_title: 冷蔵庫の食材一覧
       fridge_blank: 冷蔵庫は空です。
       let_us: まずは、
       user_foods_new: 食材を登録
@@ -108,7 +110,8 @@ ja:
       five_days_ago: 5日前
       no_applicable_food: 該当する食材はありません
     new:
-      title: 冷蔵庫に追加する食材を選択しよう
+      title: Add Item
+      semi_title: 冷蔵庫に追加する食材を選択しよう
       subtitle: 食材の数量を設定してください
       description: ページをまたいだ一括登録はできません。1ページ内なら複数をまとめて登録できます。
       add_food: 食材追加
@@ -163,4 +166,7 @@ ja:
     discards:
       new:
         title: 捨てたものを登録しよう
+  reminders:
+    show:
+      title: Remind
       
