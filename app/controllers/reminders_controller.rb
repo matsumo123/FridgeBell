@@ -11,7 +11,11 @@ class RemindersController < ApplicationController
   def create
     @reminder = current_user.build_reminder(reminder_params)
     if @reminder.save
-      redirect_to reminder_path, notice: "リマインド設定が完了しました"
+      flash.now[:notice] = "リマインド設定が完了しました"
+      render turbo_stream: [
+        turbo_stream.replace("reminder", @reminder),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,7 +26,11 @@ class RemindersController < ApplicationController
   def update
     @reminder = current_user.reminder
     if @reminder.update(reminder_params)
-      redirect_to reminder_path, notice: "リマインド設定を更新しました"
+      flash.now[:notice] = "リマインド設定を更新しました"
+      render turbo_stream: [
+        turbo_stream.update("reminder", partial: "reminder", locals: { reminder: @reminder }),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,9 +38,11 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder.destroy!
-    redirect_to reminder_path,
-                notice: "リマインド設定を削除しました",
-                status: :see_other
+    flash.now[:notice] = "リマインド設定を削除しました"
+    render turbo_stream: [
+      turbo_stream.update("reminder", partial: "reminder", locals: { reminder: nil }),
+      turbo_stream.update("flash", partial: "shared/flash_message")
+    ]
   end
 
   private
