@@ -1,17 +1,15 @@
 <header class="sticky top-0 z-50 bg-orange-50">
-  <div class="flex items-center justify-between shadow-sm border-b border-orange-100 px-6 py-4 md:px-8">
-    <div class="flex items-center space-x-2">
-      <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-400 rounded-full flex items-center justify-center">
-        <i class="material-symbols-rounded text-xl text-white">kitchen</i>
-      </div>
+  <div class="flex items-center justify-between shadow-sm border-b border-orange-100 px-4 sm:px-6 py-4 md:px-8">
+    <div class="flex justify-start space-x-2">
+      <%= image_tag 'FridgeBell_logo.png', class: "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" %>
       <%= link_to '/' do %>
-        <h1 class="text-3xl sm:text-4xl font-exo2 font-bold leading-tight overflow-visible bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-3xl">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-exo2 font-bold leading-tight overflow-visible bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent md:text-3xl">
           <%= t('.app_name') %>
         </h1>
       <% end %>
     </div>
     <% if user_signed_in? %>
-      <div  data-controller="how-to-modal" class="flex items-center gap-2 sm:gap-4">
+      <div  data-controller="how-to-modal" class="flex items-center gap-2 sm:gap-4 font-mono">
         <button data-action="click->how-to-modal#open" class= "flex items-center text-gray-700 hover:font-semibold">
           <%= heroicon "information-circle", variant: :outline, options: { class: "w-5 h-5 text-gray-600" } %>
           <span class="ml-1 text-sm font-medium text-gray-70">
@@ -41,7 +39,7 @@
       </div>
     <% else %>
       <div>
-        <%= link_to t('.login'), new_user_session_path, class:"border border-orange-200 rounded px-4 py-2 text-orange-500 hover:bg-orange-100 hover:text-orange-600" %>
+        <%= link_to t('.login'), new_user_session_path, class:"border border-orange-200 rounded px-4 py-2 text-orange-500 hover:bg-orange-100 hover:text-orange-600 font-mono" %>
       </div>
     <% end %>
   </div>
