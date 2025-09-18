@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "user_food_modal" do %>
   <div data-controller="user-food-modal" data-user-food-modal-target="userFoodModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-5">
-    <div class="bg-white mx-2 p-6 rounded-xl shadow-md w-full md:max-w-xl max-w-md relative">
+    <div class="bg-white mx-2 p-6 rounded-xl shadow-md w-full md:max-w-xl max-w-md relative font-mono">
       <button type="button"
         class="absolute right-4 top-4 inline-flex items-center justify-center rounded-full size-8 hover:bg-gray-100"
         data-action="click->user-food-modal#closeModal">
@@ -25,10 +25,12 @@
             <% end %>
             <div>
               <h3 class="text-lg font-medium text-gray-900"><%= @user_food.food.name %></h3>
-              <p class="text-sm test-gray-500">
-                <%= t('.category') %>: 
-                <%= Category.find(@user_food.food.category_id).name %>
-              </p>
+              <div class="flex items-center text-sm text-gray-800">
+                <span class="mr-2"><%= t('.category') %>: </span>
+                <div class="rounded-full bg-gray-100 px-4 py-1 font-medium">
+                  <%= Category.find(@user_food.food.category_id).name %>
+                </div>
+              </div>
             </div>
           </div>
 
