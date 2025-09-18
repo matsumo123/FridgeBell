@@ -9,33 +9,12 @@
             リマインド設定
           </h1>
         </div>
-        
-        <% if @reminder.present? %>
-          <div>
-            <p class="mt-4 mb-1 text-xs font-semibold tracking-wider text-gray-500">
-              リマインド
-            </p>
-            <span class="text-base md:text-lg font-medium text-gray-800 tabular-nums">
-              期限切れ<%= @reminder.days_before %>日前に通知
-            </span>
-          </div>
 
-          <div>
-            <p class="mt-6 mb-1 text-xs font-semibold tracking-wider text-gray-500">
-              通知時刻
-            </p>
-            <div class="text-base md:text-lg font-medium text-gray-800 tabular-nums">
-              <%= @reminder.remind_time.strftime("%-H時%M分") %>
-            </div>
-          </div>
+        <%= turbo_frame_tag "reminder_modal" %>
 
-        <% else %>
-          <div class="mt-4 mb-1 text-xs font-semibold text-gray-700 text-center">
-            <p class="block">食材の期限が切れる前に通知を受け取ろう！</p>
-            <%= link_to "リマインドを設定する", new_reminder_path, class: "inline-flex items-center mt-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-400 to-pink-400 text-white font-semibold shadow-sm hover:shadow-md hover:from-orange-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-300 transition" %>
-          </div>
+        <%= turbo_frame_tag "reminder" do %>
+          <%= render "reminder", reminder: @reminder %>
         <% end %>
-
       </div>
     </div>
   </div>
