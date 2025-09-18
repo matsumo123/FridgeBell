@@ -2,10 +2,10 @@
   <%= render "shared/error_messages", object: form.object %>
   <div class="bg-white rounded-2xl shadow-md px-4 py-2 max-w-3xl mx-2 mb-2 ">
     <div class="py-2 text-center">
-      <h1 class="text-xl font-medium text-gray-900 leading-relaxed">
+      <h1 class="sm:text-lg font-medium text-gray-900 leading-relaxed">
         <%= t('.title') %>
       </h1>
-      <p class="text-sm text-gray-600">
+      <p class="text-xs sm:text-sm text-gray-600">
         <%= t('.follow_message') %>
       </p>
     </div>
@@ -27,9 +27,7 @@
               <% if user_food.food.food_image.attached? %>
                 <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
               <% else %>
-                <div class="flex-shrink-0 w-30 h-30 md:w-40 md:h-40 rounded-xl ring-1 ring-gray-200 bg-white flex items-center justify-center">
-                  <p class="text-gray-700"><%= t('.no_image') %></P>
-                </div>
+                <p class="text-gray-700 text-sm"><%= t('.no_image') %></P>
               <% end %>
             </div>
 
@@ -42,7 +40,6 @@
                   <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-800 ring-1 ring-inset ring-gray-200">
                     <%= emoji(remaining_days) %>
                     <%= t('.please_come_early') %>
-                    <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
                   </div>
                 <% elsif remaining_days == 0 %>
                   <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
@@ -57,8 +54,9 @@
                 <% end %>
               </div>
 
-              <div class="text-sm text-gray-600">
-                <%= t('.deadline') %>: <%= user_food.deadline_date %>
+              <div class="text-sm text-gray-600 sm:flex sm:items-center">
+                <span class="block sm:mr-2"><%= t('.deadline') %>:</span>
+                <span class="block sm:inline-block font-bold text-gray-800"><%= user_food.deadline_date %></span>
               </div>
               <div class="text-sm text-gray-600">
                 <%= f.label :quantity %>:
@@ -66,7 +64,7 @@
               </div>
               <% if user_food.mini_memo.present? %>
                 <div class="text-sm text-gray-700">
-                  <%= t('.mini_memo') %>: <%= user_food.mini_memo %>
+                  <%= t('.mini_memo') %>: <span class="font-bold text-gray-800"><%= user_food.mini_memo %></span>
                 </div>
               <% end %>
             </div>

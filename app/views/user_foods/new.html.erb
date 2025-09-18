@@ -1,18 +1,19 @@
+<% content_for(:title, t('.title')) %>
 <main class="flex-1 md:px-8">
   <div class="mx-auto max-w-xl md:max-w-7xl space-y-6">
     <div class="min-h-screen flex justify-center items-start mb-4 mx-2">
-      <div class="bg-white shadow-sm border border-gray-100 rounded-2xl w-full max-w-6xl">
+      <div class="bg-white shadow-sm border border-gray-100 rounded-2xl w-full max-w-6xl font-mono">
         <div class="my-4 text-center">
-          <h1 class="text-2xl md:text-4xl font-semibold tracking-tight text-amber-600">
-            <%= t('.title') %>
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-amber-600">
+            <%= t('.semi_title') %>
           </h1>
         </div>
     
-        <div class="py-2 text-center">
-          <h1 class="text-xl font-medium text-gray-900 leading-relaxed">
+        <div class="sm:py-2 text-center">
+          <h1 class="sm:text-lg font-medium text-gray-900 leading-relaxed">
             step1: <%= t('.subtitle') %>
           </h1>
-          <p class="text-sm text-gray-600 mt-2">
+          <p class="text-xs md:text-sm text-gray-600 mt-2">
             <%= t('.description') %>
           </p>
         </div>
