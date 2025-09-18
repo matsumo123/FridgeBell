@@ -162,10 +162,12 @@ ja:
       today: 本日まで
     consumes:
       new:
-        title: 食べたものを登録しよう
+        title: 消費登録
+        semi_title: 食べたものを登録しよう
     discards:
       new:
-        title: 捨てたものを登録しよう
+        title: 廃棄登録
+        semi_title: 捨てたものを登録しよう
   reminders:
     show:
       title: Remind
