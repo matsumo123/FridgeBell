@@ -1,61 +1,65 @@
 <%= turbo_frame_tag user_food do %>
   <% remaining_days = (user_food.deadline_date - Date.today).to_i %>
-  <div class="relative flex items-start gap-4 rounded-2xl border border-gray-200 bg-white mx-2 p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color(remaining_days) %>">
+  <div class="relative flex gap-4 rounded-2xl border border-gray-200 bg-white mx-2 px-4 pt-4 pb-2 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 before:content-[''] before:absolute before:top-2 before:bottom-2 before:left-2 before:w-2.5 before:rounded-full <%= bg_color(remaining_days) %>">
     
-    <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 rounded-xl overflow-hidden ring-1 ring-gray-200 bg-gray-100 flex items-center justify-center">
+    <div class="flex-shrink-0 ml-2 w-30 h-30 md:w-40 md:h-40 overflow-hidden flex items-center justify-center self-center">
       <% if user_food.food.food_image.attached? %>
         <%= image_tag user_food.food.food_image.variant(resize_to_limit: [100, 100]) %>
       <% else %>
-        <p class="text-gray-700"><%= t('.no_image') %></P>
+        <p class="text-gray-700 text-sm"><%= t('.no_image') %></P>
       <% end %>
     </div>
 
-    <div class="flex flex-col flex-1 self-start text-sm leading-relaxed space-y-1.5">
-      <div class="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
-        <div class="font-semibold text-base md:text-lg text-gray-900">
-          <%= user_food.food.name %>
+    <div class="flex flex-col justify-between flex-1 text-sm leading-relaxed">
+      <div class="space-y-1.5">
+        <div class="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
+          <div class="font-semibold text-base md:text-lg text-gray-900">
+            <%= user_food.food.name %>
+          </div>
+          <% if remaining_days < 0 %>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-800 ring-1 ring-inset ring-gray-200">
+              <%= emoji(remaining_days) %>
+              <%= t('.please_come_early') %>
+            </div>
+          <% elsif remaining_days == 0 %>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+              <%= emoji(remaining_days) %>
+              <%= t('.today') %>
+            </div>
+          <% else %>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
+              <%= emoji(remaining_days) %>
+              <%= t('.how_many_days', deadline_days: remaining_days) %>
+            </div>
+          <% end %>
         </div>
-        <% if remaining_days < 0 %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-800 ring-1 ring-inset ring-gray-200">
-            <%= emoji(remaining_days) %>
-            <%= t('.please_come_early') %>
-            <%= heroicon "exclamation-triangle", variant: :outline, options: { class: "w-5 h-5" } %>
-          </div>
-        <% elsif remaining_days == 0 %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
-            <%= emoji(remaining_days) %>
-            <%= t('.today') %>
-          </div>
-        <% else %>
-          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-red-700 ring-1 ring-inset ring-gray-200">
-            <%= emoji(remaining_days) %>
-            <%= t('.how_many_days', deadline_days: remaining_days) %>
+
+        <div class="text-sm flex items-center">
+          <span class="mr-2 text-gray-600"><%= t('.deadline') %>:</span>
+          <span class="font-bold text-gray-800"><%= user_food.deadline_date %></span>
+        </div>
+        <div class="text-sm text-gray-600">
+          <%= t('.quantity') %>: 
+          <span class="font-bold text-gray-800">
+            <%= number_with_precision(user_food.quantity, precision: 2, strip_insignificant_zeros: true) %>
+          </span>
+          <%= user_food.food.unit %>
+        </div>
+        <% if user_food.mini_memo.present? %>
+          <div class="text-sm text-gray-700">
+            <%= t('.mini_memo') %>: <span class="font-bold text-gray-800"><%= user_food.mini_memo %></span>
           </div>
         <% end %>
       </div>
 
-      <div class="text-sm text-gray-600">
-        <%= t('.deadline') %>: <%= user_food.deadline_date %>
+      <div class="flex justify-end gap-1 sm:gap-2">
+        <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" do %>
+          <%= heroicon "pencil", variant: :outline, options: { class: "w-5 h-5"} %>
+        <% end %>
+        <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: t('helpers.turbo_confirm.delete') }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>
+          <%= heroicon "trash", variant: :outline, options: { class: "w-5 h-5"} %>
+        <% end %>
       </div>
-      <div class="text-sm text-gray-600">
-        <%= t('.quantity') %>: 
-        <%= number_with_precision(user_food.quantity, precision: 2, strip_insignificant_zeros: true) %>
-        <%= user_food.food.unit %>
-      </div>
-      <% if user_food.mini_memo.present? %>
-        <div class="text-sm text-gray-700">
-          <%= t('.mini_memo') %>: <%= user_food.mini_memo %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="flex flex-col items-center justify-start gap-2">
-      <%= link_to edit_user_food_path(id: user_food.id), data: { turbo_frame: 'user_food_modal' }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300" do %>
-        <%= heroicon "pencil", variant: :outline, options: { class: "w-5 h-5"} %>
-      <% end %>
-      <%= link_to user_food_path(id: user_food.id), data: { turbo_method: :delete, turbo_confirm: t('helpers.turbo_confirm.delete') }, class: "w-10 h-10 inline-flex items-center justify-center rounded-full text-gray-600 hover:text-red-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-300" do %>
-        <%= heroicon "trash", variant: :outline, options: { class: "w-5 h-5"} %>
-      <% end %>
     </div>
   </div>
 <% end %>
