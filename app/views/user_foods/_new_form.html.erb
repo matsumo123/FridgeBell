@@ -7,7 +7,6 @@
       <% foods.each_with_index do |food, i| %>
         <div class="flex flex-col items-stretch gap-3 rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 p-4">
           <%# ユーザーが食材リストに追加した食材の場合、食材の編集ができる %>
-          <%# ユーザーが追加した食材リストの画像は指定 %>
           <% if food.user_id == current_user.id %>
             <div class="text-center text-lg space-x-2 font-semibold text-gray-800 px-1">
               <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center space-x-1" do %>
@@ -15,22 +14,23 @@
                 <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
               <% end %>
             </div>
-            <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-              <p><%= t('.no_image') %></p>
-            </div>
           <% else %>
             <%# デフォルトの食材を表示 %>
             <div class="text-center text-lg font-semibold text-gray-800 px-1">
               <%= food.name %>
             </div>
-            <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-              <% if food.food_image.attached? %>
-                <%= image_tag food.food_image.variant(resize_to_limit: [150, 150]) %>
-              <% else %>
-                <span class="text-xs text-gray-400"><%= t('.no_image') %></span>
-              <% end %>
-            </div>
           <% end %>
+
+          <%# 画像 %>
+          <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200 overflow-hidden">
+            <% if food.food_image.attached? %>
+              <%= image_tag food.food_image.variant(resize_to_limit: [150, 150]) %>
+            <% else %>
+              <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
+                <%= t('.no_image') %>
+              </div>
+            <% end %>
+          </div>
 
           <%# 冷蔵庫に登録する食材の数量を入力 %>
           <% fa = form.object.user_foods[i] %>

@@ -50,6 +50,11 @@
         </p>
       </div>
 
+      <div>
+        <%= f.label :food_image, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.file_field :food_image, class: "file-input file-input-sm" %>
+      </div>
+
       <%= f.hidden_field :category_id %>
     </div>
   </div>

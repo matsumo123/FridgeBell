@@ -25,30 +25,16 @@
                 <div class="p-4 sm:p-5 flex flex-col sm:flex-row items-start gap-4">
                   <!-- 左：食材名＋画像 -->
                   <div class="w-full sm:w-44 shrink-0 flex flex-col items-center gap-2 text-center">
-                    <% if food.user_id == current_user.id %>
-                      <div class="space-x-1">
-                        <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center gap-1" do %>
-                          <span class="font-medium text-lg text-gray-900">
-                            <%= food.name %>
-                          </span>
-                          <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
-                        <% end %>
-                      </div>
-                      <div class="bg-gray-100 h-30 w-30 md:h-48 md:w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-                        <p><%= t('.no_image') %></p>
-                      </div>
-                    <% else %>
-                      <div class="font-medium text-lg text-gray-900">
-                        <%= food.name %>
-                      </div>
-                      <div class="bg-gray-100 h-30 w-30 md:48  md:w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200">
-                        <% if food.food_image.attached? %>
-                          <%= image_tag food.food_image.variant(resize_to_limit: [100, 100]), class: "block" %>
-                        <% else %>
-                          <span class="text-xs text-gray-400"><%= t('.no_image') %></span>
-                        <% end %>
-                      </div>
-                    <% end %>
+                    <div class="font-medium text-lg text-gray-900">
+                      <%= food.name %>
+                    </div>
+                    <div class="bg-gray-100 h-32 w-32 md:h-40  md:w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200 overflow-hidden">
+                      <% if food.food_image.attached? %>
+                        <%= image_tag food.food_image.variant(resize_to_limit: [100, 100]), class: "block" %>
+                      <% else %>
+                        <span class="text-gray-800 text-xs"><%= t('.no_image') %></span>
+                      <% end %>
+                    </div>
                   </div>
 
                   <!-- 右：期限＋メモ -->
