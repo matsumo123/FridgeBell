@@ -5,9 +5,18 @@
     data: { previews_target: "input", action: "change->previews#preview" } %>
 
   <% if food.food_image.attached? %>
-    <div class="flex justify-center mt-4do">
+    <%= turbo_frame_tag dom_id(food.food_image.attachment),
+      class: "flex flex-col items-center gap-2 mt-2" do %>
       <%= image_tag food.food_image, data: { previews_target: "preview" } %>
-    </div>
+
+      <%= link_to delete_food_image_food_path(food),
+        data: { turbo_method: :delete,
+                turbo_confirm: t('helpers.turbo_confirm.food_image') },
+        class: "inline-flex items-center gap-1 bg-white hover:bg-gray-100 text-gray-800 text-sm py-2 px-4 border border-gray-400 rounded shadow whitespace-nowrap" do %>
+        <%= heroicon "x-mark", options: { class: "w-4 h-4 " } %>
+        <span>画像を削除</span>
+      <% end %>
+    <% end %>
   <% else %>
     <%= image_tag "", data: { previews_target: "preview" } %>  
   <% end %>  

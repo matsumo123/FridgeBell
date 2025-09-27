@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resource :password, only: %i[edit update]
   end
   resources :foods, only: %i[new create edit update destroy] do
+    member do
+      delete :delete_food_image
+    end
     collection do
       get :autocomplete
     end
