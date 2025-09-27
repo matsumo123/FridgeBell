@@ -16,6 +16,7 @@ ja:
     turbo_confirm:
       delete: 削除してよろしいですか
       foods_list: 食材リストから削除してよろしいですか
+      food_image: 食材の画像を削除してよろしいですか
   shared:
     header:
       login: ログイン

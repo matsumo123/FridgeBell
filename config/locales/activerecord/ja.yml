@@ -44,6 +44,7 @@ ja:
         quantity: 1カウントあたりの数量
         unit: 1カウントあたりの単位
         default_deadline: 冷蔵保管期限
+        food_image: 食材の画像
       user_food:
         quantity: 数量
         deadline_date: 期限
