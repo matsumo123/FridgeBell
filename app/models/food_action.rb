@@ -1,6 +1,6 @@
 class FoodAction < ApplicationRecord
   belongs_to :user
-  belongs_to :user_food
+  belongs_to :user_food, optional: true
   enum :action_type, { consumed: 0, discarded: 1 }, validate: true
 
   validates :user_id, :user_food_id, :action_type, :action_date, :quantity, :food_name, :unit, presence: true
