@@ -1,13 +1,6 @@
 <%= form_with(model: food, html: { data: { turbo_frame: 'foods', action: "turbo:submit-end->foods-modal#closeIfSuccess" } }) do |f| %>
 <%= render "shared/error_messages", object: f.object %>
   <div class="flex flex-col items-center space-y-2 font-mono">
-    <div class="flex justify-center">
-      <div class="w-24 h-24 border-1 border-gray-300 rounded-lg flex items-center justify-center bg-gray-100">
-        <span class="text-xs text-gray-500 text-center px-2">
-          <%= t('.no_image') %>
-        </span>
-      </div>
-    </div>
     <div class="w-full max-w-sm space-y-4">
       <div>
         <div class="flex items-center mb-1">
@@ -50,10 +43,7 @@
         </p>
       </div>
 
-      <div>
-        <%= f.label :food_image, class: "block text-sm font-medium text-gray-700" %>
-        <%= f.file_field :food_image, class: "file-input file-input-sm" %>
-      </div>
+      <%= render 'food_image_preview', f: f, food: @food %>
 
       <%= f.hidden_field :category_id %>
     </div>
