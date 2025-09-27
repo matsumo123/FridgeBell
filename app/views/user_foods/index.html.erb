@@ -25,7 +25,7 @@
       </ul>
     </div>
 
-      <div class="p-4">
+      <div class="px-4 py-2">
         <% if @user_foods.blank? && @current_tab == "all" %>
           <span class="block text-center text-gray-600 md:text-xl font-semibold tracking-tight">
             <%= t('.fridge_blank') %>
@@ -43,12 +43,7 @@
             </span>
           </div>
         <% elsif @user_foods.blank? %>
-          <div class ="flex flex-col items-center">
-            <div class="bg-white/50 rounded-full p-10">
-              <%= heroicon "magnifying-glass", options: { class: "w-10 h-10 text-gray-500" } %>
-            </div>
-            <span class="text-gray-700 mt-4"><%= t('.no_applicable_food') %></span>
-          </div>
+          <%= render "no_results" %>
         <% else %>
           <% @user_foods.each do |user_food| %>
             <%= render partial: "user_food", locals: { user_food: user_food } %>

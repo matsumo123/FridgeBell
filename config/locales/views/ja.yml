@@ -150,7 +150,9 @@ ja:
     search:
       search: 検索
       placeholders:
-        search_form: 食材を検索   
+        search_form: 食材を検索
+    no_results:
+      no_applicable_food: 一致する食材が見つかりません 
   food_actions:
     form:
       title: 食材を選択し、数量を入力してください

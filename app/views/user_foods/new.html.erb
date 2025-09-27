@@ -24,9 +24,13 @@
 
         <%= render 'search', q: @q, url: new_user_food_path(category_id: params[:category_id]) %>
 
-        <div class="mx-4">
-          <%= render "new_form", foods: @foods, user_food: @user_food %>
-        </div>
+        <% if @foods.present? %>
+          <div class="mx-4">
+            <%= render "new_form", foods: @foods, user_food: @user_food %>
+          </div>
+        <% else %>
+          <%= render "no_results" %>
+        <% end %>
 
         <div class="flex justify-center my-4">
           <%= link_to new_food_path(category_id: params[:category_id]), data: { turbo_frame: 'foods_modal' }, class: "flex items-center gap-2 px-6 py-3 bg-white rounded-xl border-1 border-gray-200 shadow-sm hover:shadow-md transition text-gray-700 font-medium" do %>
