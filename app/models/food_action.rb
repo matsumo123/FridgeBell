@@ -29,7 +29,7 @@ class FoodAction < ApplicationRecord
     end
 
     if unit.blank?
-      self.unit = "不明"
+      self.unit = "個"
     end
   end
 end
