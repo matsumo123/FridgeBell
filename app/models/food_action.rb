@@ -8,4 +8,28 @@ class FoodAction < ApplicationRecord
   validates :availability, inclusion: { in: [ true, false ] }
   validates :food_name, length: { maximum: 15 }
   validates :unit, length: { maximum: 5 }
+
+  before_validation :set_snapshot_data, on: [ :create ]
+
+  private
+
+  def set_snapshot_data
+    if user_food.present? && user_food.food.present?
+      f = user_food.food
+      if food_name.blank?
+        self.food_name = f.name
+      end
+      if unit.blank?
+        self.unit = f.unit
+      end
+    end
+
+    if food_name.blank?
+      self.food_name = "不明"
+    end
+
+    if unit.blank?
+      self.unit = "不明"
+    end
+  end
 end
