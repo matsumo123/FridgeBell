@@ -9,7 +9,7 @@ class FoodActionsController < ApplicationController
       end
     else
       @month = Time.current.beginning_of_month
-    end 
+    end
     from = @month.beginning_of_month
     to = @month.end_of_month
     @action_foods = current_user.food_actions.where(action_date: from..to).order(:action_date).page(params[:page]).per(15)
