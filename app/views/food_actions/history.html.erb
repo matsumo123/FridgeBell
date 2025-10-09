@@ -1,0 +1,67 @@
+<main class="flex-1 md:px-6">
+  <div class="mx-auto max-w-lg md:max-w-2xl space-y-4 font-mono">
+    <div class="border-b border-gray-100 px-4 pb-2 flex flex-col items-center gap-1">
+      <h1 class="text-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight">
+        消費・廃棄の履歴
+      </h1>
+    </div>
+
+    <div class="grid grid-cols-3 items-center mb-4 mx-6">
+      <div class="justify-self-start">
+        <%= link_to history_food_actions_path(month: (@month - 1.month).strftime("%Y-%m")), class: "flex items-center gap-1 px-4 py-2 text-gray-700 border border-gray-400 rounded-2xl shadow-sm hover:bg-gray-100 hover:shadow transition-all duration-200 w-24 h-9 justify-center" do %>
+          <%= heroicon "chevron-left", options: { class: "w-3 h-3 text-gray-500" } %>
+          <span class="text-xs md:text-sm">先月</span>
+        <% end %>
+      </div>
+
+      <div class="justify-self-center text-gray-800 font-semibold sm:text-xl">
+        <%= @month.strftime("%Y/%m") %>
+      </div>
+
+      <div class="justify-self-end">
+        <% unless @month.month == Time.current.month %>
+          <%= link_to history_food_actions_path(month: (@month + 1.month).strftime("%Y-%m")), class: "flex items-center gap-1 px-4 py-2 text-gray-700 border border-gray-400 rounded-2xl shadow-sm hover:bg-gray-100 hover:shadow transition-all duration-200 w-24 h-9 justify-center" do %>
+            <%= heroicon "chevron-right", options: { class: "w-3 h-3 text-gray-500" } %>
+            <span class="text-xs md:text-sm">翌月</span>
+          <% end %>
+        <% else %>
+          <div class="w-24 h-9"></div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if @action_foods.present? %>
+      <div class="space-y-4 mx-6 my-4">
+        <% @action_foods.each do |af| %>
+          <div class="flex items-center justify-between bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-4 hover:shadow-md transition-shadow duration-200 w-full sm:max-w-md md:max-w-lg mx-auto">
+            <div class="flex flex-col">
+              <span class="text-xs text-gray-500">
+                <%= af.action_date.strftime('%Y-%m-%d') %>
+              </span>
+              <span class="text-lg font-semibold text-gray-800 mt-1">
+                <%= af.food_name %>
+              </span>
+              <span class="text-sm text-gray-600 mt-1">
+                数量：<%= af.quantity %> <%= af.unit %>
+              </span>
+            </div>
+            <div>
+              <% if af.action_type == "consumed" %>
+                <span class="px-4 py-2 text-sm font-medium text-green-700 bg-green-100 rounded-full">消費</span>
+              <% else %>
+                <span class="px-4 py-2 text-sm font-medium text-red-700 bg-red-100 rounded-full">廃棄</span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p  class="text-center text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100 shadow-sm">
+        <%= @month.strftime("%m") %>月に消費・廃棄した食材はありません☺️
+      </p>
+    <% end %>
+    <div class="mb-4">
+      <%= paginate @action_foods %>
+    </div>
+  </div>
+</main>
