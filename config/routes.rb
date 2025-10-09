@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resource :consume, only: %i[new create]
     resource :discard, only: %i[new create]
   end
+  resources :food_actions do
+    collection do
+      get :history
+    end
+  end
   resource :reminder, only: %i[show new create edit update destroy]
   get "character_stage", to: "user_characters#character_stage"
   if Rails.env.development?
