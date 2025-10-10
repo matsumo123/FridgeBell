@@ -3,7 +3,7 @@
   "private": true,
   "devDependencies": {
     "daisyui": "^5.0.54",
-    "esbuild": "^0.25.5"
+    "esbuild": "^0.25.10"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
@@ -13,6 +13,9 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.16",
     "@tailwindcss/cli": "^4.1.11",
+    "chart.js": "^4.5.0",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "chartkick": "^5.0.1",
     "stimulus-autocomplete": "^3.1.0",
     "tailwindcss": "^4.1.11",
     "tailwindcss-stimulus-components": "^6.1.3"

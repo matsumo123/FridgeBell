@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resource :consume, only: %i[new create]
     resource :discard, only: %i[new create]
   end
-  resources :food_actions do
+  resources :food_actions, only: %i[index] do
     collection do
       get :history
     end
