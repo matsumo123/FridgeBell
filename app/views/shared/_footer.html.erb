@@ -9,7 +9,7 @@
             'bg-orange-100 text-orange-600' :
             'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
         <%= heroicon "home", variant: :outline, options: { class: "w-6 h-6" } %>
-        <span class="text-xs font-medium">Home</span>
+        <span class="text-xs font-medium">ホーム</span>
       <% end %>
 
       <%= link_to user_foods_path,
@@ -18,7 +18,7 @@
             'bg-orange-100 text-orange-600' :
             'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
         <i class="material-symbols-rounded" style="font-variation-settings: 'wght' 50;">kitchen</i>
-        <span class="text-xs font-medium">Fridge</span>
+        <span class="text-xs font-medium">冷蔵庫</span>
       <% end %>
 
       <%= link_to new_user_food_path(category_id: 1),
@@ -27,10 +27,20 @@
             'bg-orange-100 text-orange-600' :
             'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
         <%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6" } %>
-        <span class="text-xs font-medium">Add Item</span>
+        <span class="text-xs font-medium">追加</span>
       <% end %>
 
-      <%= link_to reminder_path, class: "#{item_base}
+      <%= link_to food_actions_path,
+        class: "#{item_base}
+          #{ current_page?(food_actions_path) ?
+          'bg-orange-100 text-orange-600' :
+          'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
+        <%= heroicon "chart-bar", variant: :outline, options: { class: "w-6 h-6" } %>
+        <span class="text-xs font-medium">統計</span>
+      <% end %>
+
+      <%= link_to reminder_path,
+        class: "#{item_base}
           #{ current_page?(reminder_path) ?
             'bg-orange-100 text-orange-600' :
             'hover:bg-gray-100 text-gray-300 transition-colors' }" do %>
