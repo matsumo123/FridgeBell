@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :food_actions, only: %i[index] do
     collection do
       get :history
+      get :rankings
     end
   end
   resource :reminder, only: %i[show new create edit update destroy]
