@@ -55,10 +55,13 @@
             <div>
               <p class="text-green-700 font-semibold bg-green-100 rounded-full py-1 mb-4">消費 TOP3</p>
               <% if @top_consumed.present? %>
-                <% @top_consumed.each_with_index do |tc, i| %>
+                <% prev = nil; rank = 0 %>
+                <% @top_consumed.each do |tc| %>
                   <div class="flex items-center justify-start gap-2 mt-3">
+                    <% rank += 1 if prev != tc.total_quantity %>
+                    <% prev = tc.total_quantity %>
                     <div class="rounded-md px-2 bg-gray-300 text-white">
-                      <%= i + 1 %>
+                      <%= rank %>
                     </div>
                     <div class="text-gray-800 font-semibold text-sm">
                       <%= tc.food_name %>
@@ -76,10 +79,13 @@
             <div>
               <p class="text-red-700 font-semibold bg-red-100 rounded-full py-1 mb-4 ">廃棄 TOP3</p>
               <% if @top_discarded.present? %>
-                <% @top_discarded.each_with_index do |td, i| %>
+                <% prev = nil; rank = 0 %>
+                <% @top_discarded.each do |td| %>
                   <div class="flex items-center justify-start gap-2 mt-3">
+                  <% rank += 1 if prev != td.total_quantity %>
+                  <% prev = td.total_quantity %>
                     <div class="rounded-md px-2 bg-gray-300 text-white">
-                      <%= i + 1 %>
+                      <%= rank %>
                     </div>
                     <div class="text-gray-800 font-semibold text-sm">
                       <%= td.food_name %>
