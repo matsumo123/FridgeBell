@@ -3,7 +3,7 @@
     <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 mb-4 mx-4">
       <p class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight">
         <%= heroicon "chart-pie", variant: :outline, options: { class: "w-7 h-7" } %>
-        <span class="text-gray-800">廃棄 VS 消費</span>
+        <span class="text-gray-800">今月の廃棄 VS 消費</span>
       </p>
     
       <div class="px-5 py-2">
@@ -42,5 +42,68 @@
         </div>
       </div>
     </div>
+
+    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 mb-4 mx-4">
+      <p class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight">
+        <%= heroicon "trophy", variant: :outline, options: { class: "w-7 h-7" } %>
+        <span class="text-gray-800">今月のランキング</span>
+      </p>
+
+      <div class="px-5 py-2">
+        <div class="rounded-xl border border-gray-200 bg-white/70 py-4 px-4">
+          <div class="text-center grid gap-6 grid-cols-2">
+            <div>
+              <p class="text-green-700 font-semibold bg-green-100 rounded-full py-1 mb-4">消費 TOP3</p>
+              <% if @top_consumed.present? %>
+                <% @top_consumed.each_with_index do |tc, i| %>
+                  <div class="flex items-center justify-start gap-2 mt-3">
+                    <div class="rounded-md px-2 bg-gray-300 text-white">
+                      <%= i + 1 %>
+                    </div>
+                    <div class="text-gray-800 font-semibold text-sm">
+                      <%= tc.food_name %>
+                    </div>
+                    <div class="text-gray-800 text-sm ml-auto text-right    tabular-nums">
+                      <%= number_with_precision(tc.total_quantity, precision: 2,  strip_insignificant_zeros: true) %><%= tc.unit %>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <span>今月の消費の記録はありません😌</span>
+              <% end %>
+            </div>
+
+            <div>
+              <p class="text-red-700 font-semibold bg-red-100 rounded-full py-1 mb-4 ">廃棄 TOP3</p>
+              <% if @top_discarded.present? %>
+                <% @top_discarded.each_with_index do |td, i| %>
+                  <div class="flex items-center justify-start gap-2 mt-3">
+                    <div class="rounded-md px-2 bg-gray-300 text-white">
+                      <%= i + 1 %>
+                    </div>
+                    <div class="text-gray-800 font-semibold text-sm">
+                      <%= td.food_name %>
+                    </div>
+                    <div class="text-gray-800 text-sm text-sm ml-auto text-righttabular-nums">
+                      <%= number_with_precision(td.total_quantity, precision: 2,strip_insignificant_zeros: true) %><%= td.unit %>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <span>今月の廃棄記録はありません☺️</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <%= link_to "#", class: "inline-flex items-center gap-1.5 text-sky-600 hover:text-sky-700 hover:underline focus:outline-none focus:ring-2 focus:ring-sky-300 rounded transition-colors" do %>
+            <span class="text-xs sm:text-sm md:text-base">もっと詳しく</span>
+            <%= heroicon "cursor-arrow-rays", variant: :outline, options: { class: "w-4 h-4" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
