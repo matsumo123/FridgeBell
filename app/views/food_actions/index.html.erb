@@ -1,34 +1,34 @@
 <main class="flex-1 md:px-6">
-  <div class="mx-auto max-w-lg md:max-w-2xl space-y-4 font-mono">
-    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 mb-4 mx-4">
+  <div class="mx-auto max-w-lg md:max-w-6xl font-mono grid grid-cols-1 md:grid-cols-2 items-start gap-4 md:gap-6">
+    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 md:mb-4 mx-4">
       <p class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight">
         <%= heroicon "chart-pie", variant: :outline, options: { class: "w-7 h-7" } %>
-        <span class="text-gray-800">廃棄 VS 消費</span>
+        <span class="text-gray-800">今月の消費 VS 廃棄</span>
       </p>
     
       <div class="px-5 py-2">
-        <div class="rounded-xl border border-gray-200 bg-white/70 py-4">
+        <div class="rounded-xl border border-gray-200 bg-white/70 py-4 overflow-hidden">
           <% if @display["消費"] == 0 && @display["廃棄"] == 0 %>
-            <p class="text-center text-gray-800">今月の記録はまだありません😌</p>
+            <p class="text-center text-gray-800">記録はまだありません😌</p>
           <% else %>
-            <div class="-mt-8 md:mt-2 text-center mx-auto w-56 md:w-72">
+            <div class="-mt-12 sm:-mt-8 md:mt-2 text-center mx-auto w-48 sm:w-56 md:w-72">
               <%= pie_chart @display,
                             id: "consumption_pie",
-                            height: "180px",
                             suffix: "%",
-                            colors: ["#41efafff", "#fb7488ff"],
+                            colors: ["#fb7488ff", "#41efafff"],
                             legend: false,
-                            class: "mx-auto max-w-md" %>
+                            aspectRatio: 1,
+                            class: "w-full" %>
             </div>
     
-            <div class="-mt-8 md:mt-1 flex items-center justify-center gap-18">
-              <div class="text-center bg-red-100 rounded-full py-1 px-4">
-                <span class="inline-flex items-center gap-1 font-semibold text-red-700">廃棄</span>
-                <div class="text-gray-600 tabular-nums"><%= @display["廃棄"] %>%</div>
-              </div>
+            <div class="-mt-12 sm:-mt-8 md:mt-1 flex items-center justify-center gap-18">
               <div class="text-center bg-green-100 rounded-full py-1 px-4">
                 <span class="inline-flex items-center gap-1 font-semibold text-green-700">消費</span>
                 <div class="text-gray-600 tabular-nums"><%= @display["消費"] %>%</div>
+              </div>
+              <div class="text-center bg-red-100 rounded-full py-1 px-4">
+                <span class="inline-flex items-center gap-1 font-semibold text-red-700">廃棄</span>
+                <div class="text-gray-600 tabular-nums"><%= @display["廃棄"] %>%</div>
               </div>
             </div>
           <% end %>
@@ -36,11 +36,42 @@
 
         <div class="flex justify-center mt-4">
           <%= link_to history_food_actions_path, class: "inline-flex items-center gap-1.5 text-sky-600 hover:text-sky-700 hover:underline focus:outline-none focus:ring-2 focus:ring-sky-300 rounded transition-colors" do %>
-            <span class="text-xs sm:text-sm md:text-base">消費・廃棄の履歴をチェック</span>
+            <span class="text-sm md:text-base">消費・廃棄の履歴をチェック</span>
             <%= heroicon "cursor-arrow-rays", variant: :outline, options: { class: "w-4 h-4" } %>
           <% end %>
         </div>
       </div>
     </div>
+
+    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 mb-4 mx-4">
+      <p class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight">
+        <%= heroicon "trophy", variant: :outline, options: { class: "w-7 h-7" } %>
+        <span class="text-gray-800">今月のランキング</span>
+      </p>
+
+      <div class="px-5 py-2">
+        <div class="rounded-xl border border-gray-200 bg-white/70 py-4 px-4">
+          <div class="text-center grid gap-6 grid-cols-1 sm:grid-cols-2">
+            <div>
+              <p class="text-green-700 font-semibold bg-green-100 rounded-full py-1 mb-4">消費 TOP3</p>
+              <%= render "ranking_list", object: @top_consumed %>
+            </div>
+
+            <div>
+              <p class="text-red-700 font-semibold bg-red-100 rounded-full py-1 mb-4 ">廃棄 TOP3</p>
+              <%= render "ranking_list", object: @top_discarded %>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <%= link_to rankings_food_actions_path, class: "inline-flex items-center gap-1.5 text-sky-600 hover:text-sky-700 hover:underline focus:outline-none focus:ring-2 focus:ring-sky-300 rounded transition-colors" do %>
+            <span class="text-sm md:text-base">すべて見る</span>
+            <%= heroicon "cursor-arrow-rays", variant: :outline, options: { class: "w-4 h-4" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>

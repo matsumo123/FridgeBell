@@ -8,7 +8,7 @@ Chart.register(ChartDataLabels)
 Chart.defaults.set("plugins.datalabels", {
   display: true,
   color: "#fff",
-  font: { weight: "bold", size: 32 },
+  font: { weight: "bold", size: 24 },
   anchor: "center",
   align: "center",
   formatter: (v) => {

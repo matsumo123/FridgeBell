@@ -1,0 +1,21 @@
+<% if object.present? %>
+  <% prev = nil; rank = 0 %>
+  <% object.each do |v| %>
+    <div class="flex items-center justify-start gap-2 my-4">
+      <% rank += 1 if prev != v.total_quantity %>
+      <% prev = v.total_quantity %>
+        <div class="rounded-md px-2 bg-gray-300 text-white">
+          <%= rank %>
+        </div>
+
+      <div class="text-gray-800 font-semibold text-sm ml-2">
+        <%= v.food_name %>
+      </div>
+      <div class="text-gray-800 text-sm ml-auto text-right tabular-nums">
+        <%= number_with_precision(v.total_quantity, precision: 2,  strip_insignificant_zeros: true) %><%= v.unit %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <span class="flex justify-center text-gray-700 text-sm mt-4">記録はありません😌</span>
+<% end %>

@@ -24,7 +24,8 @@ gem "rails-i18n", "~> 7.0.0"
 
 gem "devise"
 
-gem "heroicon"
+# gem "heroicon"
+gem "heroicons"
 
 gem "image_processing", "~> 1.2"
 
