@@ -9,6 +9,16 @@ class FoodAction < ApplicationRecord
   validates :food_name, length: { maximum: 15 }
   validates :unit, length: { maximum: 5 }
 
+  scope :this_month, -> (user, time = Time.current){ where(user_id: user.id, action_date: time.all_month) }
+  scope :consumed, -> { where(action_type: :consumed) }
+  scope :discarded, -> { where(action_type: :discarded) }
+  scope :top3_by_total_quantity, -> (limit = 3){ 
+    group(:food_name, :unit)
+      .select('food_name, unit, SUM(quantity) AS total_quantity')
+      .order('total_quantity DESC')
+      .limit(limit)
+    }
+
   before_validation :set_snapshot_data, on: [ :create ]
 
   private

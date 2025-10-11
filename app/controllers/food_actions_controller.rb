@@ -1,8 +1,7 @@
 class FoodActionsController < ApplicationController
   before_action :authenticate_user!
   def index
-    range = Time.current.beginning_of_month..Time.current.end_of_month
-    month_data = FoodAction.where(user_id: current_user.id, action_date: range)
+    month_data = FoodAction.this_month(current_user)
     counts = month_data.group(:action_type).count
     total = counts.values.sum
     percentages = counts.transform_values { |v| total.zero? ? 0 : (v * 100 / total).round(0) }
@@ -12,19 +11,9 @@ class FoodActionsController < ApplicationController
       "消費" => percentages.fetch("consumed", percentages.fetch(:consumed, 0))
     }
 
-    @top_consumed = FoodAction
-      .where(user_id: current_user.id, action_type: :consumed, action_date: range)
-      .group(:food_name, :unit)
-      .select('food_name, unit, SUM(quantity) AS total_quantity')
-      .order('total_quantity DESC')
-      .limit(3)
+    @top_consumed = FoodAction.this_month(current_user).consumed.top3_by_total_quantity
     
-    @top_discarded = FoodAction
-      .where(user_id: current_user.id, action_type: :discarded, action_date: range)
-      .group(:food_name, :unit)
-      .select('food_name, unit, SUM(quantity) AS total_quantity')
-      .order('total_quantity DESC')
-      .limit(3)
+    @top_discarded = FoodAction.this_month(current_user).discarded.top3_by_total_quantity
   end
 
   def history
