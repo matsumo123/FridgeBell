@@ -54,50 +54,12 @@
           <div class="text-center grid gap-6 grid-cols-1 sm:grid-cols-2">
             <div>
               <p class="text-green-700 font-semibold bg-green-100 rounded-full py-1 mb-4">消費 TOP3</p>
-              <% if @top_consumed.present? %>
-                <% prev = nil; rank = 0 %>
-                <% @top_consumed.each do |tc| %>
-                  <div class="flex items-center justify-start gap-2 mt-3">
-                    <% rank += 1 if prev != tc.total_quantity %>
-                    <% prev = tc.total_quantity %>
-                    <div class="rounded-md px-2 bg-gray-300 text-white">
-                      <%= rank %>
-                    </div>
-                    <div class="text-gray-800 font-semibold text-sm">
-                      <%= tc.food_name %>
-                    </div>
-                    <div class="text-gray-800 text-sm ml-auto text-right    tabular-nums">
-                      <%= number_with_precision(tc.total_quantity, precision: 2,  strip_insignificant_zeros: true) %><%= tc.unit %>
-                    </div>
-                  </div>
-                <% end %>
-              <% else %>
-                <span>消費記録はありません😌</span>
-              <% end %>
+              <%= render "ranking_list", object: @top_consumed %>
             </div>
 
             <div>
               <p class="text-red-700 font-semibold bg-red-100 rounded-full py-1 mb-4 ">廃棄 TOP3</p>
-              <% if @top_discarded.present? %>
-                <% prev = nil; rank = 0 %>
-                <% @top_discarded.each do |td| %>
-                  <div class="flex items-center justify-start gap-2 mt-3">
-                  <% rank += 1 if prev != td.total_quantity %>
-                  <% prev = td.total_quantity %>
-                    <div class="rounded-md px-2 bg-gray-300 text-white">
-                      <%= rank %>
-                    </div>
-                    <div class="text-gray-800 font-semibold text-sm">
-                      <%= td.food_name %>
-                    </div>
-                    <div class="text-gray-800 text-sm ml-auto text-right tabular-nums">
-                      <%= number_with_precision(td.total_quantity, precision: 2,strip_insignificant_zeros: true) %><%= td.unit %>
-                    </div>
-                  </div>
-                <% end %>
-              <% else %>
-                <span>廃棄記録はありません😌</span>
-              <% end %>
+              <%= render "ranking_list", object: @top_discarded %>
             </div>
           </div>
         </div>
