@@ -8,8 +8,8 @@ class FoodActionsController < ApplicationController
     percentages = counts.transform_values { |v| total.zero? ? 0 : (v * 100 / total).round(0) }
 
     @display = {
-      "消費" => percentages.fetch("consumed", percentages.fetch(:consumed, 0)),
-      "廃棄" => percentages.fetch("discarded", percentages.fetch(:discarded, 0))
+      "廃棄" => percentages.fetch("discarded", percentages.fetch(:discarded, 0)),
+      "消費" => percentages.fetch("consumed", percentages.fetch(:consumed, 0))
     }
 
     @top_consumed = FoodAction
