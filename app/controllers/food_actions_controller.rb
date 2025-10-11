@@ -32,7 +32,22 @@ class FoodActionsController < ApplicationController
   end
 
   def rankings
-    @consumed = FoodAction.this_month(current_user).consumed.ranking
-    @discarded = FoodAction.this_month(current_user).discarded.ranking
+    if params[:month].present?
+      begin
+        @month = Time.strptime(params[:month], "%Y-%m")
+      rescue ArgumentError
+        @month = Time.current.beginning_of_month
+      end
+    else
+      @month = Time.current.beginning_of_month
+    end
+    @current_tab = %w[consumed discarded].include?(params[:tab]) ? params[:tab] : "consumed"
+    base = FoodAction.this_month(current_user)
+    scope = 
+      case @current_tab
+      when "consumed" then base.consumed.ranking
+      when "discard" then base.discard.ranking
+      end
+    @action = scope
   end
 end

@@ -1,10 +1,33 @@
 <main class="flex-1 md:px-6">
   <div class="mx-auto max-w-lg md:max-w-2xl space-y-4 font-mono">
-    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 pt-4 pb-2 md:p-4 md:mb-4 mx-4">
+    <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 px-6 pt-4 pb-2 mb-4 mx-4">
+
       <h1 class="flex items-center justify-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight gap-4">
         <%= heroicon "arrow-left", options: { class: "w-5 h-5" } %>
         <span>今月のランキング</span>
       </h1>
+
+      <%= turbo_frame_tag "tab_content" do %>
+        <ul class="mx-auto grid grid-cols-2 gap-0 rounded-full bg-gray-100 shadow-sm overflow-hidden mx-4 my-2">
+          <li>
+            <%= link_to "消費",
+              rankings_food_actions_path(tab: "consumed"),
+              data: { turbo_frame: "tab_content" },
+              class: "block w-full text-center px-4 py-2 font-semibold rounded-full transition-colors " \
+                "#{(params[:tab] || 'consumed') == 'consumed' ? 'bg-green-100 text-green-700 shadow  rounded-l-full rounded-r-none' : 'text-gray-600 hover:text-green-800 hover:bg-green-50 rounded-none'}" %>
+          </li>
+          <li>
+            <%= link_to "廃棄",
+              rankings_food_actions_path(tab: "discarded"),
+              data: { turbo_frame: "tab_content" },
+              class: "block w-full text-center px-4 py-2 font-semibold rounded-full transition-colors " \
+                "#{params[:tab] == 'discarded' ? 'bg-red-100 text-red-700 shadow rounded-r-full rounded-l-none' : 'text-gray-600 hover:text-red-800 hover:bg-red-50 rounded-none'}"  %>
+          </li>
+        </ul>
+
+        <%= render "ranking_list", object: @action %>
+      <% end %>
+
     </div>
   </div>
 </main>
