@@ -21,14 +21,12 @@ class FoodActionsController < ApplicationController
       begin
         @month = Time.strptime(params[:month], "%Y-%m")
       rescue ArgumentError
-        @month = Time.current.beginning_of_month
+        @month = Time.current
       end
     else
-      @month = Time.current.beginning_of_month
+      @month = Time.current
     end
-    from = @month.beginning_of_month
-    to = @month.end_of_month
-    @action_foods = current_user.food_actions.where(action_date: from..to).order(:action_date).page(params[:page]).per(15)
+    @action_foods = current_user.food_actions.where(action_date: @month.all_month).order(:action_date).page(params[:page]).per(15)
   end
 
   def rankings
@@ -36,17 +34,17 @@ class FoodActionsController < ApplicationController
       begin
         @month = Time.strptime(params[:month], "%Y-%m")
       rescue ArgumentError
-        @month = Time.current.beginning_of_month
+        @month = Time.current
       end
     else
-      @month = Time.current.beginning_of_month
+      @month = Time.current
     end
     @current_tab = %w[consumed discarded].include?(params[:tab]) ? params[:tab] : "consumed"
-    base = FoodAction.this_month(current_user)
+    base = current_user.food_actions.where(action_date: @month.all_month)
     scope = 
       case @current_tab
       when "consumed" then base.consumed.ranking
-      when "discard" then base.discard.ranking
+      when "discarded" then base.discarded.ranking
       end
     @action = scope
   end
