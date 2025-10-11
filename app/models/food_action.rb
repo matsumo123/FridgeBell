@@ -18,6 +18,11 @@ class FoodAction < ApplicationRecord
       .order('total_quantity DESC')
       .limit(limit)
     }
+  scope :ranking, -> {
+    group(:food_name, :unit)
+      .select('food_name, unit, SUM(quantity) AS total_quantity')
+      .order('total_quantity DESC')
+  }
 
   before_validation :set_snapshot_data, on: [ :create ]
 

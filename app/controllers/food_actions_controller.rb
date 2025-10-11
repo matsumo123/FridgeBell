@@ -30,4 +30,9 @@ class FoodActionsController < ApplicationController
     to = @month.end_of_month
     @action_foods = current_user.food_actions.where(action_date: from..to).order(:action_date).page(params[:page]).per(15)
   end
+
+  def rankings
+    @consumed = FoodAction.this_month(current_user).consumed.ranking
+    @discarded = FoodAction.this_month(current_user).discarded.ranking
+  end
 end
