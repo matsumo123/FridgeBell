@@ -1,3 +1,5 @@
-<%= link_to favorite_path(current_user.favorites.find_by(food_id: food.id),  category_id: params[:category_id], page: params[:page]), data: { turbo_method: :delete } do %>
+<%= link_to favorite_path(current_user.favorites.find_by(food_id: food.id),  category_id: params[:category_id], page: params[:page]),
+  id: "unfavorite-button-for-food-#{food.id}",
+  data: { turbo_method: :delete } do %>
   <%= heroicon "heart", options: { class: "w-5 h-5 text-rose-500" } %>
 <% end %>
