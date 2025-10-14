@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_08_064530) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_14_025826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_08_064530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stage_number"], name: "index_characters_on_stage_number", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_favorites_on_food_id"
+    t.index ["user_id", "food_id"], name: "index_favorites_on_user_id_and_food_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "food_actions", force: :cascade do |t|
@@ -136,6 +146,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_08_064530) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "foods"
+  add_foreign_key "favorites", "users"
   add_foreign_key "food_actions", "user_foods"
   add_foreign_key "food_actions", "users"
   add_foreign_key "foods", "categories"
