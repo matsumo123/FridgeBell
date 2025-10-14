@@ -1,0 +1,5 @@
+<%= link_to favorites_path(food_id: food.id, category_id: params[:category_id], page: params[:page]),
+  id: "favorite-button-for-food-#{food.id}",
+  data: { turbo_method: :post } do %>
+  <%= heroicon "heart", variant: :outline, options: { class: "w-5 h-5 text-gray-500" } %>
+<% end %>

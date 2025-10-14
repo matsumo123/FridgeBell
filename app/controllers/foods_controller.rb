@@ -58,6 +58,12 @@ class FoodsController < ApplicationController
     end
   end
 
+  def favorites
+    @categories = Category.custom_order
+    @foods = current_user.favorite_foods.order(:name).page(params[:page])
+    @form = Form::UserFoodCollection.new(current_user, @foods)
+  end
+
   private
 
   def food_params

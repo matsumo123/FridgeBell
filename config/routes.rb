@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     end
     collection do
       get :autocomplete
+      get :favorites
     end
   end
+  resources :favorites, only: %i[create destroy]
   resources :user_foods, only: %i[index new create edit update destroy]
   namespace :food_actions do
     resource :consume, only: %i[new create]

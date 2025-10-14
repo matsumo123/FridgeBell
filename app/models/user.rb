@@ -37,6 +37,18 @@ class User < ApplicationRecord
     self.save!
   end
 
+  def favorite(food)
+    favorite_foods << food
+  end
+
+  def unfavorite(food)
+    favorite_foods.destroy(food)
+  end
+
+  def favorite?(food)
+    favorite_foods.include?(food)
+  end
+
   private
 
   def set_user_character
