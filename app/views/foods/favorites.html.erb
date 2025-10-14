@@ -21,9 +21,9 @@
           <%= render 'categories/category_nav', categories: @categories %>
         </div>
 
-        <% if @favorite_foods.present? %>
+        <% if @foods.present? %>
           <div class="mx-4">
-            <%= render "new_form", foods: @favorite_foods, user_food: @user_food %>
+            <%= render "user_foods/new_form", foods: @foods %>
           </div>
         <% else %>
           <div class="flex justify-center mt-4">

@@ -26,7 +26,7 @@
 
         <% if @foods.present? %>
           <div class="mx-4">
-            <%= render "new_form", foods: @foods, user_food: @user_food %>
+            <%= render "new_form", foods: @foods %>
           </div>
         <% else %>
           <%= render "no_results" %>
