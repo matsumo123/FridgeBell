@@ -5,11 +5,11 @@
     <%= render "shared/error_messages", object: form.object %>
 
       <% foods.each_with_index do |food, i| %>
-        <div class="flex flex-col items-stretch gap-3 rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 p-4">
+        <div class="flex flex-col items-stretch gap-3 rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 p-4 relative">
           <%# ユーザーが食材リストに追加した食材の場合、食材の編集ができる %>
           <% if food.user_id == current_user.id %>
             <div class="text-center text-lg space-x-2 font-semibold text-gray-800 px-1">
-              <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center space-x-1" do %>
+              <%= link_to edit_food_path(id: food.id), data: { turbo_frame: 'foods_modal' }, class: "inline-flex items-center space-x-1 gap-1" do %>
                 <%= food.name %>
                 <%= heroicon "pencil", options: { class: "w-4 h-4 text-gray-700"} %>
               <% end %>
@@ -20,6 +20,9 @@
               <%= food.name %>
             </div>
           <% end %>
+          <div class="absolute top-2 right-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white/80 shadow-sm">
+            <%= render "foods/favorite_buttons", food: food %>
+          </div>
 
           <%# 画像 %>
           <div class="bg-gray-100 h-48 w-full rounded-xl flex items-center justify-center ring-1 ring-gray-200 overflow-hidden">
@@ -78,7 +81,7 @@
         </button>
       </div>
 
-      <%= render 'details', form: form, foods: @foods, class: "hidden" %>
+      <%= render 'user_foods/details', form: form, foods: @foods, class: "hidden" %>
     <% end %>
   </div>
 <% end %>
