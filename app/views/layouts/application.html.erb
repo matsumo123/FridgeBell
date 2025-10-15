@@ -22,16 +22,27 @@
   </head>
 
   <body class="min-h-screen flex flex-col bg-gradient-to-br from-orange-50 to-green-50">
+    <div data-controller="loading">
+      <div data-loading-target="spinner" class="fixed inset-0 z-50 flex items-center justify-center bg-white/70 hidden">
+        <div class="h-[80px] w-[80px] flex items-center justify-center">
+          <span class="loading loading-spinner text-warning w-6 h-6 sm:w-10 sm:h-10"></span>
+        </div>
+      </div>
+    </div>
+
       <%= render 'shared/header' %>
+
       <div id="flash">
         <%= render 'shared/flash_message' %>
       </div>
+
       <%= yield %>
       <% if user_signed_in? %>
         <%= render 'shared/footer' %>
       <% else %>
         <%= render 'shared/before_login_footer' %>
       <% end %>
+
       <%= turbo_frame_tag 'account_modal' %>
       <%= turbo_frame_tag 'foods_modal' %>
       <%= turbo_frame_tag 'user_food_modal' %>
