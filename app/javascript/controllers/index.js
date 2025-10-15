@@ -25,6 +25,9 @@ application.register("hello", HelloController)
 import HowToModalController from "./how_to_modal_controller"
 application.register("how-to-modal", HowToModalController)
 
+import LoadingController from "./loading_controller"
+application.register("loading", LoadingController)
+
 import PreviewsController from "./previews_controller"
 application.register("previews", PreviewsController)
 
