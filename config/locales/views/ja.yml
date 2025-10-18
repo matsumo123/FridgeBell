@@ -24,7 +24,7 @@ ja:
       user_profile: マイページ
       terms_of_service: 利用規約
       privacy_policy: プライバシーポリシー
-      contact_us: お問い合わせ(準備中)
+      contact_us: お問い合わせ
       logout: ログアウト
       how_to: 使い方
     how_to:
@@ -44,6 +44,7 @@ ja:
     before_login_footer:
       terms_of_service: 利用規約
       privacy_policy: プライバシーポリシー
+      contact_form: お問い合わせ
       copyright: © %{year} %{app_name}
     footer:
       copyright: © %{year} %{app_name}
