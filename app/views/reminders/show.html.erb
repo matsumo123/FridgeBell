@@ -1,13 +1,13 @@
 <% content_for(:title, t('.title')) %>
 <main class="flex-1 md:px-8">
-  <div class="mx-auto max-w-xl md:max-w-7xl">
-    <div class="flex justify-center items-start mb-6">
-      <div class="bg-white mx-4 py-4 px-8 md:my-6 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono">
+  <div class="mx-auto max-w-xl md:max-w-6xl">
+    <div class="flex flex-col justify-center items-center gap-6 mx-4 mb-6">
+      <div class="bg-white mx-4 p-4 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono">
 
         <div class="text-center">
           <h1 class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gray-800">
             <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 inline-block shrink-0" } %>
-            リマインド設定
+            <span>リマインド設定</span>
           </h1>
         </div>
 
@@ -16,6 +16,27 @@
         <%= turbo_frame_tag "reminder" do %>
           <%= render "reminder", reminder: @reminder %>
         <% end %>
+      </div>
+      
+      <div class="bg-white mx-4 p-4 shadow-sm border border-gray-100 rounded-2xl w-full max-w-md font-mono">
+
+        <div class="text-center">
+          <h1 class="flex items-center justify-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gray-800">
+            <%= heroicon "user-plus", variant: :outline, options: { class: "w-6 h-6 inline-block shrink-0" } %>
+            <span>LINE公式アカウント</span>
+          </h1>
+        </div>
+        
+        <div class="text-center text-sm text-gray-700 my-4">
+          <p class="font-semibold">LINE公式アカウントを友だち追加してください。</p>
+          <span class="text-xs">期限が切れる前にお知らせをお届けします📨</span>
+        </div>
+
+        <div class="flex justify-center">
+          <a href="https://lin.ee/TjbnveW" class="inline-block transform scale-90 hover:scale-95 transition">
+            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" class="mx-auto w-42 md:w-48">
+          </a>
+        </div>
       </div>
     </div>
   </div>
