@@ -2,11 +2,11 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: 'FridgeBell',
-      title: 'FridgeBell | 冷蔵庫の食材を管理するWebアプリ',
+      title: 'FridgeBell | 冷蔵庫の食材を管理するサービス',
       reverse: true,
       charset: 'utf-8',
-      description: '期限が切れる前に、あなたにお知らせ',
-      keywords: '冷蔵庫, 食材, 管理, 通知, リマインド',
+      description: 'FridgeBellは冷蔵庫の食材を登録し、期限が近づくとLINEでお知らせを受け取ることができます。',
+      keywords: '冷蔵庫, 食材管理, 賞味期限, 消費期限, 通知, LINE',
       canonical: 'https://fridgebell.fly.dev/',
       separator: '|',
       icon: [
@@ -24,7 +24,7 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        image: image_url('ogp.png')
+        image: image_url('x_ogp.png')
       }
     }
   end
