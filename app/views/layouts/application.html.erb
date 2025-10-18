@@ -19,6 +19,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "bg_fridge", "data-turbo-track": "reload" %>
     <%= favicon_link_tag('favicon.ico') %>
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body class="min-h-screen flex flex-col bg-gradient-to-br from-orange-50 to-green-50">
