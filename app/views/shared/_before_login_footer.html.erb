@@ -4,6 +4,7 @@
     <div class="flex flex-wrap justify-center gap-6 py-4 text-sm md:gap-8">
       <%= link_to t('.terms_of_service'), page_path('terms'), class: "text-gray-700  hover:text-orange-600 transition-colors duration-200" %>
       <%= link_to t('.privacy_policy'), page_path('policy'), class: "text-gray-700 hover:text-orange-600 transition-colors duration-200" %>
+      <%= link_to t('.contact_form'), page_path('contact'), class: "text-gray-700 hover:text-orange-600 transition-colors duration-200" %>
     </div>
 
     <p class="mb-1 text-center text-xs text-gray-500"><%= t('.copyright', year: Time.current.year, app_name: 'FridgeBell') %></P>
