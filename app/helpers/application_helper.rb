@@ -7,7 +7,7 @@ module ApplicationHelper
       charset: "utf-8",
       description: "FridgeBellは冷蔵庫の食材を登録し、期限が近づくとLINEでお知らせを受け取ることができます。",
       keywords: "冷蔵庫, 食材管理, 賞味期限, 消費期限, 通知, LINE",
-      canonical: "https://fridgebell.fly.dev/",
+      canonical: "https://fridgebell.jp/",
       separator: "|",
       icon: [
         { href: image_url("favicon.ico") },
@@ -18,7 +18,7 @@ module ApplicationHelper
         title: :title,
         description: :description,
         type: "website",
-        url: "https://fridgebell.fly.dev/",
+        url: "https://fridgebell.jp/",
         image: image_url("ogp.png"),
         local: "ja-JP"
       },

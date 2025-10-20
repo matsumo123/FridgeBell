@@ -83,7 +83,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.delivery_method = :smtp
-  host = "fridgebell.fly.dev"
+  host = "fridgebell.jp"
   config.action_mailer.default_url_options = { protocol: "https", host: host }
   config.action_mailer.smtp_settings = {
     port:                 587,
