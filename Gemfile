@@ -41,6 +41,10 @@ gem "omniauth-rails_csrf_protection"
 
 gem "line-bot-api"
 
+gem "sidekiq"
+
+gem "sidekiq-scheduler"
+
 gem "dotenv-rails"
 
 gem "high_voltage"
