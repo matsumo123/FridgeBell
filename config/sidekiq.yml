@@ -1,4 +1,10 @@
 :concurrency: 3
 :queues:
   - default
-  
+
+:scheduler:
+  :schedule:
+    send_line_message_job:
+      cron: "0 */15 * * * *"
+      class: "SendLineMessageJob"
+      queue: default
