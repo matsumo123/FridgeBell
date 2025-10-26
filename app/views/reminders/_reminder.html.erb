@@ -1,7 +1,10 @@
 <%= turbo_frame_tag "reminder" do %>
   <% if reminder.present? %>
+    <span class="flex justify-center px-2 py-1 text-xs text-red-400">
+    ⚠️LINE公式アカウントを友だち追加していない場合、リマインドのお知らせは届きません。
+    </span>
     <div class="mx-6 md:mx-8">
-      <p class="mt-4 mb-1 text-xs font-semibold tracking-wider text-gray-500">
+      <p class="mt-2 mb-1 text-xs font-semibold tracking-wider text-gray-500">
         リマインド
       </p>
       <div class="flex items-baseline gap-2">
