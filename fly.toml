@@ -28,3 +28,7 @@ primary_region = 'nrt'
 [[statics]]
   guest_path = '/rails/public'
   url_prefix = '/'
+
+[processes]
+  app = "bin/rails server"
+  worker = "bundle exec sidekiq -C config/sidekiq.yml"
