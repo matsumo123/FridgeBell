@@ -41,7 +41,7 @@ gem "omniauth-rails_csrf_protection"
 
 gem "line-bot-api"
 
-gem "sidekiq"
+gem "sidekiq", "~> 7.3"
 
 gem "sidekiq-scheduler"
 
