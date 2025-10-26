@@ -10,7 +10,7 @@ class NotificationService
   private
 
   def build_reminder_text(user)
-    limit_days = [user.reminder.days_before.to_i, 7].min
+    limit_days = [ user.reminder.days_before.to_i, 7 ].min
     today = Date.current
     limit_date = today + limit_days
     remind_foods = UserFood.includes(:food).where(user_id: user.id).where("deadline_date <= ?", limit_date)
@@ -24,7 +24,7 @@ class NotificationService
       in5: [],
       in7: []
     }
-  
+
     remind_foods.each do |uf|
       food = uf.food.name
       v = uf.deadline_date
@@ -46,37 +46,39 @@ class NotificationService
 
     nf = "ありません☺️"
     blocks = []
-    blocks << ["【期限切れ】", (sections[:expired].presence || [nf])]
-    blocks << ["【今日まで】", (sections[:today].presence || [nf])]
+    blocks << [ "【期限切れ】", (sections[:expired].presence || [ nf ]) ]
+    blocks << [ "【今日まで】", (sections[:today].presence || [ nf ]) ]
 
     if limit_days == 0
-      return 
+      return
     elsif 0 < limit_days && limit_days <= 2
-      blocks << ["【2日以内】", (sections[:in2].presence || [nf])]
+      blocks << [ "【2日以内】", (sections[:in2].presence || [ nf ]) ]
     elsif limit_days <= 5
-      blocks << ["【2日以内】", (sections[:in2].presence || [nf])]
-      blocks << ["【5日以内】", (sections[:in5].presence || [nf])]
+      blocks << [ "【2日以内】", (sections[:in2].presence || [ nf ]) ]
+      blocks << [ "【5日以内】", (sections[:in5].presence || [ nf ]) ]
     else
-      blocks << ["【2日以内】", (sections[:in2].presence || [nf])]
-      blocks << ["【5日以内】", (sections[:in5].presence || [nf])]
-      blocks << ["【7日以内】", (sections[:in7].presence || [nf])]
+      blocks << [ "【2日以内】", (sections[:in2].presence || [ nf ]) ]
+      blocks << [ "【5日以内】", (sections[:in5].presence || [ nf ]) ]
+      blocks << [ "【7日以内】", (sections[:in7].presence || [ nf ]) ]
     end
 
     text = "📢 食材の期限状況をお知らせ\n"
     text << "￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n"
     text << "✅#{limit_days}日前までの期限状況\n\n"
-  
+
     blocks.each do |title, items|
       text << "#{title}\n"
       items.each { |i| text << "#{i}\n" }
       text << "\n"
     end
-    return text.rstrip
+    text.rstrip
   end
 
   def send_push_message
-    remind_users = User.includes(:reminder).where.not(reminders: { id: nil })
+    remind_users = User.includes(:reminder).where.not(reminders: { id: nil, remind_time: nil })
+    time = Time.current
     remind_users.each do |user|
+      next unless user.reminder.remind_time.hour == time.hour && user.reminder.remind_time.min == time.min
       text = build_reminder_text(user)
       next if text.blank?
       push_request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
