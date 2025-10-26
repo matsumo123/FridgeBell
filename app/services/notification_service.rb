@@ -81,8 +81,9 @@ class NotificationService
       next unless user.reminder.remind_time.hour == time.hour && user.reminder.remind_time.min == time.min
       text = build_reminder_text(user)
       next if text.blank?
+      next if user.uid.blank?
       push_request = Line::Bot::V2::MessagingApi::PushMessageRequest.new(
-        to: "Ua160fc3901fa36ebdd6a90f9b9c928c3",
+        to: user.uid,
         messages: [
           Line::Bot::V2::MessagingApi::TextMessage.new(
             text: text
