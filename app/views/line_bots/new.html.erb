@@ -1,0 +1,9 @@
+<main class="flex flex-col items-center justify-center  min-h-[calc(100vh-200px)] text-center font-mono">
+  <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+    食材の期限をお知らせするためにLINE連携が必要です。<br>
+    下のボタンから簡単に連携できます。
+  </p>
+    
+  <%= link_to "LINE連携する", line_bots_path(token: @token),
+    data: { turbo_method: :post }, class: "bg-[#06C755] hover:bg-[#05b24c] text-white font-semibold px-6 py-3 rounded-lg shadow-md transition" %>
+</main>

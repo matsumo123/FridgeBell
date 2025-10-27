@@ -1,5 +1,6 @@
 class LineBotsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :verify_authenticity_token, only: %i[webhook]
 
   def webhook
     body = request.body.read
@@ -20,9 +21,20 @@ class LineBotsController < ApplicationController
   end
 
   def new
+    if current_user.uid.present?
+      flash[:notice] = "LINE連携が完了しました"
+      redirect_to home_path
+    else
+      @token = params[:state]
+    end
   end
 
   def create
+    @line_bot_token = LineBotToken.find_by(token: params[:token])
+    current_user.update(uid: @line_bot_token.line_user_id)
+    @line_bot_token.destroy
+    flash[:notice] = "LINE連携が完了しました"
+    redirect_to home_path
   end
 
   private
@@ -37,7 +49,7 @@ class LineBotsController < ApplicationController
         to: user_id,
         messages: [
           Line::Bot::V2::MessagingApi::TextMessage.new(
-            text: "下記URLよりLINE認証を行っていください。\n※認証を行わない場合、リマインド通知はお届けできませんので、ご注意ください。\n\nhttps://fridgebell.jp/line_bots/new?state=#{token}&openExternalBrowser=1"
+            text: "下記URLよりLINE連携を行っていください。\n※連携を行わない場合、リマインド通知はお届けできませんので、ご注意ください。\n\nhttps://fridgebell.jp/line_bots/new?state=#{token}&openExternalBrowser=1"
           )
         ]
       )
