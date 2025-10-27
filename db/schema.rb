@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_14_025826) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_27_045143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_14_025826) do
     t.index ["name"], name: "index_foods_on_name", unique: true, where: "(user_id IS NULL)"
     t.index ["user_id", "name"], name: "index_foods_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_foods_on_user_id"
+  end
+
+  create_table "line_bot_tokens", force: :cascade do |t|
+    t.string "line_user_id", null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["line_user_id"], name: "index_line_bot_tokens_on_line_user_id", unique: true
   end
 
   create_table "reminders", force: :cascade do |t|
