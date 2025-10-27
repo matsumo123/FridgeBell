@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", omniauth_callbacks: "omniauth_callbacks" }
+
   get "users/profile", to: "users#show"
+
   root "homes#top"
+
   get "home", to: "homes#home"
+
   namespace :account do
     resource :password, only: %i[edit update]
   end
+
   resources :foods, only: %i[new create edit update destroy] do
     member do
       delete :delete_food_image
@@ -15,20 +20,30 @@ Rails.application.routes.draw do
       get :favorites
     end
   end
+
   resources :favorites, only: %i[create destroy]
+
   resources :user_foods, only: %i[index new create edit update destroy]
+
   namespace :food_actions do
     resource :consume, only: %i[new create]
     resource :discard, only: %i[new create]
   end
+
   resources :food_actions, only: %i[index] do
     collection do
       get :history
       get :rankings
     end
   end
+
   resource :reminder, only: %i[show new create edit update destroy]
-  get "character_stage", to: "user_characters#character_stage"
+
+  post "/webhook", to: "line_bots#webhook"
+  resources :line_bots, only: %i[new create]
+
+  # get "character_stage", to: "user_characters#character_stage"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

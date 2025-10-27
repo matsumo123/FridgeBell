@@ -43,9 +43,9 @@
         class: "#{item_base}
           #{ current_page?(reminder_path) ?
             'bg-orange-100 text-orange-600' :
-            'hover:bg-gray-100 text-gray-300 transition-colors' }" do %>
+            'hover:bg-gray-100 text-gray-600 transition-colors' }" do %>
         <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6" } %>
-        <span class="text-xs font-medium">準備中</span> 
+        <span class="text-xs font-medium">通知</span>
       <% end %>
 
     </nav>
