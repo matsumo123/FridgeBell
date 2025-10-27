@@ -79,6 +79,10 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "letter_opener_web", "~> 3.0"
+
+  gem "rspec-rails"
+
+  gem "factory_bot_rails"
 end
 
 group :development do
