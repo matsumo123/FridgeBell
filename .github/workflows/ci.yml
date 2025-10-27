@@ -88,12 +88,12 @@ jobs:
       - name: Database prepare
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@postgres:5432/fridgebell_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/fridgebell_test
         run: bundle exec rails db:prepare
       
       - name: Run rspec
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@postgres:5432/fridgebell_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/fridgebell_test
           REDIS_URL_DEVELOPMENT: redis://localhost:6379/0
         run: bundle exec rspec
