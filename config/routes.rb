@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   post "/webhook", to: "line_bots#webhook"
   resources :line_bots, only: %i[new create]
 
-#  get "character_stage", to: "user_characters#character_stage"
+  # get "character_stage", to: "user_characters#character_stage"
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
