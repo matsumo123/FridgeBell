@@ -36,7 +36,7 @@ RSpec.describe Category, type: :model do
         create(:category, name: name)
       end
       no_order_category = create(:category, name: "魚")
-      expect(Category.custom_order.map(&:name)).to eq Category::ORDER + ["魚"]
+      expect(Category.custom_order.map(&:name)).to eq Category::ORDER + [ "魚" ]
     end
   end
 end
