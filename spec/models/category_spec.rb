@@ -15,10 +15,10 @@ RSpec.describe Category, type: :model do
   end
 
   describe "アソシエーション" do
-    it "複数の食材を持てること" do
+    it "複数の食材を関連付けられること" do
       category = create(:category)
-      food1 = create(:food, category_id: category.id)
-      food2 = create(:food, category_id: category.id)
+      food1 = create(:food, category: category)
+      food2 = create(:food, category: category)
       expect(category.foods).to include(food1, food2)
     end
   end
