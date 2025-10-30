@@ -11,16 +11,16 @@ RSpec.describe UserFood, type: :model do
       expect(user_food).to be_valid
     end
 
-    it "ユーザーがなければ、登録できないこと" do
+    it "ユーザーが未設定なら無効であること" do
       user_food = build(:user_food, user: nil, food: food)
       expect(user_food).to be_invalid
-      expect(user_food.errors[:user_id]).to include("を入力してください")
+      expect(user_food.errors[:user]).to include("を入力してください")
     end
 
-    it "食材がなければ、登録できないこと" do
+    it "食材が未設定なら無効であること" do
       user_food = build(:user_food, user: user, food: nil)
       expect(user_food).to be_invalid
-      expect(user_food.errors[:food_id]).to include("を入力してください")
+      expect(user_food.errors[:food]).to include("を入力してください")
     end
 
     it "数量は必須項目であること" do
