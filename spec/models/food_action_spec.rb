@@ -9,7 +9,7 @@ RSpec.describe FoodAction, type: :model do
       expect(food_action).to be_valid
     end
 
-    it "ユーザーがなければ、登録できないこと" do
+    it "ユーザーが未設定なら無効であること" do
       food_action = build(:food_action, user: nil)
       expect(food_action).to be_invalid
       expect(food_action.errors[:user]).to include("を入力してください")

@@ -10,10 +10,10 @@ RSpec.describe Food, type: :model do
         expect(food).to be_valid
       end
 
-      it "カテゴリー情報がなければ、食材を作成できないこと" do
+      it "カテゴリーが未設定なら無効であること" do
         food = build(:food, category_id: nil)
         expect(food).to be_invalid
-        expect(food.errors[:category_id]).to include("を入力してください")
+        expect(food.errors[:category]).to include("を入力してください")
       end
 
       it "食材名は必須項目であること" do
