@@ -39,7 +39,7 @@ RSpec.describe UserCharacter, type: :model do
     end
 
     it "consecutive_daysは0以上であること" do
-      user_character = build(:user_character, user:user, consecutive_days: -1)
+      user_character = build(:user_character, user: user, consecutive_days: -1)
       expect(user_character).to be_invalid
       expect(user_character.errors[:consecutive_days]).to include("は0以上の値にしてください")
     end
