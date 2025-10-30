@@ -90,4 +90,12 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "コールバック" do
+    let!(:character) { create(:character, stage_number: 0) }
+    it "ユーザー作成後、ステージ0のユーザーキャラクターが生成されること" do
+      user = create(:user)
+      expect(user.user_character.character).to eq character
+    end
+  end
 end
