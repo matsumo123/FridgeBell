@@ -4,8 +4,6 @@ FactoryBot.define do
     action_date { Date.today }
     quantity { 1 }
     availability { true }
-    sequence(:food_name) { |n| "food_name_#{n}" }
-    unit { "個" }
     association :user
     association :user_food
   end
