@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one :user_character, dependent: :destroy
   has_one :reminder, dependent: :destroy
 
-  after_create :set_user_character
+  after_commit :set_user_character, on: :create
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -52,6 +52,13 @@ class User < ApplicationRecord
   private
 
   def set_user_character
-    create_user_character!(character_id: Character.find_by(stage_number: 0).id, consecutive_days: 0, last_action_at: nil)
+    return if user_character.present?
+    default = Character.find_by(stage_number: 0)
+
+    create_user_character!(
+      character: default,
+      consecutive_days: 0,
+      last_action_at: nil
+    )
   end
 end
