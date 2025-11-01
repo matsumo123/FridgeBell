@@ -54,7 +54,7 @@ jobs:
       selenium:
         image: selenium/standalone-chrome
         ports:
-          - 4444:4444
+          - 4445:4444
 
       redis:
         image: redis
@@ -119,5 +119,5 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/fridgebell_test
           REDIS_URL_DEVELOPMENT: redis://localhost:6379/0
-          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+          SELENIUM_DRIVER_URL: http://localhost:4445/wd/hub
         run: bundle exec rspec
