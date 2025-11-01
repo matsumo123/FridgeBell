@@ -50,6 +50,13 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+      
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4445:4444
+        options: >-
+          --shm-size=2g
 
       redis:
         image: redis
@@ -114,4 +121,5 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/fridgebell_test
           REDIS_URL_DEVELOPMENT: redis://localhost:6379/0
+          SELENIUM_DRIVER_URL: http://localhost:4445/wd/hub
         run: bundle exec rspec

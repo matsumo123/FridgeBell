@@ -73,6 +73,9 @@ RSpec.configure do |config|
 
   Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
+  config.include FactoryBot::Syntax::Methods
+  config.include LoginMacros
+
   config.before(:each, type: :system) do
     driven_by :remote_chrome
     Capybara.server_host = IPSocket.getaddress(Socket.gethostname)

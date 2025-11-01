@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "UserSessions", type: :system do
-  include LoginMacros
-
-  before do
-    driven_by(:rack_test)
-  end
-
   let!(:character) { create(:character, :with_image, stage_number: 0) }
   let(:user) { create(:user) }
 
@@ -38,6 +32,8 @@ RSpec.describe "UserSessions", type: :system do
     context "ログアウトボタンをクリック" do
       it "ログアウト処理が成功する" do
         login_as(user)
+        visit home_path
+        find("button[data-action='click->user-menu#toggle']").click
         click_link "ログアウト"
         expect(page).to have_content "ログアウトしました。"
         expect(current_path).to eq root_path
