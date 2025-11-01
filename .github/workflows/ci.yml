@@ -79,6 +79,9 @@ jobs:
         run: |
           corepack enable
           yarn install --frozen-lockfile
+      
+      - name: Build JS
+        run: bin/rails javascript:build RAILS_ENV=test
 
       - name: Build CSS
         run: bin/rails css:build RAILS_ENV=test
