@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-  include LoginMacros
-
-  before do
-    driven_by(:rack_test)
-  end
-
   let!(:character) { create(:character, :with_image, stage_number: 0) }
   let(:user) { create(:user) }
 
@@ -34,7 +28,7 @@ RSpec.describe "Users", type: :system do
           fill_in "パスワード(確認用)", with: "Password1234"
           click_button "登録"
           expect(page).to have_content "ユーザー名を入力してください"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq new_user_registration_path
         end
       end
 
@@ -47,7 +41,7 @@ RSpec.describe "Users", type: :system do
           fill_in "パスワード(確認用)", with: "Password1234"
           click_button "登録"
           expect(page).to have_content "メールアドレスを入力してください"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq new_user_registration_path
         end
       end
 
@@ -61,7 +55,7 @@ RSpec.describe "Users", type: :system do
           fill_in "パスワード(確認用)", with: "Password1234"
           click_button "登録"
           expect(page).to have_content "メールアドレスはすでに存在します"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq new_user_registration_path
           expect(page).to have_field "メールアドレス", with: user.email
         end
       end
@@ -100,7 +94,7 @@ RSpec.describe "Users", type: :system do
           fill_in "メールアドレス", with: "update@example.com"
           click_button "更新"
           expect(page).to have_content "ユーザー名を入力してください"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq edit_user_registration_path
         end
       end
 
@@ -111,7 +105,7 @@ RSpec.describe "Users", type: :system do
           fill_in "メールアドレス", with: ""
           click_button "更新"
           expect(page).to have_content "メールアドレスを入力してください"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq edit_user_registration_path
         end
       end
 
@@ -123,7 +117,7 @@ RSpec.describe "Users", type: :system do
           fill_in "メールアドレス", with: existed_user.email
           click_button "更新"
           expect(page).to have_content "メールアドレスはすでに存在します"
-          expect(current_path).to eq user_registration_path
+          expect(current_path).to eq edit_user_registration_path
         end
       end
     end
