@@ -70,6 +70,22 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install JS deps
+        run: |
+          corepack enable
+          yarn install --frozen-lockfile
+      
+      - name: Build JS
+        run: bin/rails javascript:build RAILS_ENV=test
+
+      - name: Build CSS
+        run: bin/rails css:build RAILS_ENV=test
+
     #  - name: Run tests
     #    env:
     #      RAILS_ENV: test
