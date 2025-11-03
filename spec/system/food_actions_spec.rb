@@ -9,7 +9,6 @@ RSpec.describe "FoodActions", type: :system do
   let!(:user_food) { create(:user_food, user: user, food: food) }
 
   describe "ログイン前" do
-
     describe "ページ遷移確認" do
       it "消費登録ページへのアクセスが失敗する" do
         visit new_food_actions_consume_path
@@ -51,7 +50,7 @@ RSpec.describe "FoodActions", type: :system do
         end
       end
     end
-    
+
     describe "廃棄登録" do
       context "フォームの入力が正常" do
         it "廃棄登録が成功する" do
