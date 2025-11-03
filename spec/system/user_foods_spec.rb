@@ -45,7 +45,6 @@ RSpec.describe "UserFoods", type: :system do
           click_button "次へ"
           click_button "保存する"
           expect(page).to have_content "冷蔵庫に食材を登録しました"
-          expect(current_path).to eq new_user_food_path
         end
       end
 

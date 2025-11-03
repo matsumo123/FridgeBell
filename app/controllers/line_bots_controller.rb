@@ -49,7 +49,7 @@ class LineBotsController < ApplicationController
         to: user_id,
         messages: [
           Line::Bot::V2::MessagingApi::TextMessage.new(
-            text: "下記URLよりLINE連携を行っていください。\n※連携を行わない場合、リマインド通知はお届けできませんので、ご注意ください。\n\nhttps://fridgebell.jp/line_bots/new?state=#{token}&openExternalBrowser=1"
+            text: "下記URLよりLINE連携を行ってください。\n※連携を行わない場合、リマインド通知はお届けできませんので、ご注意ください。\n\nhttps://fridgebell.jp/line_bots/new?state=#{token}&openExternalBrowser=1"
           )
         ]
       )
