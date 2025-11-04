@@ -38,8 +38,15 @@
         </div>
       </div>
     <% else %>
-      <div>
-        <%= link_to t('.login'), new_user_session_path, class:"border border-orange-200 rounded px-4 py-2 text-orange-500 hover:bg-orange-100 hover:text-orange-600 font-mono" %>
+      <div class="flex items-center gap-x-2 sm:gap-x-4">
+        <%= link_to new_user_registration_path, class: "flex items-center gap-x-1 text-xs sm:text-base rounded-xl p-2 sm:px-4 sm:py-2 bg-amber-200 text-amber-700 hover:bg-amber-300 hover:text-amber-800 font-mono transition-colors duration-200" do %>
+          <%= heroicon "user-plus", variant: :outline, options: { class: "w-5 h-5" } %>
+          <span>新規登録</span>
+        <% end %>
+        <%= link_to new_user_session_path, class:"flex items-center gap-x-1 text-xs sm:text-base rounded-xl p-2 sm:px-4 sm:py-2 bg-orange-400 text-white hover:bg-orange-500 font-mono transition-colors duration-200" do %>
+          <%= heroicon "arrow-right-end-on-rectangle", variant: :outline, options: { class: "w-5 h-5" } %>
+          <%= t('.login') %>
+        <% end %>
       </div>
     <% end %>
   </div>
