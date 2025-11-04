@@ -1,0 +1,62 @@
+<div class="grid gap-6 md:grid-cols-2">
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-orange-100 border-2 border-orange-400 flex items-center justify-center">
+        <%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6 text-orange-500" } %>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">
+        食材を登録
+      </h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center leading-relaxed">
+      登録した食材を期限の近い順に表示。<br>
+      期限ラベル（グレー・赤・黄・緑）付きで、期限間近な食材がひと目でわかります。
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-pink-100 border-2 border-pink-400 flex items-center justify-center">
+        <%= heroicon "heart", variant: :outline, options: { class: "w-6 h-6 text-pink-500" } %>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800 leading-relaxed">
+        お気に入り登録で時短
+      </h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center">
+      よく使う食材をお気に入り登録。<br>
+      次回からカテゴリー選択なしでスムーズに登録できます。
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-green-100 border-2 border-green-400 flex items-center justify-center">
+        <i class="material-symbols-rounded text-xl text-green-500">fork_spoon</i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">
+        食べた/捨てた登録
+      </h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center leading-relaxed">
+      食べた・捨てた食材を登録すると、<br>
+      円グラフや月間ランキングに自動反映。<br>
+      よく捨ててしまう食材を把握して、ムダを減らせます。
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <div class="p-2 rounded-full bg-violet-100 border-2 border-violet-400 flex items-center justify-center">
+        <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 text-violet-500" } %>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-800">
+        リマインド通知
+      </h3>
+    </div>
+    <p class="text-sm text-gray-600 text-center leading-relaxed">
+      LINEで期限間近の食材をお知らせ。<br>
+      使い忘れを防いで、食材をおいしく使いきれます。
+    </p>
+  </div>
+</div>
