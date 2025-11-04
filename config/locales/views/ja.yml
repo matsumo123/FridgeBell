@@ -39,7 +39,7 @@ ja:
       consume_discard: 消費･廃棄登録
       consume_discard_description1: 消費または廃棄した食材を登録
       consume_discard_description2: 連続廃棄ゼロ日数の記録を伸ばして、モンスター化した食材たちを助けて
-      remind: リマインド（準備中）
+      remind: リマインド
       remind_description: LINEで期限間近の食材を通知予定
     before_login_footer:
       terms_of_service: 利用規約
@@ -55,9 +55,8 @@ ja:
   homes:
     top:
       title: FridgeBell
-      description: 冷蔵庫の食材をムダなく管理
-      how_to_use: 使い方
-      create_user: まずは新規登録
+      description: 食材をムダにしない、心地よい習慣を
+      create_user: 新規登録
     home:
       title: Home
       no_discarded_days: 日連続で廃棄ゼロ！
