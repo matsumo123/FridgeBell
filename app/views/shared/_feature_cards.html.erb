@@ -2,12 +2,15 @@
   <div class="bg-white rounded-xl shadow p-4" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="500">
     <div class="flex items-center justify-center gap-2 mb-2">
       <div class="p-2 rounded-full bg-orange-100 border-2 border-orange-400 flex items-center justify-center">
-        <%= heroicon "pencil-square", variant: :outline, options: { class: "w-6 h-6 text-orange-500" } %>
+        <%= heroicon "tag", variant: :outline, options: { class: "w-6 h-6 text-orange-500" } %>
       </div>
       <h3 class="text-lg font-semibold text-gray-800">
-        食材を登録
+        期限間近な食材をひと目で把握
       </h3>
     </div>
+    <video autoplay loop muted playsinline width="220" class="mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200">
+      <source src="https://i.gyazo.com/e71bfa76fe7dc78d34381cddbfae78c5.mp4" type="video/mp4">
+    </video>
     <p class="text-sm text-gray-600 text-center leading-relaxed">
       登録した食材を期限の近い順に表示。<br>
       期限ラベル（グレー・赤・黄・緑）付きで、期限間近な食材がひと目でわかります。
@@ -23,6 +26,7 @@
         お気に入り登録で時短
       </h3>
     </div>
+    <%= image_tag "favorite.png", class: "mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200 w-72 md:w-80" %>
     <p class="text-sm text-gray-600 text-center">
       よく使う食材をお気に入り登録。<br>
       次回からカテゴリー選択なしでスムーズに登録できます。
@@ -32,12 +36,13 @@
   <div class="bg-white rounded-xl shadow p-4" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="500">
     <div class="flex items-center justify-center gap-2 mb-2">
       <div class="p-2 rounded-full bg-green-100 border-2 border-green-400 flex items-center justify-center">
-        <i class="material-symbols-rounded text-xl text-green-500">fork_spoon</i>
+        <%= heroicon "chart-bar", variant: :outline, options: { class: "w-6 h-6 text-green-500" } %>
       </div>
       <h3 class="text-lg font-semibold text-gray-800">
-        食べた/捨てた登録
+        食べた／捨てた食材の統計を確認
       </h3>
     </div>
+    <%= image_tag "pie_chart.png", class: "mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200 w-72 md:w-80" %>
     <p class="text-sm text-gray-600 text-center leading-relaxed">
       食べた・捨てた食材を登録すると、<br>
       円グラフや月間ランキングに自動反映。<br>
@@ -47,13 +52,14 @@
 
   <div class="bg-white rounded-xl shadow p-4" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="500">
     <div class="flex items-center justify-center gap-2 mb-2">
-      <div class="p-2 rounded-full bg-violet-100 border-2 border-violet-400 flex items-center justify-center">
-        <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 text-violet-500" } %>
+      <div class="p-2 rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center">
+        <%= heroicon "bell-alert", variant: :outline, options: { class: "w-6 h-6 text-yellow-500" } %>
       </div>
       <h3 class="text-lg font-semibold text-gray-800">
-        リマインド通知
+        リマインド通知で使い忘れ防止
       </h3>
     </div>
+    <%= image_tag "LINE_message.jpg", class: "mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200 w-72 md:w-80" %>
     <p class="text-sm text-gray-600 text-center leading-relaxed">
       LINEで期限間近の食材をお知らせ。<br>
       使い忘れを防いで、食材をおいしく使いきれます。
