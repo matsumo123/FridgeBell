@@ -26,11 +26,18 @@
         <%= link_to new_user_session_path, class: "flex items-center gap-x-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold px-4 py-2 test-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-200" do %>
           <span>今すぐはじめる</span>
         <% end %>
-        <%= link_to "使い方を見る", "#", class: "flex items-center bg-white text-sm sm:text-base text-gray-700 border border-gray-500 rounded-xl shadow-lg px-4 py-2 hover:bg-gray-100 hover:shadow-xl transition-all duration-200" %>
+        <div data-controller="how-to-modal" class="flex items-center gap-2 sm:gap-4 font-mono">
+          <button data-action="click->how-to-modal#open" class= "flex items-center bg-white text-sm sm:text-base text-gray-700 border border-gray-500 rounded-xl shadow-lg px-4 py-2 hover:bg-gray-100 hover:shadow-xl transition-all duration-200">
+            使い方を見る
+          </button>
+          <div data-how-to-modal-target="modal" class="hidden fixed inset-0 z-[60]">
+            <%= render "shared/how_to_modal" %>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="my-24 sm:my-16 md:my-8 flex flex-col items-center justify-center animate-bounce">
+    <div class="mt-36 mb-16 sm:my-16 md:my-8 flex flex-col items-center justify-center animate-bounce">
       <span class="text-orange-700 text-sm font-semibold">Scroll</span>
       <%= heroicon "chevron-double-down", variant: :solid, options: { class: "w-5 h-5 text-orange-700" } %>
     </div>
@@ -53,24 +60,33 @@
         </h3>
       </div>
       <div class="bg-white my-2 p-4 shadow-sm border border-gray-100 rounded-2xl w-full font-mono">
-        <p class="flex flex-col items-start justify-center gap-1 text-xs text-gray-500">
-          STEP 1
+        <p class="flex flex-col items-center justify-center gap-1 text-xs text-gray-500">
+          <span class="rounded-full bg-gray-100 px-2 py-1">STEP 1</span>
           <span class="text-gray-700 font-semibold text-sm">食材を登録</span>
-          カテゴリーから選んで数量と期限を入力
+          <video autoplay loop muted playsinline width="180" class="mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200">
+            <source src="https://i.gyazo.com/6c87af896cbffbd72142360fcfac7d82.mp4" type="video/mp4">
+          </video>
+          カテゴリーから選び、数量と期限を入力
         </p>
       </div>
       <div class="bg-white my-2 p-4 shadow-sm border border-gray-100 rounded-2xl w-full font-mono">
-        <p class="flex flex-col items-start justify-center gap-1 text-xs text-gray-500">
-          STEP 2
-          <span class="text-gray-700 font-semibold text-sm">リマインドの設定</span>
-          設定した日前にLINEへお知らせ
+        <p class="flex flex-col items-center justify-center gap-1 text-xs text-gray-500">
+          <span class="rounded-full bg-gray-100 px-2 py-1">STEP 2</span>
+          <span class="text-gray-700 font-semibold text-sm">リマインドを設定</span>
+          <video autoplay loop muted playsinline width="180" class="mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200">
+            <source src="https://i.gyazo.com/f770f799035c05f171ebb71c11ac5a12.mp4" type="video/mp4">
+          </video>
+          期限〇日前と通知時刻を設定（LINEでお知らせ）
         </p>
       </div>
       <div class="bg-white my-2 p-4 shadow-sm border border-gray-100 rounded-2xl w-full font-mono">
-        <p class="flex flex-col items-start justify-center gap-1 text-xs text-gray-500">
-          STEP 3
-          <span class="text-gray-700 font-semibold text-sm">食べた/捨てた</span>
-          ワンタップで記録して統計に反映
+        <p class="flex flex-col items-center justify-center gap-1 text-xs text-gray-500">
+          <span class="rounded-full bg-gray-100 px-2 py-1">STEP 3</span>
+          <span class="text-gray-700 font-semibold text-sm">食べた/捨てたを記録</span>
+          <video autoplay loop muted playsinline width="220" class="mx-auto block my-2 rounded-lg shadow ring-1 ring-gray-200">
+            <source src="https://i.gyazo.com/98a3f7bedd8f7541a6e42a586b91834d.mp4" type="video/mp4">
+          </video>
+          チェックと数量を入力して、かんたんに消費・廃棄を登録
         </p>
       </div>
     </div>
