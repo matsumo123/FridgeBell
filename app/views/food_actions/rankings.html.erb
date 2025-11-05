@@ -2,9 +2,9 @@
   <div class="mx-auto max-w-lg md:max-w-2xl space-y-4 font-mono">
     <div class="rounded-2xl border border-orange-100/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition-shadow duration-20 px-6 pt-4 pb-2 mb-4 mx-4">
 
-      <h1 class="flex items-center justify-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight gap-4">
-        <%= heroicon "arrow-left", options: { class: "w-5 h-5" } %>
-        <span>今月のランキング</span>
+      <h1 class="flex items-center justify-center text-xl md:text-2xl font-semibold text-gray-700 tracking-tight gap-1">
+        <i class="material-symbols-rounded text-base sm:text-lg align-middle">editor_choice</i>
+        <span>月間ランキング</span>
       </h1>
 
       <%= turbo_frame_tag "tab_content" do %>
