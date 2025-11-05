@@ -1,4 +1,4 @@
-<main class="relative flex flex-col items-start justify-center p-2 sm:p-6 overflow-x-hidden">
+<main class="relative flex flex-col items-start justify-center p-2 sm:p-6 overflow-hidden">
 
   <%= image_tag "top-monster-fridge.png",
       class: "absolute top-0 right-[-3rem] w-64 sm:w-80 sm:top-0 sm:right-0 md:w-92 md:right-84 opacity-90 pointer-events-none select-none" %>
@@ -88,6 +88,25 @@
           </video>
           チェックと数量を入力して、かんたんに消費・廃棄を登録
         </p>
+      </div>
+    </div>
+    <div class="mt-20 mb-12 text-center" data-aos="fade-up" data-aos-duration="1500">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-3">
+        食材をムダなく、おいしく使いきる習慣を。
+      </h2>
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        「もったいない」を減らす第一歩を一緒に歩みませんか？
+      </p>
+      <div class="flex flex-row justify-center gap-4">
+        <%= link_to new_user_registration_path, class: "flex items-center gap-x-1 text-xs sm:text-base rounded-xl p-2 sm:px-4 sm:py-2 bg-amber-200 text-amber-700 hover:bg-amber-300 hover:text-amber-800 font-mono transition-colors duration-200" do %>
+          <%= heroicon "user-plus", variant: :outline, options: { class: "w-5 h-5" } %>
+          <span>新規登録</span>
+        <% end %>
+
+        <%= link_to new_user_session_path, class:"flex items-center gap-x-1 text-xs sm:text-base rounded-xl p-2 sm:px-4 sm:py-2 bg-orange-400 text-white hover:bg-orange-500 font-mono transition-colors duration-200" do %>
+          <%= heroicon "arrow-right-end-on-rectangle", variant: :outline, options: { class: "w-5 h-5" } %>
+          <span>ログイン</span>
+        <% end %>
       </div>
     </div>
   </div>
