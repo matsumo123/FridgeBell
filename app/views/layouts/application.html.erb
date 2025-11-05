@@ -13,10 +13,11 @@
 
     <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <!-- <link rel="icon" href="/icon.png" type="image/png"> -->
+    <!-- <link rel="icon" href="/icon.svg" type="image/svg+xml"> -->
+    <!-- <link rel="apple-touch-icon" href="/icon.png"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "bg_fridge", "data-turbo-track": "reload" %>
@@ -51,5 +52,9 @@
       <%= turbo_frame_tag 'user_food_modal' %>
       <%= turbo_frame_tag 'how_to_modal' %>
       <%= turbo_frame_tag 'reminder_modal' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script nonce="<%= content_security_policy_nonce %>">
+      AOS.init();
+    </script>
   </body>
 </html>
