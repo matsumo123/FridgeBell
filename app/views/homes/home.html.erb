@@ -1,15 +1,17 @@
 <% content_for(:title, t('.title')) %>
 <main class="relative flex-1 px-6 py-4 md:px-8 bg-fridge bg-cover md:min-h-screen font-mono">
 
+  <div class="flex items-center justify-center text-center text-lg text-gray-700 font-bold bg-yellow-300 rounded-full py-2 px-4 shadow-md gap-2 mb-1 mx-auto w-fit">
+    <i class="material-symbols-rounded text-base sm:text-lg align-middle">workspace_premium</i>
+    <span><%= @character.consecutive_days %></span>
+    <span class="ml-1 font-semibold"><%= t('.no_discarded_days') %></span>
+  </div>
+
   <div class="inset-x-0 flex justify-center z-10">
     <div class="max-w-xl w-full rounded-2xl px-4 py-3 bg-white/80 backdrop-blur shadow-lg">
-      <p class="text-center text-xl md:text-2xl font-bold text-gray-800">
-        <%= @character.character.description %>
-      </p>
-      <p class="text-center text-sm text-gray-600 mt-1">
-        <%= @character.consecutive_days %>
-        <%= t('.no_discarded_days') %>
-      </p>
+      <div class="text-center font-medium text-gray-800">
+        <%= simple_format(@character.character.description) %>
+      </div>
     </div>
   </div>
 
