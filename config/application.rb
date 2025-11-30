@@ -31,5 +31,10 @@ module Myapp
 
     config.active_record.default_timezone = :local
     config.time_zone = "Tokyo"
+
+    config.generators do |g|
+      g.helper false
+      g.test_framework :rspec
+    end
   end
 end
